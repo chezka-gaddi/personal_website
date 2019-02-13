@@ -1,0 +1,12 @@
+/**
+ * width
+ *  relative- px, em, %
+ *  absolute- in, cm, mm, pt
+ *
+ * color
+ *  rgb -> color.rgb(_,_,_)
+ *  rgba -> color.rgba(_,_,_,_)
+ *  color constant -> blue
+ *  # -> #rrggbb  (f is maximum, 0 is minimum)
+ *  hsl
+ */
