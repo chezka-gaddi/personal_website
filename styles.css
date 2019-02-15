@@ -105,6 +105,12 @@ header {
   outline-style: double;
 }
 
+.embedpdf {
+  background-color: white;
+  opacity: 1.0;
+  text-align: center;
+}
+
 .heading {
   font-family: 'Cinzel';
   text-align: center;
