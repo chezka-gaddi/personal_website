@@ -1,0 +1,13 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#profile {
+  height: 600px;
+  background-color: pink;
+}
+
+#experience {
+  height: 600px;
+  background-color: yellow;
+}

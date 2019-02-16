@@ -1,9 +1,9 @@
 body {
   background-color: lightgray;
-  background-image: url("styles/res/desktop.png");
-  background-size: 150%;
+  background-image: url("res/rosegold.jpg");
+  background-size: 100%;
   background-position: center;
-  background-repeat: no-repeat;
+  /*background-repeat: no-repeat;*/
 }
 
 header {
@@ -16,13 +16,15 @@ header {
   font-size: 200%;
   text-decoration: overline;
   font-variant: small-caps;
+  font-weight: bold;
 }
 
 .comment {
-  margin-top: -20px;
+  margin-top: -35px;
   margin-bottom: 20px;
   font-family: 'Allura', cursive;
   font-size: 100%;
+  font-weight: bold;
 }
 
 .navbar {
@@ -95,7 +97,7 @@ header {
 }
 
 .content {
-  background: url("styles/res/whitebox.jpg");
+  background: url("res/whitebox.jpg");
   opacity: 0.6;
   padding: 5px 15px;
   margin: 30px 55px;
@@ -118,7 +120,25 @@ header {
   text-align: center;
 }
 
-p {
+#funFacts {
+  display: none;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 0px;
+  margin-bottom: -10px;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+button {
+  background-color: white;
+  opacity: 1.0;
+  width: 200px;
+  font-family: 'Cormorant Garamond', sans-serif;
+}
+
+div, p {
   font-family: 'Cormorant Garamond', sans-serif;
 }
 
