@@ -2,12 +2,103 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  margin: 0;
+  height: 2000px;
+}
+
+.section {
+  margin: 0;
+  height: 700px;
+  font-size: 120%;
+  padding-right: 320px;
+}
+
+p {
+  color: black;
+  text-align: justify;
+  font-size: 80%;
+  font-weight: normal;
+}
+
+h1, h2 {
+  font-variant: small-caps;
+}
+
+h2 {
+  font-size: 110%;
+}
+
+h3 {
+  color: black;
+  font-weight: normal;
+  margin-top: -25px;
+  font-size: 90%;
+}
+
+.content {
+  margin-left: 70px;
+  float: right;
+  max-width: 800px;
+  font-size: 120%;
+  text-align: center;
+  font-weight: bold;
+  color: #904752;
+}
+
 #profile {
-  height: 600px;
-  background-color: pink;
+  background-color: lightgray;
+}
+
+#education {
+  background-color: #904752;
 }
 
 #experience {
-  height: 600px;
-  background-color: yellow;
+  background-color: lightgray;
+}
+
+#skills {
+  background-color: #904752;
+}
+
+#projects {
+  background-color: lightgray;
+}
+
+.icon-bar {
+  position: fixed;
+  top: 50%;
+  right: 7%;
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display: block;
+  text-align: left;
+  padding: 25px 20px;
+  transition: all 0.3s ease;
+  font-size: 17px;
+}
+
+.icon-bar a:hover {
+  background-color: lightgray;
+}
+
+.tag {
+  color: lightgray;
+  background: black;
+}
+
+i {
+  color: #904752;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #cccccc;
+    margin: 1em 0;
+    padding: 0;
 }

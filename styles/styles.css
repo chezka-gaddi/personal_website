@@ -1,9 +1,9 @@
-body {
-  background-color: lightgray;
-  background-image: url("res/rosegold.jpg");
-  background-size: 100%;
-  background-position: center;
-  /*background-repeat: no-repeat;*/
+html {
+  background: url("res/desktop.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 header {
