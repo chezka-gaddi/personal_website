@@ -81,9 +81,14 @@ hr {
   height: 100vh;
 }
 
+#offset {
+  position: fixed;
+  top: 0px;
+}
+
 .start {
   border: none;
-  padding: 15px 32px;
+  padding: 15px 62px;
   background-color: black;
   font-size: 150%;
   text-align: center;
@@ -92,7 +97,7 @@ hr {
   cursor: pointer;
   position: absolute;
   bottom: 0%;
-  right: 0%;
+  right: 7%;
 }
 
 .animated {
@@ -101,14 +106,17 @@ hr {
 }
 
 .icon-bar {
+  margin-right: 7%;
+  position: sticky;
+  float: right;
+  top: 20%;
+}
+
+.sticky {
   position: fixed;
   top: 50%;
   right: 7%;
   transform: translateY(-50%);
-}
-
-.sticky {
-  display: none;
 }
 
 .icon-bar a {
@@ -126,4 +134,8 @@ hr {
 .tag {
   color: lightgray;
   background: black;
+}
+
+.active {
+  background-color: lightgray;
 }
