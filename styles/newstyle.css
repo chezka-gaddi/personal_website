@@ -30,7 +30,7 @@ p {
   text-align: left;
   color: black;
   font-family: 'Cormorant Garamond', sans-serif;
-  font-size: 80%;
+  font-size: 90%;
   font-weight: normal;
 }
 
@@ -114,14 +114,7 @@ hr {
   margin-right: 7%;
   position: sticky;
   float: right;
-  top: 20%;
-}
-
-.sticky {
-  position: fixed;
-  top: 50%;
-  right: 7%;
-  transform: translateY(-50%);
+  top: 15%;
 }
 
 .icon-bar a {

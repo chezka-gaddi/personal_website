@@ -4,18 +4,22 @@ window.onscroll = function() {
 
 function changeActive() {
   var current = window.pageYOffset;
-  var profile = document.getElementById("profile");
-  var profileOffset = profile.offsetTop;
   var education = document.getElementById("education");
   var educationOffset = education.offsetTop;
+  var offset = educationOffset / 5;
+  educationOffset -= offset;
   var experience = document.getElementById("experience");
   var experienceOffset = experience.offsetTop;
+  experienceOffset -= offset;
   var skills = document.getElementById("skills");
   var skillsOffset = skills.offsetTop;
+  skillsOffset -= offset;
   var projects = document.getElementById("projects");
   var projectsOffset = projects.offsetTop;
+  projectsOffset -= offset;
   var contact = document.getElementById("contact");
   var contactOffset = contact.offsetTop;
+  contactOffset -= offset;
 
   if (current < educationOffset) {
     document.getElementById("profileButton").classList.add("active");
