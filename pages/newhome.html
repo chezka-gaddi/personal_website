@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<header>
-  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Cinzel|Cormorant+Garamond|Lora|Yellowtail|Homemade+Apple|Parisienne|Rock+Salt|Eczar" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="../styles/animate.css" />
+  <script src="../js/newscript.js"></script>
   <link rel="stylesheet" href="../styles/newstyle.css">
-</header>
+</head>
 
 <body>
-  <div id="landing" class="section accentColor">
-    <div class="container">
-      <br /> <br /> <br /> <br />
-      <br /> <br /> <br /> <br />
-      <h1>Chezka Cazzandra Cae Gaddi</h1>
-      <h2>Interactive Resume</h2>
-      <a href="#profile"><button type="button" class="start"><i class="fas fa-angle-double-down animated bounce"></i></button></a>
-      <script src="../js/newscript.js"></script>
-    </div>
+  <!-- <div id="landing" class="container">
   </div>
+  <div class="landing">
+    <h1>Chezka Cazzandra Cae Gaddi</h1>
+    <hr />
+    <h2>Interactive Resume</h2>
+  </div>
+  <a href="#profile"><button type="button" class="start"><i class="fas fa-angle-double-down animated bounce"></i></button></a>
+-->
 
   <div id="navBar" class="icon-bar">
     <a id="profileButton" href="#profile" class="tag active"><i class="fa fa-user"> Profile</i></a>
@@ -29,59 +30,80 @@
     <a id="contactButton" href="#contact" class="tag"><i class="fa fa-phone"> Contact</i></a>
   </div>
 
-  <div id="profile" class="section mainColor">
-    <div class="container">
-      <h1>Profile</h1>
-      <hr />
-      <h2>About Me</h2>
-      <p>
-        <img src="res/profilepic.jpg" />
-      </p>
-      <p>
-        Hi, I'm Chezka Gaddi.
-        I am a junior Computer Science major with interests in GUI design, Artificial Intelligence, game development, and in general just fun and interesting things. I have not devoted myself to a specific field yet, as I feel like there's so much
-        I don't know yet.
-      </p>
+  <!-- <div id="profile" class="container mainColor">
+    <h1>Profile</h1>
+    <hr />
+    <div class="content">
+      <img src="../res/profilepic.jpg" />
+    </div>
+    <div class="content">
+      Hi, I'm Chezka. <br />
+      I am a junior Computer Science major with interests in GUI design, Artificial Intelligence, game development, and in general just fun and interesting things. I have not devoted myself to a specific field yet, as I feel like there's so much
+      I don't know yet.
+    </div>
+  </div> -->
+
+  <div id="education" class="container accentColor">
+    <h1>Education</h1>
+    <hr />
+    <div class="content top">
+      <b>South Dakota School of Mines and Technology</b> <br />
+      May 2020
+    </div>
+    <div class="content">
+      <b>Computer Science</b> <br />
+      <h4>Relevant Coursework:</h4> GUI Programming, Database Management, Cybersecurity, Natural Computing, Analysis of Algorithms, Assembly, Software Engineering and Design <br />
+      <h4>Extracurriculars:</h4> Hardrocker Cheer, Alpha Delta Pi Sorority, Programming Team
+    </div>
+    <br />
+    <div class="content top">
+      <b>Stevens High School</b> <br />
+      May 2013
+    </div>
+    <div class="content">
+      <b>Summa Cum Laude</b> <br />
+      <h4>Extracurriculars:</h4> FIRST Robotics, National Honors Society
     </div>
   </div>
 
-  <div id="education" class="section accentColor">
-    <div class="container">
-      <h1>Education</h1>
-      <hr />
-      <p>
-        South Dakota School of Mines and Technology <br />
-        May 2020
-      </p>
-      <p>
-        Computer Science <br />
-        Relevant Coursework: GUI Programming, Database Management, Cybersecurity, Natural Computing, Analysis of Algorithms, Assembly, Software Engineering and Design
-      </p>
+  <div id="experience" class="container mainColor">
+    <h1>Experience</h1>
+    <hr />
+    <div class="content top">
+      <b>Texas Roadhouse</b> <br />
+      March 2016 - now
+    </div>
+    <div class="content">
+      I am a waitress
+    </div>
+    <br />
+    <div class="content top">
+      <b>Composites and Polymer Engineering Laboratory</b> <br />
+      May 2015 - Feb 2016
+    </div>
+    <div class="content">
+      I did science stuff
     </div>
   </div>
 
-  <div id="experience" class="section mainColor">
-    <div class="container">
-      <h1>Experience</h1>
+  <div id="skills" class="container accentColor">
+    <h1>Skills</h1>
+    <hr />
+    <div class="content">
+      C++
+      <div class="tooltip">
+        <i class="fas fa-star"></i>
+        <span class="tooltiptext">Don't ask me to show you</span>
+      </div>
     </div>
   </div>
 
-  <div id="skills" class="section accentColor">
-    <div class="container">
-      <h1>Skills</h1>
-    </div>
+  <div id="projects" class="container mainColor">
+    <h1>Projects</h1>
   </div>
 
-  <div id="projects" class="section mainColor">
-    <div class="container">
-      <h1>Projects</h1>
-    </div>
-  </div>
-
-  <div id="contact" class="section accentColor">
-    <div class="container">
-      <h1>Contact</h1>
-    </div>
+  <div id="contact" class="container accentColor">
+    <h1>Contact</h1>
   </div>
 
 </body>
