@@ -2,6 +2,10 @@ window.onscroll = function() {
   changeActive();
 }
 
+window.onload = function() {
+  createProgressBars();
+}
+
 function changeActive() {
   var current = window.pageYOffset;
   var education = document.getElementById("education");
@@ -43,5 +47,26 @@ function changeActive() {
   } else {
     document.getElementById("projectsButton").classList.remove("active");
     document.getElementById("contactButton").classList.add("active");
+  }
+}
+
+var star =["one", "two", "three", "four", "five"];
+
+function createProgressBars() {
+  var change = document.getElementsByClassName("toRate");
+  var rating = document.getElementById("rating");
+
+  for (idx=0; idx < change.length; idx++) {
+    var original = change[idx];
+    var parent = document.createElement("div");
+    parent.style.display = "inline-block";
+    parent.innerHTML = rating.innerHTML;
+
+    var rate = parseInt(original.innerHTML)
+    for (i=0; i < rate; i++) {
+      parent.getElementsByClassName(star[i])[0].style.color = "#116466";
+    }
+
+    original.innerHTML = parent.innerHTML;
   }
 }
