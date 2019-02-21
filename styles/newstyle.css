@@ -69,8 +69,8 @@ html {
 
 .container {
   min-height: 100vh;
-  padding-left: 20%;
-  padding-right: 250px;
+  padding-left: 18%;
+  padding-right: 300px;
   padding-top: 5%;
 }
 
@@ -97,6 +97,7 @@ h1, h2, h3 {
 
 h1 {
   font-variant: small-caps;
+  font-size: 300%;
 }
 
 h2 {
@@ -125,9 +126,13 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #cccccc;
+    border-top: 1px solid #116466;
     margin: 1em 0;
     padding: 0;
+}
+
+.black {
+  border-top: 2px solid black;
 }
 
 .mainColor {
@@ -141,11 +146,12 @@ hr {
 }
 
 #landing {
-  background: url("../res/desktop.png") no-repeat center center fixed;
+  background: url("../res/teal.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  filter: blur(2px) hue-rotate(90deg);
+  /*filter: blur(2px);*/
+  /*filter: hue-rotate(90deg);*/
   background-size: cover;
   min-height: 100vh;
 }
@@ -162,7 +168,7 @@ hr {
   transition: .5s ease;
   text-align: center;
   position: absolute;
-  top: 40%;
+  top: 30%;
   right: 20%;
   left: 20%;
   font-family: 'Cinzel', sans-serif;
@@ -183,9 +189,12 @@ hr {
   right: 7%;
 }
 
-.animated {
-  animation-duration: 2.5s;
-  animation-iteration-count: infinite;
+.bounce {
+  animation-duration: 2.6s;
+}
+
+.fadeIn {
+  animation-duration: 5s;
 }
 
 th, td {
@@ -235,7 +244,6 @@ i {
 
 .tooltip {
   position: relative;
-  border-bottom: 1px dotted black;
 }
 
 .tooltip .tooltiptext {
