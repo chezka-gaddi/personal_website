@@ -18,15 +18,15 @@
     <hr class="black" />
     <h2 class="animated fadeIn delay-3s">Interactive Resume</h2>
   </div>
-  <a href="#profile"><button type="button" class="start"><i class="fas fa-angle-double-down teal animated bounce infinite"></i></button></a>
+  <a href="#profile"><button type="button" class="start animated fadeInUp delay-5s"><i class="fas fa-angle-double-down teal animated bounce infinite"></i></button></a>
 
   <div id="navBar" class="icon-bar">
-    <a id="profileButton" href="#profile" class="tag active"><i class="fa fa-user teal"> Profile</i></a>
-    <a id="educationButton" href="#education" class="tag"><i class="fas fa-graduation-cap teal"> Education</i></a>
-    <a id="experienceButton" href="#experience" class="tag"><i class="fas fa-briefcase teal"> Experience</i></a>
+    <a id="profileButton" href="#profile" class="tag"><i class="fa fa-user teal">&nbsp; Profile</i></a>
+    <a id="educationButton" href="#education" class="tag"><i class="fas fa-graduation-cap teal">&nbsp; Education</i></a>
+    <a id="experienceButton" href="#experience" class="tag"><i class="fas fa-briefcase teal">&nbsp; Experience</i></a>
     <a id="skillsButton" href="#skills" class="tag"><i class="fas fa-cogs teal"> Skills</i></a>
-    <a id="projectsButton" href="#projects" class="tag"><i class="fa fa-project-diagram teal"> Projects</i></a>
-    <a id="contactButton" href="#contact" class="tag"><i class="fa fa-phone teal"> Contact</i></a>
+    <a id="projectsButton" href="#projects" class="tag"><i class="fa fa-project-diagram teal">&nbsp; Projects</i></a>
+    <a id="contactButton" href="#contact" class="tag"><i class="fa fa-phone teal">&nbsp; Contact</i></a>
   </div>
 
   <div id="profile" class="container mainColor">
@@ -36,31 +36,38 @@
       <img src="../res/profilepic.jpg" />
     </div>
     <div class="content">
-      Hi, I'm Chezka. <br />
-      I am a junior Computer Science major with interests in GUI design, Artificial Intelligence, game development, and in general just fun and interesting things. I have not devoted myself to a specific field yet, as I feel like there's so much
-      I don't know yet.
+      <h5>HI! I'm Chezka.</h5> <br />
+      I was originally born in Pasay City, Philippines but moved to Rapid City, South Dakota with my family when I was 9 years old. Since then I have made it my home. I haven't moved out of Rapid City for longer than a few months, but I can honestly
+      say that I am ready for new places and experiences. <br /> <br />
+      I am a junior Computer Science major with current interests in GUI design, artificial intelligence through natural computing, game development, and in general just fun and interesting things. I have not devoted myself to a specific field yet,
+      as I feel like there's so much I don't know yet. <br /> <br />
+      Interested in hiring me? Download my resume! <br />
+      <a href="../res/Resume.pdf" download><button class="btn"><i class="fas fa-download">&nbsp; Download</i></button></a>
     </div>
   </div>
 
   <div id="education" class="container accentColor">
     <h1>Education</h1>
     <hr />
-    <div class="content top">
-      <b>South Dakota School of Mines and Technology</b> <br />
-      May 2020
+    <div class="content top thin">
+      <b>South Dakota School of Mines and Technology</b> <br /> <br />
+      <i class="fa fa-map-marker-alt teal"></i>&nbsp; Rapid City, South Dakota <br />
+      <i class="fa fa-calendar-alt teal"></i>&nbsp; May 2020 <br />
     </div>
     <div class="content">
-      <b>Computer Science</b> <br />
+      <b>Computer Science</b> <br /> <br />
       <h4>Relevant Coursework:</h4> GUI Programming, Database Management, Cybersecurity, Natural Computing, Analysis of Algorithms, Assembly, Software Engineering and Design <br />
-      <h4>Extracurriculars:</h4> Hardrocker Cheer, Alpha Delta Pi Sorority, Programming Team
+      <h4>Extracurriculars:</h4> Hardrocker Cheer, Alpha Delta Pi Sorority, Programming Team <br /> <br />
+      I began my college degree as a Physics major, which I pursued for three years.
     </div>
     <br />
-    <div class="content top">
-      <b>Stevens High School</b> <br />
-      May 2013
+    <div class="content top thin">
+      <b>Stevens High School</b> <br /> <br />
+      <i class="fa fa-map-marker-alt teal"></i>&nbsp; Rapid City, South Dakota <br />
+      <i class="fa fa-calendar-alt teal"></i>&nbsp; May 2013 <br />
     </div>
     <div class="content">
-      <b>Summa Cum Laude</b> <br />
+      <b>Summa Cum Laude</b> <br /> <br />
       <h4>Extracurriculars:</h4> FIRST Robotics, National Honors Society
     </div>
   </div>
@@ -68,7 +75,7 @@
   <div id="experience" class="container mainColor">
     <h1>Experience</h1>
     <hr />
-    <div class="content top">
+    <div class="content top thin">
       <b>Texas Roadhouse</b> <br />
       March 2016 - now
     </div>
@@ -76,7 +83,7 @@
       I am a waitress
     </div>
     <br />
-    <div class="content top">
+    <div class="content top thin">
       <b>Composites and Polymer Engineering Laboratory</b> <br />
       May 2015 - Feb 2016
     </div>
@@ -88,7 +95,7 @@
   <div id="skills" class="container accentColor">
     <h1>Skills</h1>
     <hr />
-    <div class="content">
+    <div class="content top">
       <div id="rating">
         <p class="tooltip">
           <i class="fas fa-star one"></i>
@@ -112,15 +119,16 @@
         </p>
       </div>
 
-      <h3>Professional</h3>
+      <h3>Languages</h3>
       <table>
+        <col width="180" />
         <tr>
           <th>C++</th>
-          <td class="toRate">4</td>
+          <td class="toRate">5</td>
         </tr>
         <tr>
           <th>Python</th>
-          <td class="toRate">4</td>
+          <td class="toRate">5</td>
         </tr>
         <tr>
           <th>Java</th>
@@ -136,11 +144,7 @@
         </tr>
         <tr>
           <th>Javascript</th>
-          <td class="toRate">2</td>
-        </tr>
-        <tr>
-          <th>Linux/Unix</th>
-          <td class="toRate">4</td>
+          <td class="toRate">3</td>
         </tr>
         <tr>
           <th>OpenGL</th>
@@ -148,7 +152,7 @@
         </tr>
         <tr>
           <th>JavaFX</th>
-          <td class="toRate">3</td>
+          <td class="toRate">4</td>
         </tr>
         <tr>
           <th>GoLang</th>
@@ -158,6 +162,37 @@
           <th>SQL</th>
           <td class="toRate">3</td>
         </tr>
+      </table>
+    </div>
+
+    <div class="content">
+      <h3>Tools</h3>
+      <table>
+        <col width="180" />
+        <tr>
+          <th>Linux/Unix</th>
+          <td class="toRate">5</td>
+        </tr>
+        <tr>
+          <th>Data Structures and Algorithms</th>
+          <td class="toRate">4</td>
+        </tr>
+        <tr>
+          <th>Design Patterns</th>
+          <td class="toRate">3</td>
+        </tr>
+        <tr>
+          <th>Testing</th>
+          <td class="toRate">5</td>
+        </tr>
+        <tr>
+          <th>Object Oriented Programming</th>
+          <td class="toRate">5</td>
+        </tr>
+        <tr>
+          <th>Git</th>
+          <td class="toRate">5</td>
+        </tr>
         <tr>
           <th>Microsoft Office</th>
           <td class="toRate">5</td>
@@ -165,32 +200,41 @@
       </table>
     </div>
 
-    <div class="content">
+    <div class="content top">
       <h3>Personal</h3>
       <table>
+        <col width="180" />
         <tr>
           <th>Leadership</th>
-          <td class="toRate">4</td>
+          <td class="toRate">5</td>
         </tr>
         <tr>
           <th>Creativity</th>
-          <td class="toRate">4</td>
+          <td class="toRate">5</td>
         </tr>
         <tr>
           <th>Teamwork</th>
+          <td class="toRate">5</td>
+        </tr>
+        <tr>
+          <th>Problem Solving</th>
           <td class="toRate">4</td>
         </tr>
         <tr>
-          <th>HTML</th>
-          <td class="toRate">3</td>
+          <th>Organization</th>
+          <td class="toRate">4</td>
         </tr>
         <tr>
-          <th>CSS</th>
-          <td class="toRate">3</td>
+          <th>Adaptability</th>
+          <td class="toRate">4</td>
         </tr>
         <tr>
-          <th>Javascript</th>
-          <td class="toRate">2</td>
+          <th>Communication</th>
+          <td class="toRate">4</td>
+        </tr>
+        <tr>
+          <th>Ability to work under pressure</th>
+          <td class="toRate">5</td>
         </tr>
       </table>
     </div>
@@ -200,15 +244,18 @@
 
   <div id="projects" class="container mainColor">
     <h1>Projects</h1>
+    <hr />
   </div>
 
   <div id="contact" class="container accentColor">
     <h1>Contact</h1>
     <hr />
     <div class="content">
-      <a href="https://github.com/chezka-gaddi"><i class="fab fa-github teal" aria-hidden="true"> chezka-gaddi</i></a> <br />
-      <a href="https://linkedin.com/#/chezka-gaddi"><i class="fab fa-linkedin teal"> chezka-gaddi</i></a>
+      <a href="https://github.com/chezka-gaddi" alt="some stuff"><i class="fab fa-github teal large" aria-hidden="true" text="https://github.com/chezka-gaddi"></i></a> <br />
+      <a href="https://linkedin.com/#/chezka-gaddi"><i class="fab fa-linkedin teal large"></i></a>
+      <a href="chezkagaddi@gmail.com"><i class="fas fa-envelope teal large" aria-hidden="true"></i></a> <br />
     </div>
+    <hr />
   </div>
 
 </body>

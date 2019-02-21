@@ -84,7 +84,28 @@ html {
 
 .top {
   vertical-align: top;
+}
+
+.thin {
   width: 300px;
+}
+
+.btn {
+  background-color: #116466;
+  border: none;
+  color: black;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 5px;
+}
+
+.btn:hover {
+  background-color: lightgray;
+}
+
+.btn:hover i {
+  color: #116466;
 }
 
 p {
@@ -115,6 +136,13 @@ h4 {
   display: inline;
 }
 
+h5 {
+  text-align: left;
+  font-family: 'Rock Salt', sans-serif;
+  font-size: 100%;
+  margin-bottom: -7px;
+}
+
 img {
   display: block;
   margin-left: auto;
@@ -132,7 +160,7 @@ hr {
 }
 
 .black {
-  border-top: 2px solid black;
+  border-top: 1px solid #53868B;
 }
 
 .mainColor {
@@ -141,7 +169,7 @@ hr {
 }
 
 .accentColor {
-  background-color: #f8eee7;
+  background-color: #e0eeee;
   color: #116466;
 }
 
@@ -173,11 +201,12 @@ hr {
   left: 20%;
   font-family: 'Cinzel', sans-serif;
   font-size: 120%;
+  color: #c9dede;
 }
 
 .start {
   border: none;
-  padding: 15px 64px;
+  padding: 15px 66px;
   background-color: black;
   font-size: 150%;
   text-align: center;
@@ -197,9 +226,25 @@ hr {
   animation-duration: 5s;
 }
 
+.fadeInLeft {
+  animation-duration: 3s;
+}
+
+.large {
+  font-size: 500%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
 th, td {
-  padding: 5px 10px;
+  padding: 5px 30px;
   text-align: left;
+}
+
+tr:hover {
+  background-color: #e0e0e0;
 }
 
 i {
@@ -226,16 +271,16 @@ i {
 }
 
 .icon-bar a:hover {
-  background-color: lightgray;
+  background-color: #e0e0e0;
 }
 
 .tag {
-  color: lightgray;
+  color: #e0e0e0;
   background: black;
 }
 
 .active {
-  background-color: lightgray;
+  background-color: #e0e0e0;
 }
 
 #rating {

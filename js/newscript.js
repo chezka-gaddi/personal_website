@@ -1,5 +1,6 @@
 window.onscroll = function() {
   changeActive();
+  createProgressBars();
 }
 
 window.onload = function() {
@@ -51,22 +52,32 @@ function changeActive() {
 }
 
 var star =["one", "two", "three", "four", "five"];
+var first = false;
 
 function createProgressBars() {
-  var change = document.getElementsByClassName("toRate");
-  var rating = document.getElementById("rating");
+  var current = window.pageYOffset;
+  var skills = document.getElementById("skills");
+  var skillsOffset = skills.offsetTop-450;
 
-  for (idx=0; idx < change.length; idx++) {
-    var original = change[idx];
-    var parent = document.createElement("div");
-    parent.style.display = "inline-block";
-    parent.innerHTML = rating.innerHTML;
+  if (current >= skillsOffset && first == false) {
+    var change = document.getElementsByClassName("toRate");
+    var rating = document.getElementById("rating");
 
-    var rate = parseInt(original.innerHTML)
-    for (i=0; i < rate; i++) {
-      parent.getElementsByClassName(star[i])[0].style.color = "#116466";
+    for (idx=0; idx < change.length; idx++) {
+      var original = change[idx];
+      var parent = document.createElement("div");
+      parent.style.display = "inline-block";
+      parent.innerHTML = rating.innerHTML;
+
+      var rate = parseInt(original.innerHTML)
+      for (i=0; i < rate; i++) {
+        parent.getElementsByClassName(star[i])[0].style.color = "#116466";
+        parent.getElementsByClassName(star[i])[0].classList.add("fadeInLeft");
+        parent.getElementsByClassName(star[i])[0].classList.add("delay-1s");
+      }
+
+      original.innerHTML = parent.innerHTML;
+      first = true;
     }
-
-    original.innerHTML = parent.innerHTML;
   }
 }
