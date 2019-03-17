@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Allura|Cinzel" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="../styles/musicstyles.css">
+  <link rel="stylesheet" type="text/css" href="../styles/animate.css" />
+  <script type="text/javascript" src="../js/sounds.js"></script>
+</head>
+
+<body>
+  <div>
+    <ul class="navigation">
+      <li><a class="active" href=#home>Home</a></li>
+      <li><a href="fileManagement.html">File Management</a></li>
+      <li><a href="help.html">Help</a></li>
+    </ul>
+  </div>
+
+  <div id="piano">
+    <div class="piano">
+      <ul>
+        <input type="radio" name="notes" id="C4" value="0" />
+        <label for="C4">
+          <li class="note">C</li>
+        </label>
+        <input type="radio" id="t1" />
+        <label for="t1">
+          <li class="tut"></li>
+        </label>
+        <input type="radio" name="notes" id="D4" value="1" />
+        <label for="D4">
+          <li class="note">D</li>
+        </label>
+        <input type="radio" id="t1" />
+        <label for="t1">
+          <li class="tut"></li>
+        </label>
+        <input type="radio" name="notes" id="E4" value="2" />
+        <label for="E4">
+          <li class="note">E</li>
+        </label>
+        <input type="radio" name="notes" id="F4" value="3" />
+        <label for="F4">
+          <li class="note">F</li>
+        </label>
+        <input type="radio" id="t1" />
+        <label for="t1">
+          <li class="tut"></li>
+        </label>
+        <input type="radio" name="notes" id="G4" value="4" />
+        <label for="G4">
+          <li class="note">G</li>
+        </label>
+        <input type="radio" id="t1" />
+        <label for="t1">
+          <li class="tut"></li>
+        </label>
+        <input type="radio" name="notes" id="A4" value="5" />
+        <label for="A4">
+          <li class="note">A</li>
+        </label>
+        <input type="radio" id="t1" />
+        <label for="t1">
+          <li class="tut"></li>
+        </label>
+        <input type="radio" name="notes" id="B4" value="6" />
+        <label for="B4">
+          <li class="note">B</li>
+        </label>
+        <input type="radio" name="notes" id="C5" value="7" />
+        <label for="C5">
+          <li class="note">C</li>
+        </label>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="playback">
+    <form>
+      Note length:
+      <input type="number" name="noteLength" value="1.0" step="0.1" min="0.1" max="5.0" id="length" />
+    </form>
+    <button id="set">Set</button>
+    <br />
+    <button id="confirm"><i class="fas fa-check green"></i> Confirm Note</button>
+    <button id="undo"><i class="fas fa-undo"></i></button>
+    <button id="redo"><i class="fas fa-redo"></i></button>
+    <br />
+    <button id="save"><i class="far fa-save"></i> Save</button>
+    <button id="play"><i class="fas fa-play"></i></button>
+    <button id="stop"><i class="fas fa-stop red"></i></button>
+    <br />
+    <br />
+    <p id="change">
+
+    </p>
+  </div>
+
+  <div id="sheet-music" class="sheet-music">
+    <div class="staff-header">
+    </div>
+  </div>
+
+</body>
+
+</html>
