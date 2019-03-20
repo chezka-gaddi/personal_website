@@ -219,37 +219,36 @@ div {
   display: inline-block;
 }
 
-
-.g4 {
-  transform: translate(0, 2.2em);
-}
-
-.f4 {
-  transform: translate(0, 3em);
-}
-
-.e4 {
-  transform: translate(0, 3.8em);
-}
-
-.d4 {
+.c4 {
   transform: translate(0, 4.8em);
 }
 
-.c4 {
-  transform: translate(0, 5.5em);
+.d4 {
+  transform: translate(0, 3.8em);
 }
 
-.b4 {
-  transform: translate(0, 0.7em);
+.e4 {
+  transform: translate(0, 3em);
 }
 
-.a4 {
+.f4 {
+  transform: translate(0, 2.2em);
+}
+
+.g4 {
   transform: translate(0, 1.5em);
 }
 
+.a4 {
+  transform: translate(0, 0.7em);
+}
+
+.b4 {
+  transform: translate(0, 0em);
+}
+
 .c5 {
-  transform: translate(0, 0);
+  transform: translate(0, -0.7em);
 }
 
 #piano {
@@ -260,8 +259,8 @@ div {
   margin: 10px;
   display: inline;
   border-top: 2px solid #222;
-  height: 220px;
-  width: 405px;
+  /* height: 220px;
+  width: 405px; */
 }
 
 input[type=radio] {
@@ -289,14 +288,14 @@ input[type=radio] {
   border-radius:0 0 3px 3px;
 }
 
-.note:active {
+/* .note:active {
   -webkit-box-shadow:0 2px 2px rgba(0,0,0,0.4);
   -moz-box-shadow:0 2px 2px rgba(0,0,0,0.4);
   box-shadow:0 2px 2px rgba(0,0,0,0.4);
   position:relative;
   top:2px;
   height:216px;
-}
+} */
 
 .note:active:before {
   content:"";
@@ -354,7 +353,7 @@ label {
 .playback {
   display: inline-block;
   margin: 5px 15px;
-  width: 250px;
+  width: 350px;
   height: 190px;
 }
 
@@ -386,6 +385,18 @@ input:focus {
 }
 
 button {
+  padding: 2px 15px;
+  font-family: 'Cormorant Garamond', sans-serif;
+  font-size: 85%;
+  font-weight: bold;
+}
+
+button:disabled {
+  background-color: #666;
+  color: #ccc;
+}
+
+.button {
   padding: 2px 15px;
   font-family: 'Cormorant Garamond', sans-serif;
   font-size: 85%;

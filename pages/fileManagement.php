@@ -28,9 +28,28 @@ if(isset($_GET['up'])) {
 
 <form action="fileManagement.php?up=1" method="post" enctype="multipart/form-data">
   Select file to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload">
-  <input type="submit" value="Upload" name="submit">
+  <input type="file" name="fileToUpload" id="fileToUpload" class="button">
+  <input type="submit" value="Upload" name="submit" class="button">
 </form>
+
+<p>Current files:
+    <?php
+        $myFiles = scandir ( "../uploads/" );
+        echo '<table border-collapse:"separate" border-spacing="10px 20px"><tr>';
+        foreach( $myFiles as $f )
+        {
+            if ($f != "." && $f != "..") {
+                echo '<td>' . $f . '</td>';
+                echo '<td>';
+                echo '<a href="download.php?file=' . urlencode($f) . '"><button>Download</button></a>';
+                echo '</td>';
+            }
+        }
+        echo '</tr>';
+        echo '</table>';
+    ?>
+</p>
+
 
 
 </body>

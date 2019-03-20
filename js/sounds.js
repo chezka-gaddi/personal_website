@@ -1,52 +1,64 @@
-var sounds = [
-  "../res/notes/C4.wav",
-	"../res/notes/D4.wav",
-	"../res/notes/E4.wav",
-	"../res/notes/F4.wav",
-	"../res/notes/G4.wav",
-	"../res/notes/A4.wav",
-	"../res/notes/B4.wav",
-	"../res/notes/C5.wav"]
+var sounds = {
+	"C4": "../res/notes/C4.wav",
+	"D4": "../res/notes/D4.wav",
+	"E4": "../res/notes/E4.wav",
+	"F4": "../res/notes/F4.wav",
+	"G4": "../res/notes/G4.wav",
+	"A4": "../res/notes/A4.wav",
+	"B4": "../res/notes/B4.wav",
+	"C5": "../res/notes/C5.wav"
+};
 
 var snd = new Audio();
 snd.autoplay = false;
-var song = [];
-var duration = [];
 
-function playSound()
-{
+function playSound() {
+	var idx = hist.getIndex();
+	var song = hist.getActions();
 	var index = 0;
-  time = 0;
-	snd = new Audio(song[index]);
-  snd.play();
+	snd = new Audio(sounds[song[index].note]);
+	snd.play();
 
-  setInterval(function() {
-    if (snd.currentTime > duration[index])
-      snd.pause();
-      }, 500);
+	var x = setInterval(function () {
+		if (snd.currentTime > song[index].dur)
+			snd.pause();
+	}, 500);
 
 	//when the sound ends, move to the next
-	snd.onpause = function() {
-   	index++;
-		if(sounds.length > index)
-		{
-	    snd.src=song[index];
-		  snd.play();
+	snd.onpause = function () {
+		index++;
+		if (song.length > index) {
+			snd.src = sounds[song[index].note];
+			snd.play();
+		} else {
+			clearInterval(x);
 		}
 	};
 }
 
 //helper class to handle the current location in the undo/redo list
 function History() {
-	var UndoRedos =[];
+	var Actions = [];
 	var index = 0
+
+	this.getIndex = function (idx) {
+		return index;
+	}
+
+	this.getActions = function (idx) {
+		return Actions;
+	}
 
 	//new UndoRedo, remove everything after the current UndoRedo index
 	//and append the new function
-	this.executeAction = function(cmd){
-		UndoRedos.length = index; //trims length from 0 to index
-		UndoRedos.push(cmd);
-		index = UndoRedos.length
+	this.executeAction = function (cmd) {
+		Actions.length = index;		//trims length from 0 to index
+		if (index != 0 && Actions[index - 1].type == "temp") {
+			Actions[index - 1].undo();
+		}
+
+		Actions.push(cmd);
+		index = Actions.length;
 
 		//run the UndoRedo and update
 		cmd.exec();
@@ -55,21 +67,23 @@ function History() {
 
 
 	//undo called. Call the undo function on the current UndoRedo and move back one
-	this.undoCmd = function(){
-		if(index > 0)
-		{
-			var cmd = UndoRedos[index-1];
+	this.undoCmd = function () {
+		if (index > 0) {
+			var cmd = Actions[index - 1];
 			cmd.undo();
-			index= index - 1;
+			index = index - 1;
+
+			if (index != 0 && Actions[index - 1].type == "temp") {
+				cmd.exec();
+			}
 			updateUI();
 		}
 	}
 
 	//redo called. Call the execution function on the current UndoRedo and move forward one
-	this.redoCmd = function(){
-		if(index < UndoRedos.length)
-		{
-			var cmd = UndoRedos[index];
+	this.redoCmd = function () {
+		if (index < Actions.length) {
+			var cmd = Actions[index];
 			cmd.exec();
 			index = index + 1;
 			updateUI();
@@ -77,13 +91,51 @@ function History() {
 	}
 
 	//is undo available
-	this.canUndo = function(){
-		return UndoRedos.length > 0;
+	this.canUndo = function () {
+		return Actions.length > 0;
 	}
 
 	//is redo available
-	this.canRedo = function(){
-		return index < UndoRedos.length;
+	this.canRedo = function () {
+		return index < Actions.length;
+	}
+}
+
+
+function TempUndoRedo(note, dur) {
+	this.type = "temp";
+	this.note = note;
+	this.dur = dur;
+	this.noteDur = 2;
+
+	if (dur < 0.5)
+		this.noteDur = "eighth";
+	else if (dur < 1)
+		this.noteDur = "quarter";
+	else if (dur < 2)
+		this.noteDur = "half";
+
+	// adds a note
+	this.exec = function () {
+		var out = document.getElementById("change")
+		out.innerHTML += " " + this.note;
+
+		var container = document.createElement("div");
+		container.classList.add("bar");
+		var divnode = document.createElement("div");
+		divnode.classList.add("gray");
+		divnode.classList.add(this.noteDur);
+		divnode.classList.add(this.note.toLowerCase());
+
+		container.appendChild(divnode);
+		document.getElementById("sheet-music").appendChild(container);
+	}
+
+	this.undo = function () {
+		var out = document.getElementById("change");
+		out.innerHTML = out.innerHTML.slice(0, -3);
+		var music = document.getElementById("sheet-music");
+		music.removeChild(music.lastChild);
 	}
 }
 
@@ -91,96 +143,98 @@ function History() {
 //concrete UndoRedo class. Since we have undo and redo, we much have
 //a "action" (exec) function and an undo
 //ideally, this should forward these calls onto the class that does the task
-function UndoRedo(letter, note, dur){
-	this.letter = letter;
-  this.note = note;
-  this.dur = dur;
-  this.noteDur = 2;
-  if (dur < 0.5)
-    this.noteDur = "eighth";
-  else if (dur < 1)
-    this.noteDur = "quarter";
-  else if (dur < 2)
-    this.noteDur = "half";
+function UndoRedo(note, dur) {
+	this.type = "norm";
+	this.note = note;
+	this.dur = dur;
+	this.noteDur = 2;
 
-	this.exec = function(){
-    var newId = "new" + idNum;
-    idNum += 1;
+	if (dur < 0.5)
+		this.noteDur = "eighth";
+	else if (dur < 1)
+		this.noteDur = "quarter";
+	else if (dur < 2)
+		this.noteDur = "half";
 
+	// adds a note
+	this.exec = function () {
 		var out = document.getElementById("change")
-		out.innerHTML += " " + letter.toUpperCase();
+		out.innerHTML += " " + this.note;
 
 		var container = document.createElement("div");
-    container.classList.add("bar");
-    var divnode = document.createElement("div");
-    divnode.setAttribute("id", newId);
-    divnode.classList.add(this.noteDur);
-    divnode.classList.add(letter);
+		container.classList.add("bar");
+		var divnode = document.createElement("div");
+		divnode.classList.add(this.noteDur);
+		divnode.classList.add(this.note.toLowerCase());
 
-    container.appendChild(divnode);
-    document.getElementById("sheet-music").appendChild(container);
-
-    song.push(sounds[note]);
-    duration.push(dur);
+		container.appendChild(divnode);
+		document.getElementById("sheet-music").appendChild(container);
 	}
 
 	// removes note
-	this.undo = function(){
+	this.undo = function () {
 		var out = document.getElementById("change");
-		out.innerHTML = out.innerHTML.slice(0,-2);
-    var music = document.getElementById("sheet-music");
-    music.removeChild(music.lastChild);
-    song.pop();
-    duration.pop();
+		out.innerHTML = out.innerHTML.slice(0, -3);
+		var music = document.getElementById("sheet-music");
+		music.removeChild(music.lastChild);
 	}
 }
 
-function keyEvent() {
-  var i, group = document.getElementsByName("notes");
-  var dur = document.getElementById("length").value;
+function trial(event) {
+	var dur = document.getElementById("length").value;
+	var noteDur = "whole";
+	if (dur < 0.5)
+		noteDur = "eighth";
+	else if (dur < 1)
+		noteDur = "quarter";
+	else if (dur < 2)
+		noteDur = "half";
 
-  for (i = 0; i < group.length; i++) {
-    if (group[i].checked)
-      button = group[i].id;
-      group[i].checked = false;
-  }
+	var i, group = document.getElementsByName("notes");
+	var button = null;
+	for (i = 0; i < group.length; i++) {
+		if (group[i].checked) {
+			button = group[i].id;
+			var val = group[i].value;
 
-  var val = document.getElementById(button).value;
-  hist.executeAction(new UndoRedo(button.toLowerCase(), val, dur));
+			var note = new Audio(sounds[val]);
+			note.play();
+			setInterval(function () {
+				if (note.currentTime > dur)
+					note.pause();
+			}, 10);
+		}
+	}
+
+	hist.executeAction(new TempUndoRedo(button, dur));
 }
 
-function trial(event) {
-  var dur = document.getElementById("length").value;
-  var noteDur = "whole";
-  if (dur < 0.5)
-    noteDur = "eighth";
-  else if (dur < 1)
-    noteDur = "quarter";
-  else if (dur < 2)
-    noteDur = "half";
+function keyEvent() {
+	var i, group = document.getElementsByName("notes");
+	var dur = document.getElementById("length").value;
 
-  var i, group = document.getElementsByName("notes");
+	var button = null;
+	for (i = 0; i < group.length; i++) {
+		if (group[i].checked) {
+			button = group[i].id;
+			group[i].checked = false;
+		}
+	}
 
-  for (i = 0; i < group.length; i++) {
-    if (group[i].checked) {
-      button = group[i].id;
-      var val = group[i].value;
+	if (button != null) {
+		hist.executeAction(new UndoRedo(button, dur));
+	}
+}
 
-      var note = new Audio(sounds[val]);
-      note.play();
-      setInterval(function() {
-        if (note.currentTime > dur)
-          note.pause();
-        }, 10);
-    }
-  }
+function updateUI() {
+	document.getElementById("undo").disabled = !hist.canUndo();
+	document.getElementById("redo").disabled = !hist.canRedo();
 }
 
 var hist = new History();
-var idNum = 0
 
 // attach all functions to html elements
-window.onload = function() {
+window.onload = function () {
 	document.getElementById("confirm").onclick = keyEvent;
 	document.getElementById("C4").onclick = trial;
 	document.getElementById("A4").onclick = trial;
@@ -192,7 +246,8 @@ window.onload = function() {
 	document.getElementById("C5").onclick = trial;
 	document.getElementById("set").onclick = trial;
 
-  document.getElementById("undo").onclick = hist.undoCmd;
-  document.getElementById("redo").onclick = hist.redoCmd;
+	document.getElementById("undo").onclick = hist.undoCmd;
+	document.getElementById("redo").onclick = hist.redoCmd;
 	document.getElementById("play").onclick = playSound;
+	updateUI();
 }
