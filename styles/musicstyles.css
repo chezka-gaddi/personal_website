@@ -129,6 +129,7 @@ div {
   background-repeat: repeat-x;
   position: relative;
   width: auto;
+  max-height:12em;
 }
 
 .staff-header {
@@ -143,12 +144,25 @@ div {
   display: inline-block;
 }
 
+.whole {
+  background-image: url("../res/music/whole.svg");
+  background-color: transparent;
+  background-size: auto 11%;
+  background-repeat: no-repeat;
+  height: 12em;
+  width: 6em;
+  margin-top: 5.4em;
+  z-index: -1;
+  float: left;
+  display: inline-block;
+}
+
 .half {
   background-color: transparent;
   background-size: auto 100%;
   background-repeat: no-repeat;
   height: 12em;
-  width: 8em;
+  width: 6em;
   z-index: -1;
   float: left;
   display: inline-block;
@@ -161,7 +175,7 @@ div {
 .half.c5 {
   background-image: url("../res/music/half-down.svg");
   margin-left: 15px;
-  width: 8em;
+  width: 6em;
 }
 
 .quarter {
@@ -204,7 +218,7 @@ div {
 .eighth.c5 {
   background-image: url("../res/music/eighth-down.svg");
   margin-left: 15px;
-  width: 4em;
+  width: 6em;
 }
 
 .end {
@@ -400,5 +414,11 @@ button:disabled {
   padding: 2px 15px;
   font-family: 'Cormorant Garamond', sans-serif;
   font-size: 85%;
+  font-weight: bold;
+}
+
+#duration {
+  padding: 6px 10px;
+  font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
 }
