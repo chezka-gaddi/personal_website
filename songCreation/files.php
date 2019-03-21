@@ -1,5 +1,5 @@
 <?php
-require_once 'upload.php';
+require_once 'php/upload.php';
 
 if(isset($_GET['up'])) {
   upload();
@@ -13,8 +13,8 @@ if(isset($_GET['up'])) {
   <link href="https://fonts.googleapis.com/css?family=Allura|Cinzel" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="../styles/musicstyles.css">
-  <script type="text/javascript" src="../js/sounds.js"></script>
+  <link rel="stylesheet" href="styles/styles.css">
+  <script type="text/javascript" src="js/sounds.js"></script>
 </head>
 
 <body>
@@ -34,14 +34,14 @@ if(isset($_GET['up'])) {
 
 <p>Current files:
     <?php
-        $myFiles = scandir ( "../uploads/" );
+        $myFiles = scandir ( "uploads/" );
         echo '<table border-collapse:"separate" border-spacing="10px 20px"><tr>';
         foreach( $myFiles as $f )
         {
             if ($f != "." && $f != "..") {
                 echo '<td>' . $f . '</td>';
                 echo '<td>';
-                echo '<a href="download.php?file=' . urlencode($f) . '"><button>Download</button></a>';
+                echo '<a href="php/download.php?file=' . urlencode($f) . '"><button>Download</button></a>';
                 echo '</td>';
             }
         }
