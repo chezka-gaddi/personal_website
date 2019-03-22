@@ -9,27 +9,44 @@ var sounds = {
 	"C5": "res/tones/C5.wav"
 };
 
+var duration = {
+  "whole": 2,
+  "half": 1,
+  "quarter": 0.5,
+  "eighth": 0.25
+}
+
 var snd = new Audio();
 snd.autoplay = false;
 
-function playSound() {
-	var song = hist.getActions();
-  var idx = song.length;
+function play() {
+  var song = document.getElementById("sheet-music");
+  var notes = song.children;
+  var dur = [];
+  var tones = [];
+
+  for (i = 0; i < notes.length; i++) {
+    var classes = notes[i].lastChild.classList;
+    if (typeof classes != "undefined") {
+      dur.push(classes.item(0));
+      tones.push(classes.item(1).toUpperCase());
+    }
+  }
+
 	var index = 0;
-	snd = new Audio(sounds[song[index].note]);
-  console.log(sounds[song[index].note]);
+  snd = new Audio(sounds[tones[index]]);
 	snd.play();
 
 	var x = setInterval(function () {
-		if (snd.currentTime > song[index].dur)
+		if (snd.currentTime > duration[dur[index]])
 			snd.pause();
 	}, 500);
 
 	//when the sound ends, move to the next
 	snd.onpause = function () {
 		index++;
-		if (song.length > index) {
-			snd.src = sounds[song[index].note];
+		if (tones.length > index) {
+			snd.src = sounds[tones[index]];
 			snd.play();
 		} else {
 			clearInterval(x);
@@ -137,9 +154,9 @@ function TempUndoRedo(note, dur, noteDur) {
 		var container = document.createElement("div");
 		container.classList.add("bar");
 		var divnode = document.createElement("div");
-		divnode.classList.add("gray");
 		divnode.classList.add(this.noteDur);
-		divnode.classList.add(this.note.toLowerCase());
+		divnode.classList.add(this.note);
+		divnode.classList.add("gray");
 
 		container.appendChild(divnode);
 		document.getElementById("sheet-music").appendChild(container);
@@ -187,12 +204,13 @@ function UndoRedo(note, dur) {
 		var out = document.getElementById("change")
 		out.innerHTML += " " + this.note;
 
+    console.log("Var Type of note: " + typeof this.note);
 		var container = document.createElement("div");
 		container.classList.add("bar");
 		var divnode = document.createElement("div");
 
 		divnode.classList.add(this.noteDur);
-		divnode.classList.add(this.note.toLowerCase());
+		divnode.classList.add(this.note);
     
     console.log(divnode.classList);
 		container.appendChild(divnode);
@@ -272,10 +290,6 @@ function save() {
 
 }
 
-function load() {
-	return document.getElementById("change").innerHTML = "LOADING";
-}
-
 var hist = new History();
 
 // attach all functions to html elements
@@ -293,7 +307,7 @@ window.onload = function () {
 
 	document.getElementById("undo").onclick = hist.undoCmd;
 	document.getElementById("redo").onclick = hist.redoCmd;
-	document.getElementById("play").onclick = playSound;
+	document.getElementById("play").onclick = play;
 	document.getElementById("save").onclick = save;
 	updateUI();
 }

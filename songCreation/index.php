@@ -1,10 +1,12 @@
 <?php
 session_start();
+
 $val = '<div class="staff-header">
 </div>';
-print_r($_SESSION);
+
+$title = "My Song";
 if(isset($_GET["load"])) {
-  $songName = $_SESSION["songName"];
+  $title = $_SESSION["title"];
   $song = $_SESSION["song"];
   $val .= $song;
 }
@@ -120,7 +122,7 @@ if(isset($_GET["load"])) {
   </div>
 
   <div>
-    <span id="songName">My Song</span>
+  <span id="songName"><?php echo $title ?></span>
   </div>
 
   <div id="sheet-music" class="sheet-music">

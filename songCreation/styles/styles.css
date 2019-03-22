@@ -198,11 +198,11 @@ div {
   display: inline-block;
 }
 
-.half.a4, .half.b4, .half.d4, .half.e4, .half.f4, .half.g4, .half.c4 {
+.half.A4, .half.B4, .half.D4, .half.E4, .half.F4, .half.G4, .half.C4 {
   background-image: url("../res/notes/half.svg");
 }
 
-.half.c5 {
+.half.C5 {
   background-image: url("../res/notes/half-down.svg");
   margin-left: 15px;
   width: 6em;
@@ -219,11 +219,11 @@ div {
   display: inline-block;
 }
 
-.quarter.a4, .quarter.b4, .quarter.d4, .quarter.e4, .quarter.f4, .quarter.g4, .quarter.c4 {
+.quarter.A4, .quarter.B4, .quarter.D4, .quarter.E4, .quarter.F4, .quarter.G4, .quarter.C4 {
   background-image: url("../res/notes/quarter.svg");
 }
 
-.quarter.c5 {
+.quarter.C5 {
   background-image: url("../res/notes/quarter-down.svg");
   margin-left: 15px;
   width: 6em;
@@ -240,12 +240,12 @@ div {
   display: inline-block;
 }
 
-.eighth.a4, .eighth.b4, .eighth.d4, .eighth.e4, .eighth.f4, .eighth.g4, .eighth.c4 {
+.eighth.A4, .eighth.B4, .eighth.D4, .eighth.E4, .eighth.F4, .eighth.G4, .eighth.C4 {
   background-image: url("../res/notes/eighth.svg");
   margin-left:-20px;
 }
 
-.eighth.c5 {
+.eighth.C5 {
   background-image: url("../res/notes/eighth-down.svg");
   margin-left: 15px;
   width: 6em;
@@ -263,35 +263,35 @@ div {
   display: inline-block;
 }
 
-.c4 {
+.C4 {
   transform: translate(0, 4.8em);
 }
 
-.d4 {
+.D4 {
   transform: translate(0, 3.8em);
 }
 
-.e4 {
+.E4 {
   transform: translate(0, 3em);
 }
 
-.f4 {
+.F4 {
   transform: translate(0, 2.2em);
 }
 
-.g4 {
+.G4 {
   transform: translate(0, 1.5em);
 }
 
-.a4 {
+.A4 {
   transform: translate(0, 0.7em);
 }
 
-.b4 {
+.B4 {
   transform: translate(0, 0em);
 }
 
-.c5 {
+.C5 {
   transform: translate(0, -0.7em);
 }
 
