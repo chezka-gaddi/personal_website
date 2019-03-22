@@ -1,7 +1,7 @@
 <?php
-if(isset($_REQUEST["file"])){
-    $file = urldecode($_REQUEST["file"]);
-    $filepath = "../uploads/" . $file;
+function download() {
+    $file = $_REQUEST["fileToDownload"];
+    $filepath = "uploads/" . $file;
 
     // Process download
     if(file_exists($filepath)) {

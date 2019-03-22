@@ -1,8 +1,24 @@
 <?php
+session_start();
 require_once 'php/upload.php';
+require_once 'php/download.php';
+require_once 'php/load.php';
 
 if(isset($_GET['up'])) {
   upload();
+}
+
+if(isset($_GET['action'])) {
+  if ($_POST['submit'] == 'Download') {
+    download();
+  } else if ($_POST['submit'] == 'Load') {
+    $variables = load();
+    $_SESSION["songName"] = $variables[0];
+    $_SESSION["song"] = $variables[1];
+    echo $_SESSION["songName"];
+    echo $_SESSION["song"];
+    header("Location: index.php?load=1");
+  }
 }
 ?>
 
@@ -14,43 +30,55 @@ if(isset($_GET['up'])) {
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/styles.css">
-  <script type="text/javascript" src="js/sounds.js"></script>
+
+  <style>
+    #filesCombo {
+      margin-right: 10px;
+      padding: 6px 10px;
+      font-family: 'Cormorant Garamond', sans-serif;
+      font-weight: bold;
+    }
+  </style>
 </head>
 
 <body>
-  <div>
-    <ul class="navigation">
-      <li><a href="index.html">Home</a></li>
-      <li><a class="active" href=#files>File Management</a></li>
-      <li><a href="help.html">Help</a></li>
-    </ul>
-  </div>
+  <header>
+      <div class="banner">
+          <h1>Song Creation</h1>
+          <video autoplay loop muted class="banner__video" poster="https://pawelgrzybek.com/photos/2015-12-06-codepen.jpg">
+            <source src="res/musicSheet.mov" type="video/webm">
+            <source src="https://pawelgrzybek.com/photos/2015-12-06-codepen.mp4" type="video/mp4">
+          </video>
+      </div>
+      <ul class="navigation">
+        <li><a href="index.php">Home</a></li>
+        <li><a class="active" href="#files">File Management</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+    </header>
 
-<form action="fileManagement.php?up=1" method="post" enctype="multipart/form-data">
-  Select file to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload" class="button">
-  <input type="submit" value="Upload" name="submit" class="button">
-</form>
+  <form action="files.php?up=1" method="post" enctype="multipart/form-data">
+    Select file to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload" class="button">
+    <input type="submit" value="Upload" name="submit" class="button">
+  </form>
 
 <p>Current files:
     <?php
-        $myFiles = scandir ( "uploads/" );
-        echo '<table border-collapse:"separate" border-spacing="10px 20px"><tr>';
-        foreach( $myFiles as $f )
-        {
-            if ($f != "." && $f != "..") {
-                echo '<td>' . $f . '</td>';
-                echo '<td>';
-                echo '<a href="php/download.php?file=' . urlencode($f) . '"><button>Download</button></a>';
-                echo '</td>';
-            }
+      echo '<form action="files.php?action=1" method="post" enctype="multipart/form-data">
+        <select id="filesCombo" name="fileToDownload">';
+
+      $myFiles = scandir ( "uploads/" );
+      foreach ($myFiles as $f) {
+        if ($f != "." && $f != "..") {
+          echo '<option>' . $f . '</option>';
         }
-        echo '</tr>';
-        echo '</table>';
+      }
+      echo '<input type="submit" value="Load" name="submit" class="button">
+      <input type="submit" value="Download" name="submit" class="button">
+      </form>';
     ?>
 </p>
-
-
 
 </body>
 

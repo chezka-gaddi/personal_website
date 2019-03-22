@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<song>
+    <title>La Vie En Rose</title>
+    <note duration="quarter">c5</note>
+    <note duration="eighth">b4</note>
+    <note duration="quarter">a4</note>
+    <note duration="quarter">g4</note>
+    <note duration="quarter">e4</note>
+    <note duration="quarter">c5</note>
+    <note duration="quarter">b4</note>
+    <note duration="quarter">a4</note>
+    <note duration="quarter">g4</note>
+    <note duration="eighth">e4</note>
+    <note duration="quarter">c4</note>
+    <note duration="quarter">b4</note>
+    <note duration="quarter">a4</note>
+    <note duration="eighth">g4</note>
+    <note duration="quarter">e4</note>
+    <source>https://www.youtube.com/watch?v=CftAnmQQjAw</source>
+</song>

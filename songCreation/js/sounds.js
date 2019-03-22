@@ -1,12 +1,12 @@
 var sounds = {
-	"C4": "../res/notes/C4.wav",
-	"D4": "../res/notes/D4.wav",
-	"E4": "../res/notes/E4.wav",
-	"F4": "../res/notes/F4.wav",
-	"G4": "../res/notes/G4.wav",
-	"A4": "../res/notes/A4.wav",
-	"B4": "../res/notes/B4.wav",
-	"C5": "../res/notes/C5.wav"
+	"C4": "res/tones/C4.wav",
+	"D4": "res/tones/D4.wav",
+	"E4": "res/tones/E4.wav",
+	"F4": "res/tones/F4.wav",
+	"G4": "res/tones/G4.wav",
+	"A4": "res/tones/A4.wav",
+	"B4": "res/tones/B4.wav",
+	"C5": "res/tones/C5.wav"
 };
 
 var snd = new Audio();
@@ -44,10 +44,6 @@ function History() {
 	var index = 0;
   var tempIndex = 0;
   
-  this.getIndex = function () {
-    return index;
-  }
-
 	this.getActions = function (idx) {
 		var songList = Actions.slice(0, index);
     if (tempIndex > 0) {
@@ -100,7 +96,14 @@ function History() {
 
 	//redo called. Call the execution function on the current UndoRedo and move forward one
 	this.redoCmd = function () {
-		if (index < Actions.length) {
+		if (TempActions.length > 0) {
+			if (tempIndex > 0) {
+				TempActions[tempIndex - 1].undo();
+			}
+			TempActions[tempIndex].exec();
+			tempIndex = tempIndex + 1;
+			updateUI();
+		} else if (index < Actions.length) {
 			var cmd = Actions[index];
 			cmd.exec();
 			index = index + 1;
@@ -265,6 +268,14 @@ function updateUI() {
 	document.getElementById("redo").disabled = !hist.canRedo();
 }
 
+function save() {
+
+}
+
+function load() {
+	return document.getElementById("change").innerHTML = "LOADING";
+}
+
 var hist = new History();
 
 // attach all functions to html elements
@@ -283,5 +294,6 @@ window.onload = function () {
 	document.getElementById("undo").onclick = hist.undoCmd;
 	document.getElementById("redo").onclick = hist.redoCmd;
 	document.getElementById("play").onclick = playSound;
+	document.getElementById("save").onclick = save;
 	updateUI();
 }

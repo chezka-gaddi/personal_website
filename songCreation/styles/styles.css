@@ -426,16 +426,6 @@ form {
   display: inline-block;
 }
 
-input[type=number] {
-  width: 65px;
-  padding: 6px 7px;
-}
-
-input:focus {
-  background-color: #B0C4DE;
-  border: 3px solid #555;
-}
-
 button {
   padding: 2px 15px;
   font-family: 'Cormorant Garamond', sans-serif;
