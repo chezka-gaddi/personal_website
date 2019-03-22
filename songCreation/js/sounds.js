@@ -20,6 +20,7 @@ var snd = new Audio();
 snd.autoplay = false;
 
 function play() {
+	console.log("About to play some tunes");
   var song = document.getElementById("sheet-music");
   var notes = song.children;
   var dur = [];
@@ -28,14 +29,18 @@ function play() {
   for (i = 0; i < notes.length; i++) {
     var classes = notes[i].lastChild.classList;
     if (typeof classes != "undefined") {
-      dur.push(classes.item(0));
-      tones.push(classes.item(1).toUpperCase());
+      tones.push(classes.item(0));
+      dur.push(classes.item(1));
     }
   }
 
+	console.log(tones.length);
+	console.log(tones);
+	console.log(dur);
 	var index = 0;
   snd = new Audio(sounds[tones[index]]);
 	snd.play();
+	console.log("Playing: " + tones[index]);
 
 	var x = setInterval(function () {
 		if (snd.currentTime > duration[dur[index]])
@@ -47,6 +52,7 @@ function play() {
 		index++;
 		if (tones.length > index) {
 			snd.src = sounds[tones[index]];
+			console.log("Playing: " + tones[index]);
 			snd.play();
 		} else {
 			clearInterval(x);
@@ -151,16 +157,8 @@ function TempUndoRedo(note, dur, noteDur) {
 		var out = document.getElementById("change")
 		out.innerHTML += " " + this.note;
 
-		var container = document.createElement("div");
-		container.classList.add("bar");
-		var divnode = document.createElement("div");
-		divnode.classList.add(this.noteDur);
-		divnode.classList.add(this.note);
-		divnode.classList.add("gray");
-
-		container.appendChild(divnode);
-		document.getElementById("sheet-music").appendChild(container);
-	  document.getElementById(this.note).checked = true;
+    var classes = [this.note, this.noteDur, "gray"];
+    drawNote(classes);
   }
 
 	this.undo = function () {
@@ -205,17 +203,9 @@ function UndoRedo(note, dur) {
 		out.innerHTML += " " + this.note;
 
     console.log("Var Type of note: " + typeof this.note);
-		var container = document.createElement("div");
-		container.classList.add("bar");
-		var divnode = document.createElement("div");
-
-		divnode.classList.add(this.noteDur);
-		divnode.classList.add(this.note);
-    
-    console.log(divnode.classList);
-		container.appendChild(divnode);
-		document.getElementById("sheet-music").appendChild(container);
-	}
+	  var classes = [this.note, this.noteDur];
+    drawNote(classes);
+  }
 
 	// removes note
 	this.undo = function () {
@@ -225,6 +215,22 @@ function UndoRedo(note, dur) {
 		music.removeChild(music.lastChild);
 	}
 }
+
+
+function drawNote(classes) {
+		var container = document.createElement("div");
+		container.classList.add("bar");
+		
+    var divnode = document.createElement("div");
+    for (var i = 0; i < classes.length; i++) {
+		  divnode.classList.add(classes[i]);
+    }
+    
+    console.log(divnode.classList);
+		container.appendChild(divnode);
+		document.getElementById("sheet-music").appendChild(container);
+}
+
 
 function trial(event) {
 	var dur = document.getElementById("duration").selectedIndex;

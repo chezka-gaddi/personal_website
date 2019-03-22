@@ -1,14 +1,24 @@
 <?php
 session_start();
 
-$val = '<div class="staff-header">
+$treble = '<div class="staff-header">
 </div>';
-
+$song = '';
 $title = "My Song";
 if(isset($_GET["load"])) {
   $title = $_SESSION["title"];
   $song = $_SESSION["song"];
-  $val .= $song;
+}
+
+function updateSong() {
+  $script = '<script>
+    window.onload = function() {
+      document.getElementById("sheet-music").innerHTML = "' . $val . '";
+    }
+    </script>';
+
+    echo 'Rebuilding';
+    return $script;
 }
 ?>
 
@@ -126,8 +136,21 @@ if(isset($_GET["load"])) {
   </div>
 
   <div id="sheet-music" class="sheet-music">
-    <?php echo $val; ?>
+    <?php echo $treble ?>  
   </div>
+
+<?php
+  echo '<script>
+      var music = "' . $song . '";
+      music = music.split(" ");
+      var x = 0;
+      while (x < music.length - 1) {
+        var classes = [music[x], music[x+1]];
+        drawNote(classes); 
+        x += 2;
+      }
+  </script>';
+?>
 
 </body>
 

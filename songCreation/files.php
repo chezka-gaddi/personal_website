@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once 'php/upload.php';
 require_once 'php/download.php';
@@ -17,8 +17,11 @@ if(isset($_GET['action'])) {
   if ($_POST['submit'] == 'Download') {
     download();
   } else if ($_POST['submit'] == 'Load') {
+    $_SESSION["notes"] = '';
+    $_SESSION["durations"] = '';
     $_SESSION["song"] = loadMusic();
     $_SESSION["title"] = loadTitle();
+    //print_r($_SESSION);
     header("Location: index.php?load=1");
   }
 }
