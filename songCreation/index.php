@@ -30,6 +30,8 @@ function updateSong() {
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/piano.css">
+  <link rel="stylesheet" href="styles/header.css">
   <script type="text/javascript" src="js/sounds.js"></script>
 </head>
 
@@ -48,10 +50,20 @@ function updateSong() {
       <li><a href="help.html">Help</a></li>
     </ul>
   </header>
+  
+  <div class="row">
+  <div class="sheet column left">
+  <div>
+  <span id="songName"><?php echo $title ?></span>
+  </div>
 
-  <div id="piano">
-    <div class="piano">
-      <ul>
+  <div id="sheet-music" class="sheet-music">
+    <?php echo $treble ?>  
+  </div>
+</div>
+
+    <div class="piano column right">
+      <ul class="piano column right">
         <input type="radio" name="notes" id="C4"/>
         <label for="C4">
           <li class="note">C</li>
@@ -107,8 +119,7 @@ function updateSong() {
       </ul>
     </div>
 
-  </div>
-  <div class="playback">
+  <div class="playback column right">
     <select id="duration">
       <option>Eighth</option>
       <option>Quarter</option>
@@ -130,14 +141,7 @@ function updateSong() {
 
     </p>
   </div>
-
-  <div>
-  <span id="songName"><?php echo $title ?></span>
-  </div>
-
-  <div id="sheet-music" class="sheet-music">
-    <?php echo $treble ?>  
-  </div>
+</div>
 
 <?php
   echo '<script>

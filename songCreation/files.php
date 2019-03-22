@@ -21,7 +21,6 @@ if(isset($_GET['action'])) {
     $_SESSION["durations"] = '';
     $_SESSION["song"] = loadMusic();
     $_SESSION["title"] = loadTitle();
-    //print_r($_SESSION);
     header("Location: index.php?load=1");
   }
 }
@@ -35,6 +34,7 @@ if(isset($_GET['action'])) {
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/header.css">
 
   <style>
     #filesCombo {
