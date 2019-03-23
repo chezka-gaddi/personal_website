@@ -19,8 +19,7 @@ var duration = {
 var snd = new Audio();
 snd.autoplay = false;
 
-function play() {
-	console.log("About to play some tunes");
+function parseNotes() {
   var song = document.getElementById("sheet-music");
   var notes = song.children;
   var dur = [];
@@ -33,6 +32,16 @@ function play() {
       dur.push(classes.item(1));
     }
   }
+  
+  var variables = [tones, dur];
+  return variables;
+}
+
+function play() {
+	console.log("About to play some tunes");
+  var variables = parseNotes();
+  var tones = variables[0];
+  var dur = variables[1];
 
 	console.log(tones.length);
 	console.log(tones);
@@ -293,7 +302,19 @@ function updateUI() {
 }
 
 function save() {
+  var variables = parseNotes();
+  var tones = variables[0];
+  var dur = variables[1];
+  var musicString = '';
 
+  console.log("Creating song to save");
+  for (var i = 0; i < tones.length; i++) {
+    musicString += tones[i] + ' ' + dur[i] + ' ';
+  }
+  
+  console.log("Song: " + musicString);
+  document.cookie = "songToSave=" + musicString;
+  return musicString;
 }
 
 var hist = new History();
@@ -314,6 +335,6 @@ window.onload = function () {
 	document.getElementById("undo").onclick = hist.undoCmd;
 	document.getElementById("redo").onclick = hist.redoCmd;
 	document.getElementById("play").onclick = play;
-	document.getElementById("save").onclick = save;
+	//document.getElementById("save").onclick = save;
 	updateUI();
 }

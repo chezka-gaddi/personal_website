@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<song title="test">
+  <note duration="half">C4</note>
+  <note duration="half">C4</note>
+  <note duration="half">D4</note>
+</song>

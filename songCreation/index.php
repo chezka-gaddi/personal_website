@@ -1,24 +1,24 @@
 <?php
 session_start();
 
+require_once 'php/write.php';
+
 $treble = '<div class="staff-header">
 </div>';
 $song = '';
 $title = "My Song";
+
 if(isset($_GET["load"])) {
   $title = $_SESSION["title"];
   $song = $_SESSION["song"];
 }
 
-function updateSong() {
-  $script = '<script>
-    window.onload = function() {
-      document.getElementById("sheet-music").innerHTML = "' . $val . '";
-    }
-    </script>';
-
-    echo 'Rebuilding';
-    return $script;
+if(isset($_COOKIE['songToSave'])) {
+  $_SESSION["songToSave"] = $_COOKIE["songToSave"];
+  setcookie("songToSave", '');
+  //echo '<br />';
+  //echo 'Cookie: ' . $_SESSION['songToSave'];
+  saveSong();
 }
 ?>
 
@@ -33,6 +33,7 @@ function updateSong() {
   <link rel="stylesheet" href="styles/piano.css">
   <link rel="stylesheet" href="styles/header.css">
   <script type="text/javascript" src="js/sounds.js"></script>
+  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 </head>
 
 <body>
@@ -62,8 +63,8 @@ function updateSong() {
   </div>
 </div>
 
-    <div class="piano column right">
-      <ul class="piano column right">
+    <div class="column right">
+      <ul class="piano">
         <input type="radio" name="notes" id="C4"/>
         <label for="C4">
           <li class="note">C</li>
@@ -132,7 +133,21 @@ function updateSong() {
     <button id="undo"><i class="fas fa-undo"></i></button>
     <button id="redo"><i class="fas fa-redo"></i></button>
     <br />
-    <button id="save" onclick="load()"><i class="far fa-save"></i> Save</button>
+    
+    <form method="post" enctype="multipart/form-data">
+      <input type="hidden" value="songToSave" name="songToSave">
+      <input type="submit" value="Save" name="submit" onclick=save()>
+    </form>
+
+    <!-- <button id="save" onclick=saveSong()><i class="far fa-save"></i> Save</button>
+    <script>
+      function saveSong() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          
+      }
+    </script>-->
+
     <button id="play"><i class="fas fa-play"></i></button>
     <button id="stop"><i class="fas fa-stop red"></i></button>
     <br />

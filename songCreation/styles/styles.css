@@ -16,17 +16,18 @@ html {
 }
 
 .left {
-  width: 45%;
+  width: 60%;
   margin-right: 50px;
 }
 
 .right {
-  width: 45%;
+  width: 35%;
 }
 
 .row {
-  margin-top:30px;
+  margin-top:20px;
 }
+
 /* Clear floats after the columns */
 .row:after {
   content: "";
@@ -52,7 +53,7 @@ div {
 }
 
 .sheet {
-  min-height: 20em;
+  min-height: 15em;
   min-width: 20em;
 }
 
@@ -82,7 +83,7 @@ form {
 }
 
 button {
-  padding: 2px 15px;
+  padding: 7px 15px;
   font-family: 'Cormorant Garamond', sans-serif;
   font-size: 85%;
   font-weight: bold;
@@ -91,13 +92,6 @@ button {
 button:disabled {
   background-color: #666;
   color: #ccc;
-}
-
-.button {
-  padding: 2px 15px;
-  font-family: 'Cormorant Garamond', sans-serif;
-  font-size: 85%;
-  font-weight: bold;
 }
 
 #duration {
