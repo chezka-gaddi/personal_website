@@ -314,7 +314,10 @@ function save() {
   
   console.log("Song: " + musicString);
   document.cookie = "songToSave=" + musicString;
-  return musicString;
+  var title = document.getElementById("songTitle").value;
+  console.log(title);
+  document.cookie = "songTitle=" + title;
+  
 }
 
 var hist = new History();

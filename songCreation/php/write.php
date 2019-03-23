@@ -1,21 +1,6 @@
 <?php
 session_start();
 
-function write()
-{
-    echo here;
-
-    $target_file = $target_dir . "test.txt";
-
-    $file = fopen( $target_file, 'a');
-    $array = explode(",", $_GET['stuff']);
-    fwrite($file, implode("...", $array));
-    fwrite($file, "\n");
-    fwrite($file, $_GET['more']);
-    fwrite($file, "\n");
-    fclose($file);
-}
-
 function saveSong() {
   $dom = new DOMDocument();
   $dom->encoding = 'utf-8';
@@ -25,7 +10,7 @@ function saveSong() {
   $songStr = $_SESSION['songToSave'];  
   $songArr = explode(' ', $songStr);
   $target_dir = "uploads/";
-  $xml_filename = 'test';
+  $xml_filename = $_SESSION['songTitle'];
 
   $song = $dom->createElement('song');
   $title = $dom->createElement('title', $xml_filename);

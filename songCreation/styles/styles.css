@@ -21,7 +21,7 @@ html {
 }
 
 .right {
-  width: 35%;
+  width: 32%;
 }
 
 .row {
@@ -40,6 +40,10 @@ html {
   .left {
     width: 95%;
   }
+
+  .right {
+    width: 50%;
+  }
 }
 
 .fadeInDown {
@@ -55,14 +59,6 @@ div {
 .sheet {
   min-height: 15em;
   min-width: 20em;
-}
-
-.playback {
-  display: block;
-  margin: 5px 15px;
-  width: 350px;
-  height: 190px;
-  vertical-align: top;
 }
 
 .gray {
@@ -82,11 +78,38 @@ form {
   display: inline-block;
 }
 
-button {
-  padding: 7px 15px;
+#songTitle {
+  background-color: transparent;
+  font-size: 150%;
   font-family: 'Cormorant Garamond', sans-serif;
-  font-size: 85%;
   font-weight: bold;
+  padding: 5px;
+}
+
+.playback {
+  display: block;
+  font-size: 100%;
+  width: 32%;
+  vertical-align: top;
+  line-height: 100%;
+}
+
+button {
+  margin-bottom: 5px;
+  padding: 7px 5px;
+  font-family: 'Cormorant Garamond', sans-serif;
+  font-weight: bold;
+  width: 32%;
+}
+
+#button {
+  display:inline-block;
+  margin-right:5px;
+  margin-bottom: 5px;
+  padding: 7px 5px;
+  font-family: 'Cormorant Garamond', sans-serif;
+  font-weight: bold;
+  width: 9.5em;
 }
 
 button:disabled {
@@ -95,7 +118,8 @@ button:disabled {
 }
 
 #duration {
-  padding: 6px 10px;
+  padding: 7px 10px;
+  width: 65%;
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
 }

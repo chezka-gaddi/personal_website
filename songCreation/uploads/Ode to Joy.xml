@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<song>
+  <title>Ode to Joy</title>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">F4</note>
+  <note duration="quarter">G4</note>
+  <note duration="quarter">G4</note>
+  <note duration="quarter">F4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">D4</note>
+  <note duration="quarter">C4</note>
+  <note duration="quarter">C4</note>
+  <note duration="quarter">D4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">D4</note>
+  <note duration="half">D4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">F4</note>
+  <note duration="quarter">G4</note>
+  <note duration="quarter">G4</note>
+  <note duration="quarter">F4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">D4</note>
+  <note duration="quarter">C4</note>
+  <note duration="quarter">C4</note>
+  <note duration="quarter">D4</note>
+  <note duration="quarter">E4</note>
+  <note duration="quarter">D4</note>
+  <note duration="quarter">C4</note>
+  <note duration="half">C4</note>
+</song>

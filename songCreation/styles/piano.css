@@ -17,6 +17,7 @@ ul.piano {
     background-color: #ffffff;
     display: block;
     margin: 10px;
+    padding: 7px;
     font-size: 0.7em;
     min-width: 50em;
     min-height: 12em;

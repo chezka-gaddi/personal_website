@@ -8,17 +8,19 @@ $treble = '<div class="staff-header">
 $song = '';
 $title = "My Song";
 
-if(isset($_GET["load"])) {
-  $title = $_SESSION["title"];
-  $song = $_SESSION["song"];
-}
-
 if(isset($_COOKIE['songToSave'])) {
   $_SESSION["songToSave"] = $_COOKIE["songToSave"];
   setcookie("songToSave", '');
-  //echo '<br />';
-  //echo 'Cookie: ' . $_SESSION['songToSave'];
+  $_SESSION["songTitle"] = $_COOKIE["songTitle"];
+  setcookie("songTitle", '');
   saveSong();
+  $song = $_SESSION["songToSave"];
+  $title = $_SESSION["songTitle"];
+}
+
+if(isset($_GET["load"])) {
+  $title = $_SESSION["title"];
+  $song = $_SESSION["song"];
 }
 ?>
 
@@ -55,7 +57,13 @@ if(isset($_COOKIE['songToSave'])) {
   <div class="row">
   <div class="sheet column left">
   <div>
-  <span id="songName"><?php echo $title ?></span>
+
+  <input type="text" id="songTitle">
+  <?php
+    echo '<script>
+      document.getElementById("songTitle").value = "' . $title . '";
+    </script>';
+  ?>
   </div>
 
   <div id="sheet-music" class="sheet-music">
@@ -134,19 +142,9 @@ if(isset($_COOKIE['songToSave'])) {
     <button id="redo"><i class="fas fa-redo"></i></button>
     <br />
     
-    <form method="post" enctype="multipart/form-data">
-      <input type="hidden" value="songToSave" name="songToSave">
-      <input type="submit" value="Save" name="submit" onclick=save()>
+    <form id="songToSave" method="post" enctype="multipart/form-data">
+      <input type="submit" value="Save" name="submit" onclick=save() id="button">
     </form>
-
-    <!-- <button id="save" onclick=saveSong()><i class="far fa-save"></i> Save</button>
-    <script>
-      function saveSong() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-          
-      }
-    </script>-->
 
     <button id="play"><i class="fas fa-play"></i></button>
     <button id="stop"><i class="fas fa-stop red"></i></button>

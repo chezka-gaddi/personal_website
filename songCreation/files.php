@@ -43,6 +43,16 @@ if(isset($_GET['action'])) {
       font-family: 'Cormorant Garamond', sans-serif;
       font-weight: bold;
     }
+
+    #uploadBtn {
+      font-weight: bold;
+    }
+
+    #content {
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 125%;
+    }
   </style>
 </head>
 
@@ -62,10 +72,11 @@ if(isset($_GET['action'])) {
       </ul>
     </header>
 
+  <div class="row" id="content">
   <form action="files.php?up=1" method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="fileToUpload" id="fileToUpload" class="button">
-    <input type="submit" value="Upload" name="submit" class="button">
+    <input type="submit" value="Upload" name="submit" id="uploadBtn">
   </form>
 
 <p>Current files:
@@ -79,11 +90,13 @@ if(isset($_GET['action'])) {
           echo '<option>' . $f . '</option>';
         }
       }
-      echo '<input type="submit" value="Load" name="submit" class="button">
-      <input type="submit" value="Download" name="submit" class="button">
+      echo '<input type="submit" value="Load" name="submit" id="loadBtn">
+      <input type="submit" value="Download" name="submit" id="downloadBtn">
       </form>';
     ?>
 </p>
+
+</div>
 
 </body>
 
