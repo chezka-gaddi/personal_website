@@ -100,6 +100,9 @@ button {
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
   width: 32%;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
 }
 
 #button {
@@ -110,11 +113,19 @@ button {
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
   width: 9.5em;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
 }
 
 button:disabled {
-  background-color: #666;
+  opacity: 0.6;
+  cursor: not-allowed;
   color: #ccc;
+}
+
+button:hover, #button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 15px 0 rgba(0,0,0,0.19);
 }
 
 #duration {

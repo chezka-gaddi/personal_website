@@ -23,13 +23,12 @@ li {
     overflow: hidden;
     background: rgba(0, 0, 0, .5) url("../res/musicSheet.mov");
     color: #fff;
-    font-family: 'Raleway', sans-serif;
-    font-size: 1em;
-    font-weight: 700;
+    font-family: 'Cardo', monospace;
+    font-size: 1.25em;
     text-transform: uppercase;
     text-align: center;
     line-height: 25vh;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
   }
   
   .banner__video {

@@ -30,28 +30,37 @@ if(isset($_GET['action'])) {
 <html>
 
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Allura|Cinzel" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cardo" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="styles/header.css">
 
   <style>
-    #filesCombo {
+    #content {
+      margin-left: 10px;
+      margin-right: 10px;
+      font-size: 100%;
+      line-height: 2em;
+    }
+    
+    #form {
       margin-right: 10px;
       padding: 6px 10px;
       font-family: 'Cormorant Garamond', sans-serif;
       font-weight: bold;
+      font-size: 100%;
     }
 
-    #uploadBtn {
-      font-weight: bold;
-    }
-
-    #content {
-      margin-left: 10px;
+    #fileToUpload, #filesCombo, #uploadBtn, #downloadBtn, #loadBtn {
       margin-right: 10px;
-      font-size: 125%;
+      padding: 6px 10px;
+      font-family: 'Cormorant Garamond', sans-serif;
+      font-weight: bold;
+      width: 10em;
+    }
+
+    #fileToUpload, #filesCombo {
+      width: 20em;
     }
   </style>
 </head>
@@ -73,9 +82,10 @@ if(isset($_GET['action'])) {
     </header>
 
   <div class="row" id="content">
+  
   <form action="files.php?up=1" method="post" enctype="multipart/form-data">
     Select file to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload" class="button">
+    <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload" name="submit" id="uploadBtn">
   </form>
 
