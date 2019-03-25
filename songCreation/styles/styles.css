@@ -1,3 +1,7 @@
+/***************************************************************************//**
+ * HTML Elements
+ ******************************************************************************/
+
 * {
   box-sizing: border-box;
   margin: 0 0;
@@ -9,7 +13,45 @@ html {
   background-color: lightgray;
 }
 
-/* Create two equal columns that floats next to each other */
+h2 {
+  color: #4682B4;
+}
+
+h3 {
+  margin-top: 8px;
+}
+
+div {
+  display: block;
+  width: 100%;
+  /* border: solid black 1px; */
+}
+
+.border {
+  border: solid black 1px;
+  background-color: white;
+  opacity: 0.65;
+  text-align: center;
+  font-weight: bold;
+  min-height: 50px;
+  vertical-align: middle;
+}
+
+form {
+  display: inline-block;
+}
+
+
+/***************************************************************************//**
+ * Two column formatting
+ ******************************************************************************/
+
+.row {
+  margin-top:20px;
+  width: 100%;
+  overflow: hidden;
+}
+
 .column {
   float: left;
   padding: 10px;
@@ -21,11 +63,7 @@ html {
 }
 
 .right {
-  width: 32%;
-}
-
-.row {
-  margin-top:20px;
+  width: 35%;
 }
 
 /* Clear floats after the columns */
@@ -35,31 +73,26 @@ html {
   clear: both;
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+/* Responsive layout - makes the two columns stack on top of each other instead 
+ * of next to each other */
 @media screen and (max-width: 970px) {
   .left {
-    width: 95%;
+    width: 98%;
   }
 
   .right {
-    width: 50%;
+    width: 98%;
+  }
+
+  .playback {
+    margin-top: 0;
   }
 }
 
-.fadeInDown {
-  animation-duration: 2s;
-}
 
-div {
-  display: block;
-  width: 100%;
-  /* border: solid black 1px; */
-}
-
-.sheet {
-  min-height: 15em;
-  min-width: 20em;
-}
+/***************************************************************************//**
+ * Colors
+ ******************************************************************************/
 
 .gray {
   -webkit-filter: invert(1) brightness(0.6);
@@ -74,24 +107,126 @@ div {
   color: #8B0000;
 }
 
-form {
+
+.content {
+  margin-right: 15px;
+  margin-bottom: 30px;
+  margin-left: 15px;
+  font-size: 100%;
+  line-height: 1.5em;
+  width: 98%;
+}
+
+
+.fadeInDown {
+  animation-duration: 2s;
+}
+
+
+
+.sheet {
+  min-height: 15em;
+  min-width: 20em;
+}
+
+.tooltip {
+  position: relative;
   display: inline-block;
 }
 
-#songTitle {
-  background-color: transparent;
-  font-size: 150%;
-  font-family: 'Cormorant Garamond', sans-serif;
-  font-weight: bold;
-  padding: 5px;
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.4);
+  top: 5px;
+  left: 110%;
+  opacity: 0;
+  transition: opacity 1s;
 }
 
+.tooltip:hover .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 0.75;
+}
+
+
+.switch {
+  vertical-align:top;
+  position: relative;
+  display: inline-block;
+  margin-left: 1px;
+  width: 70px;
+  height: 34px;
+  border: #a9a9a9 1px solid;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #4682B4;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px gray;
+}
+
+input:checked + .slider:before {
+  transform: translateX(30px);
+}
+
+
 .playback {
-  display: block;
+  display: inline-block;
+  margin-top: 15px;
   font-size: 100%;
-  width: 32%;
+  width: 400px;
   vertical-align: top;
   line-height: 100%;
+  text-align: left;
 }
 
 button {
@@ -100,6 +235,7 @@ button {
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
   width: 32%;
+  max-width: 300px;
   cursor: pointer;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -107,13 +243,13 @@ button {
 
 #button {
   display:inline-block;
-  margin-right:5px;
   margin-bottom: 5px;
   padding: 7px 5px;
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
   width: 9.5em;
   cursor: pointer;
+  max-width: 300px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
@@ -124,7 +260,7 @@ button:disabled {
   color: #ccc;
 }
 
-button:hover, #button:hover {
+.switch:hover, button:hover, #button:hover {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 15px 0 rgba(0,0,0,0.19);
 }
 
@@ -134,3 +270,4 @@ button:hover, #button:hover {
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
 }
+

@@ -17,8 +17,6 @@ if(isset($_GET['action'])) {
   if ($_POST['submit'] == 'Download') {
     download();
   } else if ($_POST['submit'] == 'Load') {
-    $_SESSION["notes"] = '';
-    $_SESSION["durations"] = '';
     $_SESSION["song"] = loadMusic();
     $_SESSION["title"] = loadTitle();
     header("Location: index.php?load=1");
@@ -36,13 +34,10 @@ if(isset($_GET['action'])) {
   <link rel="stylesheet" href="styles/header.css">
 
   <style>
-    #content {
-      margin-left: 10px;
-      margin-right: 10px;
-      font-size: 100%;
-      line-height: 2em;
+    .button {
+           
     }
-    
+
     #form {
       margin-right: 10px;
       padding: 6px 10px;
@@ -81,33 +76,36 @@ if(isset($_GET['action'])) {
       </ul>
     </header>
 
-  <div class="row" id="content">
-  
-  <form action="files.php?up=1" method="post" enctype="multipart/form-data">
-    Select file to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload" name="submit" id="uploadBtn">
-  </form>
+  <div class="row content">
 
-<p>Current files:
-    <?php
-      echo '<form action="files.php?action=1" method="post" enctype="multipart/form-data">
-        <select id="filesCombo" name="fileToDownload">';
+    <h2>Upload XML files</h2> 
+    <form action="files.php?up=1" method="post" enctype="multipart/form-data">
+      Select file to upload:
+      <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="submit" value="Upload" name="submit" id="uploadBtn">
+    </form>
+    <br />
+  </div>
 
-      $myFiles = scandir ( "uploads/" );
-      foreach ($myFiles as $f) {
-        if ($f != "." && $f != "..") {
-          echo '<option>' . $f . '</option>';
+  <div class="row content">
+    <h2>Current Files in the system</h2>
+    <p>Current files:
+      <form action="files.php?action=1" method="post" enctype="multipart/form-data">
+          <select id="filesCombo" name="fileToDownload">
+      <?php
+
+        $myFiles = scandir ( "uploads/" );
+        foreach ($myFiles as $f) {
+          if ($f != "." && $f != "..") {
+            echo '<option>' . $f . '</option>';
+          }
         }
-      }
-      echo '<input type="submit" value="Load" name="submit" id="loadBtn">
-      <input type="submit" value="Download" name="submit" id="downloadBtn">
-      </form>';
-    ?>
-</p>
-
-</div>
-
+      ?>
+      <input type="submit" value="Load" name="submit" id="loadBtn">
+          <input type="submit" value="Download" name="submit" id="downloadBtn" class="button">
+          </form>
+    </p>
+  </div>
 </body>
 
 </html>

@@ -4,7 +4,9 @@ session_start();
 require_once 'php/write.php';
 
 $treble = '<div class="staff-header">
-</div>';
+  </div>
+  <div class="bar">
+  </div>';
 $song = '';
 $title = "My Song";
 
@@ -22,14 +24,18 @@ if(isset($_GET["load"])) {
   $title = $_SESSION["title"];
   $song = $_SESSION["song"];
 }
+
+if(isset($_GET["loadSong"])) {
+  $song = loadMusic();
+  $title = loadTitle();
+}
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Allura|Cinzel" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cardo" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="styles/piano.css">
@@ -41,11 +47,11 @@ if(isset($_GET["load"])) {
 <body>
   <header>
     <div class="banner">
-        <h1>Song Creation</h1>
-        <video autoplay loop muted class="banner__video" poster="https://pawelgrzybek.com/photos/2015-12-06-codepen.jpg">
-          <source src="res/musicSheet.mov" type="video/webm">
-          <source src="https://pawelgrzybek.com/photos/2015-12-06-codepen.mp4" type="video/mp4">
-        </video>
+      <h1>Song Creation</h1>
+      <video autoplay loop muted class="banner__video" poster="https://pawelgrzybek.com/photos/2015-12-06-codepen.jpg">
+      <source src="res/musicSheet.mov" type="video/webm">
+      <source src="https://pawelgrzybek.com/photos/2015-12-06-codepen.mp4" type="video/mp4">
+      </video>
     </div>
     <ul class="navigation">
       <li><a class="active" href=#home>Home</a></li>
@@ -53,15 +59,28 @@ if(isset($_GET["load"])) {
       <li><a href="help.html">Help</a></li>
     </ul>
   </header>
-  
+
   <div class="row">
   <div class="sheet column left">
   <div>
 
-  <input type="text" id="songTitle">
-  <?php
-    echo '<script>
-      document.getElementById("songTitle").value = "' . $title . '";
+  <form action="index.php?loadSong=1" method="post" enctype="multipart/form-data">
+    <input type="text" id="songTitle" list="songsOnFile" name="fileToDownload">
+    <datalist id="songsOnFile">
+    <?php 
+      $myFiles = scandir ("uploads/");
+      foreach ($myFiles as $f) {
+        if ($f != "." && $f != "..") {
+          echo '<option>' . $f . '</option>';
+        }
+      }
+    ?>
+    </datalist>
+  </form>
+
+<?php
+echo '<script>
+  document.getElementById("songTitle").value = "' . $title . '";
     </script>';
   ?>
   </div>
@@ -72,6 +91,7 @@ if(isset($_GET["load"])) {
 </div>
 
     <div class="column right">
+      <div class="piano">
       <ul class="piano">
         <input type="radio" name="notes" id="C4"/>
         <label for="C4">
@@ -128,7 +148,7 @@ if(isset($_GET["load"])) {
       </ul>
     </div>
 
-  <div class="playback column right">
+  <div class="playback">
     <select id="duration">
       <option>Eighth</option>
       <option>Quarter</option>
@@ -141,30 +161,35 @@ if(isset($_GET["load"])) {
     <button id="undo"><i class="fas fa-undo"></i></button>
     <button id="redo"><i class="fas fa-redo"></i></button>
     <br />
-    
+
     <form id="songToSave" method="post" enctype="multipart/form-data">
       <input type="submit" value="Save" name="submit" onclick=save() id="button">
     </form>
 
     <button id="play"><i class="fas fa-play"></i></button>
-    <button id="stop"><i class="fas fa-stop red"></i></button>
+    <label class="switch tooltip">
+      <span class="tooltiptext">Double Speed</span>
+      <input type="checkbox" id="tempo">
+      <span class="slider"></span>
+    </label>    
     <br />
     <br />
     <p id="change">
 
     </p>
-  </div>
+  </div>  
+</div>
 </div>
 
 <?php
-  echo '<script>
-      var music = "' . $song . '";
-      music = music.split(" ");
-      var x = 0;
-      while (x < music.length - 1) {
-        var classes = [music[x], music[x+1]];
-        drawNote(classes); 
-        x += 2;
+echo '<script>
+var music = "' . $song . '";
+music = music.split(" ");
+var x = 0;
+while (x < music.length - 1) {
+  var classes = [music[x], music[x+1]];
+  drawNote(classes); 
+  x += 2;
       }
   </script>';
 ?>

@@ -1,31 +1,72 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Allura|Cinzel" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="styles/styles.css">
-  <link rel="stylesheet" href="styles/header.css">
-  <script type="text/javascript" src="js/sounds.js"></script>
-</head>
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cardo" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <script type="text/javascript" src="js/sounds.js"></script>
+  </head>
 
-<body>
+  <body>
     <header>
-        <div class="banner">
-            <h1>Song Creation</h1>
-            <video autoplay loop muted class="banner__video" poster="https://pawelgrzybek.com/photos/2015-12-06-codepen.jpg">
-              <source src="res/musicSheet.mov" type="video/webm">
-              <source src="https://pawelgrzybek.com/photos/2015-12-06-codepen.mp4" type="video/mp4">
-            </video>
-        </div>
-        <ul class="navigation">
-          <li><a href="index.php">Home</a></li>
-          <li><a href="files.php">File Management</a></li>
-          <li><a class="active" href="#help">Help</a></li>
-        </ul>
-      </header>
+      <div class="banner">
+        <h1>Song Creation</h1>
+        <video autoplay loop muted class="banner__video" poster="https://pawelgrzybek.com/photos/2015-12-06-codepen.jpg">
+          <source src="res/musicSheet.mov" type="video/webm">
+          <source src="https://pawelgrzybek.com/photos/2015-12-06-codepen.mp4" type="video/mp4">
+        </video>
+      </div>
+      <ul class="navigation">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="files.php">File Management</a></li>
+        <li><a class="active" href="#help">Help</a></li>
+      </ul>
+    </header>
 
-</body>
+    <div class="row">
+      <div class="content">
+      <h2>CSS Modifications</h2>
+      <p>
+        <h3>Header Background Image</h3>
+        The header background image is a video with an image backup if the video is not able to render. The text is edited using the <xmp> <h1> </xmp> header tag to have the color of white and a different font from the rest of the page.
+          
+          <h3>Navigation Bar</h3>
+        The navigation bar is created by editing an undordered list with hyperlink text to navigate from one page to another. When a link is active or is hovered over, the background color changes to indicate the interaction.
+        
+        <h3>Content Layout</h3>
+        Two different layouts are used to create the website. For the index, a two column layout is created to divide the area where the music sheet resides and the area for the interactive buttons. This layout has the ability to restructure to have the contents to be stacked when the window is smaller than a certain value.
+        <div>
+          <div class="column left border">Left Column</div>
+          <div class="column right border">Right Column</div>
+        </div>
+        The files management page and the help page is formatted using a simple vertical layout that stacks sections on top of each other.
+        <div>
+          <div class="content border">Section 1</div>
+          <div class="content border">Section 2</div>
+        </div>
+
+        <h3>Buttons</h3>
+        The buttons used in the program has mutiple styling applied to them. Upon hovering on a button, the cursor changes to a pointer and a shadow affect is applied to indicate the button in focus. Styling is also applied to buttons that are disbaled to have a darker background and the cursor is changed to not-allowed. <br />
+        <button>Example</button> <button disabled>Disabled Button</button>
+      </p>
+    </div>
+
+    <div class="content">
+      <h2>How to Use</h2>
+      <p>
+
+      </p>
+    </div>
+    
+    <div class="content">
+      <h2>Limitations</h2>
+      <p>
+
+      </p>
+    </div>
+  </div>
+  </body>
 
 </html>
