@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 function saveSong() {
   $dom = new DOMDocument();
   $dom->encoding = 'utf-8';

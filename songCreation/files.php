@@ -14,12 +14,12 @@ if(isset($_GET['up'])) {
 }
 
 if(isset($_GET['action'])) {
-  if ($_POST['submit'] == 'Download') {
-    download();
-  } else if ($_POST['submit'] == 'Load') {
+  if ($_POST['submit'] == 'Load') {
     $_SESSION["song"] = loadMusic();
     $_SESSION["title"] = loadTitle();
     header("Location: index.php?load=1");
+  } else {
+    download();
   }
 }
 ?>
@@ -34,18 +34,6 @@ if(isset($_GET['action'])) {
   <link rel="stylesheet" href="styles/header.css">
 
   <style>
-    .button {
-           
-    }
-
-    #form {
-      margin-right: 10px;
-      padding: 6px 10px;
-      font-family: 'Cormorant Garamond', sans-serif;
-      font-weight: bold;
-      font-size: 100%;
-    }
-
     #fileToUpload, #filesCombo, #uploadBtn, #downloadBtn, #loadBtn {
       margin-right: 10px;
       padding: 6px 10px;
@@ -77,23 +65,20 @@ if(isset($_GET['action'])) {
     </header>
 
   <div class="row content">
-
     <h2>Upload XML files</h2> 
     <form action="files.php?up=1" method="post" enctype="multipart/form-data">
       Select file to upload:
       <input type="file" name="fileToUpload" id="fileToUpload">
-      <input type="submit" value="Upload" name="submit" id="uploadBtn">
+      <input type="submit" value="&#10514; Upload" name="submit" id="uploadBtn">
     </form>
     <br />
   </div>
 
   <div class="row content">
     <h2>Current Files in the system</h2>
-    <p>Current files:
       <form action="files.php?action=1" method="post" enctype="multipart/form-data">
           <select id="filesCombo" name="fileToDownload">
       <?php
-
         $myFiles = scandir ( "uploads/" );
         foreach ($myFiles as $f) {
           if ($f != "." && $f != "..") {
@@ -101,10 +86,9 @@ if(isset($_GET['action'])) {
           }
         }
       ?>
-      <input type="submit" value="Load" name="submit" id="loadBtn">
-          <input type="submit" value="Download" name="submit" id="downloadBtn" class="button">
-          </form>
-    </p>
+          <input type="submit" value="Load" name="submit" id="loadBtn" class="button">
+          <input type="submit" value="&#10515; Download" name="submit" id="downloadBtn" class="button">
+      </form>
   </div>
 </body>
 

@@ -103,11 +103,21 @@ label {
  * Sheet music formatting
  ******************************************************************************/
 
+.sheet {
+  min-height: 15em;
+  min-width: 20em;
+}
+
+#songTitleForm {
+  width: 100%;
+}
+
 #songTitle {
+  display: inline-block;
   margin-right: 10px;
   margin-left: 10px;
   background-color: #F5F5F5;
-  min-width: 100%;
+  min-width: 80%;
   padding: 10px;
   text-align: center;
   font-size: 150%;
@@ -165,7 +175,6 @@ label {
   height: 12em;
   width: 7em;
   margin-top: 5.4em;
-  z-index: -1;
   float: left;
   display: inline-block;
 }
@@ -176,7 +185,6 @@ label {
   background-repeat: no-repeat;
   height: 12em;
   width: 3em;
-  z-index: -1;
   display: inline-block;
 }
 
@@ -196,7 +204,6 @@ label {
   background-repeat: no-repeat;
   height: 12em;
   width: 6em;
-  z-index: -1;
   float: left;
   display: inline-block;
 }
@@ -217,7 +224,6 @@ label {
   background-repeat: no-repeat;
   height: 12em;
   width: 6em;
-  z-index: -1;
   float: left;
   display: inline-block;
 }
@@ -231,18 +237,6 @@ label {
   background-image: url("../res/notes/eighth-down.svg");
   margin-left: 15px;
   width: 6em;
-}
-
-.end {
-  background-color: transparent;
-  background-image: url("../res/notes/double-bar.svg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  height: 16em;
-  width: 1.17em;
-  right: 0;
-  float: right;
-  display: inline-block;
 }
 
 .C4 {

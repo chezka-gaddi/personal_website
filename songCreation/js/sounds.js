@@ -85,14 +85,6 @@ function History() {
   var index = 0;
   var tempIndex = 0;
 
-  this.getActions = function (idx) {
-    var songList = Actions.slice(0, index);
-    if (tempIndex > 0) {
-      songList.push(TempActions[tempIndex - 1]);
-    }
-    return songList;
-  }
-
   //new UndoRedo, remove everything after the current UndoRedo index
   //and append the new function
   this.executeAction = function (cmd) {
@@ -172,16 +164,17 @@ function TempUndoRedo(note, dur, noteDur) {
 
   // adds a note
   this.exec = function () {
-    var out = document.getElementById("change")
-    out.innerHTML += " " + this.note;
-
     var classes = [this.note, this.noteDur, "gray"];
     drawNote(classes);
   }
 
   this.undo = function () {
     var out = document.getElementById("change");
-    out.innerHTML = out.innerHTML.slice(0, -3);
+    var idx = out.innerHTML.lastIndexOf("/");
+    idx = out.innerHTML.length - idx;
+    console.log("Index of last /: " + idx);
+    out.innerHTML = out.innerHTML.slice(0, -idx);
+
     var music = document.getElementById("sheet-music");
     music.removeChild(music.lastChild);
   }
@@ -218,9 +211,6 @@ function UndoRedo(note, dur) {
 
   // adds a note
   this.exec = function () {
-    var out = document.getElementById("change")
-    out.innerHTML += " " + this.note;
-
     console.log("Var Type of note: " + typeof this.note);
     var classes = [this.note, this.noteDur];
     drawNote(classes);
@@ -229,7 +219,11 @@ function UndoRedo(note, dur) {
   // removes note
   this.undo = function () {
     var out = document.getElementById("change");
-    out.innerHTML = out.innerHTML.slice(0, -3);
+    var idx = out.innerHTML.lastIndexOf("/");
+    idx = out.innerHTML.length - idx;
+    console.log("Index of last /: " + idx)
+    out.innerHTML = out.innerHTML.slice(0, -idx);
+    
     var music = document.getElementById("sheet-music");
     music.removeChild(music.lastChild);
   }
@@ -237,6 +231,15 @@ function UndoRedo(note, dur) {
 
 
 function drawNote(classes) {
+  var out = document.getElementById("change");
+  console.log(out.innerHTML);
+  console.log("Length of inner: " + out.innerHTML.length);
+  if (out.innerHTML.length == 0) {
+    out.innerHTML += classes[0] + classes[1];
+  } else {
+    out.innerHTML += "/" + classes[0] + classes[1];
+  }
+  
   console.log("Drawing note: " + classes);	
   var container = document.createElement("div");
   container.classList.add("bar");
@@ -374,6 +377,19 @@ function updateLastNote() {
     console.log("Note is type: " + typeof note);
     var dur = document.getElementById("duration").selectedIndex;
     addTempNote(note, dur);
+  }
+}
+
+function activateButton() {
+  var comboBox = document.getElementById("songsOnFile");
+  var selection = document.getElementById("songTitle").value;
+  var loadBtn = document.getElementById("loadSongButton");
+  if (selection.includes(".xml")) {
+    loadBtn.classList.remove("disabled");
+  } else {
+    if (!loadBtn.classList.contains("disabled")) {
+      loadBtn.classList.add("disabled");
+    }
   }
 }
 

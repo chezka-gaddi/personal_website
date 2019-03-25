@@ -2,10 +2,9 @@
 session_start();
 
 require_once 'php/write.php';
+require_once 'php/load.php';
 
 $treble = '<div class="staff-header">
-  </div>
-  <div class="bar">
   </div>';
 $song = '';
 $title = "My Song";
@@ -25,7 +24,7 @@ if(isset($_GET["load"])) {
   $song = $_SESSION["song"];
 }
 
-if(isset($_GET["loadSong"])) {
+if(isset($_GET["action"])) {
   $song = loadMusic();
   $title = loadTitle();
 }
@@ -41,7 +40,6 @@ if(isset($_GET["loadSong"])) {
   <link rel="stylesheet" href="styles/piano.css">
   <link rel="stylesheet" href="styles/header.css">
   <script type="text/javascript" src="js/sounds.js"></script>
-  <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 </head>
 
 <body>
@@ -64,23 +62,25 @@ if(isset($_GET["loadSong"])) {
   <div class="sheet column left">
   <div>
 
-  <form action="index.php?loadSong=1" method="post" enctype="multipart/form-data">
-    <input type="text" id="songTitle" list="songsOnFile" name="fileToDownload">
-    <datalist id="songsOnFile">
-    <?php 
-      $myFiles = scandir ("uploads/");
-      foreach ($myFiles as $f) {
-        if ($f != "." && $f != "..") {
-          echo '<option>' . $f . '</option>';
+  <form action="index.php?action=1" method="post" enctype="multipart/form-data" id="songTitleForm">
+    <input type="text" onchange=activateButton() id="songTitle" list="songsOnFile" name="fileToDownload">
+      <datalist id="songsOnFile">
+      <?php 
+        $myFiles = scandir ("uploads/");
+        foreach ($myFiles as $f) {
+          $songName = str_replace(".xml", "", $file);
+          if ($f != "." && $f != "..") {
+            echo '<option>' . $f . '</option>';
+          }
         }
-      }
-    ?>
+      ?>
     </datalist>
+    <input type="submit" value="Load Song" name="submit" class="button disabled" id="loadSongButton">
   </form>
 
-<?php
-echo '<script>
-  document.getElementById("songTitle").value = "' . $title . '";
+  <?php
+    echo '<script>
+      document.getElementById("songTitle").value = "' . $title . '";
     </script>';
   ?>
   </div>
@@ -163,7 +163,7 @@ echo '<script>
     <br />
 
     <form id="songToSave" method="post" enctype="multipart/form-data">
-      <input type="submit" value="Save" name="submit" onclick=save() id="button">
+      <input type="submit" value="&#128190; Save" name="submit" onclick=save() id="button">
     </form>
 
     <button id="play"><i class="fas fa-play"></i></button>
@@ -174,9 +174,7 @@ echo '<script>
     </label>    
     <br />
     <br />
-    <p id="change">
-
-    </p>
+    <p id="change"></p>
   </div>  
 </div>
 </div>

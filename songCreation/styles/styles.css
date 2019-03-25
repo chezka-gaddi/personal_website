@@ -1,4 +1,5 @@
-/***************************************************************************//**
+/***************************************************************************/
+/**
  * HTML Elements
  ******************************************************************************/
 
@@ -15,10 +16,11 @@ html {
 
 h2 {
   color: #4682B4;
+  margin-bottom: 15px;
 }
 
 h3 {
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 div {
@@ -28,7 +30,7 @@ div {
 }
 
 p {
-  padding: 10px;  
+  padding: 10px;
 }
 
 .border {
@@ -45,13 +47,17 @@ form {
   display: inline-block;
 }
 
+span {
+  display: none;
+}
 
-/***************************************************************************//**
+
+/*******************************************************************************
  * Two column formatting
  ******************************************************************************/
 
 .row {
-  margin-top:20px;
+  margin-top: 20px;
   width: 100%;
   overflow: hidden;
 }
@@ -70,7 +76,6 @@ form {
   width: 35%;
 }
 
-/* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
@@ -94,7 +99,7 @@ form {
 }
 
 
-/***************************************************************************//**
+/*******************************************************************************
  * Colors
  ******************************************************************************/
 
@@ -122,20 +127,17 @@ form {
 }
 
 
-.fadeInDown {
-  animation-duration: 2s;
-}
-
-
-
-.sheet {
-  min-height: 15em;
-  min-width: 20em;
-}
+/*******************************************************************************
+ * Tooltip
+ ******************************************************************************/
 
 .tooltip {
   position: relative;
   display: inline-block;
+}
+
+.tooltiptext {
+  display: inline;
 }
 
 .tooltip .tooltiptext {
@@ -171,9 +173,8 @@ form {
   opacity: 0.75;
 }
 
-
 .switch {
-  vertical-align:top;
+  vertical-align: top;
   position: relative;
   display: inline-block;
   margin-left: 1px;
@@ -189,6 +190,7 @@ form {
 }
 
 .slider {
+  display: inline;
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -210,17 +212,18 @@ form {
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: #4682B4;
 }
 
-input:focus + .slider {
+input:focus+.slider {
   box-shadow: 0 0 1px gray;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   transform: translateX(30px);
 }
+
 
 
 .playback {
@@ -233,7 +236,9 @@ input:checked + .slider:before {
   text-align: left;
 }
 
-button {
+button,
+.button {
+  display: inline-block;
   margin-bottom: 5px;
   padding: 7px 5px;
   font-family: 'Cormorant Garamond', sans-serif;
@@ -246,7 +251,7 @@ button {
 }
 
 #button {
-  display:inline-block;
+  display: inline-block;
   margin-bottom: 5px;
   padding: 7px 5px;
   font-family: 'Cormorant Garamond', sans-serif;
@@ -254,18 +259,21 @@ button {
   width: 9.5em;
   cursor: pointer;
   max-width: 200px;
-  -webkit-transition-duration: 0.4s; /* Safari */
+  -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
 }
 
-button:disabled {
+button:disabled,
+.disabled {
   opacity: 0.6;
   cursor: not-allowed;
   color: #ccc;
 }
 
-.switch:hover, button:hover, #button:hover {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 15px 0 rgba(0,0,0,0.19);
+.switch:hover,
+button:hover,
+#button:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
 #duration {
@@ -275,3 +283,6 @@ button:disabled {
   font-weight: bold;
 }
 
+.clickable-heading {
+  cursor: pointer;
+}
