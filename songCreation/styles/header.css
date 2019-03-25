@@ -42,11 +42,11 @@ ul {
   list-style:none;
 }
 
-li {
+ul li {
   float: left;
 }
 
-li a {
+ul li a {
   display: block;
   color: white;
   text-align: center;
@@ -54,7 +54,7 @@ li a {
   text-decoration: none;
 }
 
-li a:hover:not(.active) {
+ul li a:hover:not(.active) {
   background-color: #111;
 }
 

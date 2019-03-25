@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/header.css">
-    <script type="text/javascript" src="js/sounds.js"></script>
   </head>
 
   <body>
@@ -29,13 +28,18 @@
       <div class="content">
       <h2>CSS Modifications</h2>
       <p>
-        <h3>Header Background Image</h3>
-        The header background image is a video with an image backup if the video is not able to render. The text is edited using the <xmp> <h1> </xmp> header tag to have the color of white and a different font from the rest of the page.
+        <h3 class="clickable-heading">Header Background Image</h3>
+        <p>
+          The header background image is a video with an image backup if the video is not able to render. The text is edited using the &lth1&gtHeading 1&lt/h1&gt header tag to have the color of white and a different font from the rest of the page.
+        </p>
           
-          <h3>Navigation Bar</h3>
-        The navigation bar is created by editing an undordered list with hyperlink text to navigate from one page to another. When a link is active or is hovered over, the background color changes to indicate the interaction.
+        <h3 class="clickable-heading">Navigation Bar</h3>
+        <p>
+          The navigation bar is created by editing an undordered list with hyperlink text to navigate from one page to another. When a link is active or is hovered over, the background color changes to indicate the interaction.
+        </p>
         
-        <h3>Content Layout</h3>
+        <h3 class="clickable-heading">Content Layout</h3>
+        <p>
         Two different layouts are used to create the website. For the index, a two column layout is created to divide the area where the music sheet resides and the area for the interactive buttons. This layout has the ability to restructure to have the contents to be stacked when the window is smaller than a certain value.
         <div>
           <div class="column left border">Left Column</div>
@@ -46,27 +50,65 @@
           <div class="content border">Section 1</div>
           <div class="content border">Section 2</div>
         </div>
+      </p>
 
-        <h3>Buttons</h3>
-        The buttons used in the program has mutiple styling applied to them. Upon hovering on a button, the cursor changes to a pointer and a shadow affect is applied to indicate the button in focus. Styling is also applied to buttons that are disbaled to have a darker background and the cursor is changed to not-allowed. <br />
+        <h3 class="clickable-heading">Buttons</h3>
+        The buttons used in the program has mutiple styling applied to them. Upon hovering on a button, the cursor changes to a pointer and a shadow affect is applied to indicate the button in focus. Styling is also applied to buttons that are disbaled to have a more muted background and the cursor is changed to not-allowed. <br />
         <button>Example</button> <button disabled>Disabled Button</button>
       </p>
     </div>
 
     <div class="content">
       <h2>How to Use</h2>
-      <p>
-
-      </p>
+        <p>
+          <h3 class="clickable-heading">Creating a Song</h3>
+          The piano is is the source of the main interaction buttons. Keys that are pressed are read into the music sheet as a gray note indicating that it is a temporary note and must be confirmed to move on the next note. You are able to change the note as many times as you like and the undo/redo command can iterate through all the changes of the temporary note. <br />
+          When confirmed, the note turns black and when the keys are pressed again, a gray note is appended after the black note. At each confirmation, the history of the temporary note is deleted and past changes on the temporary notes are no longer available. The undo/redo commands are now only available for the black notes. <br />
+          You are able to play what is currently written on the music sheet (including temporary notes) with <button>Play</button> The play speed can also be doubled when the switch is activated.
+          
+          <h3 class="clickable-heading">Saving a Song</h3>
+          You are able to change the name of your composition using the text box and it will take that name to name the xml file written when you click <button>Save</button>
+          
+          <h3 class="clickable-heading">Uploading a Song</h3>
+          Navigate to the file management page. The first section allows you pick a file from your personal machine to upload to the server. After a successful upload, the file can be seen inside the combo box that lists out all of the files currently on the server.
+          
+          <h3 class="clickable-heading">Loading a Song</h3>
+          Choose a song you would like to interact with from the combo box in the file management page and click the <button class="clickable-heading">Load</button> That would then send you the home page with the song displayed on the music sheet. You are able to interact with the current song by adding more notes to the selection or playing it using the <button>Play</button>
+          
+          <h3 class="clickable-heading">Downloading a Song</h3>
+          Within the file management page, choose the name of the song you would like to download from the combo box and click <button>Download</button> That would then force download the selected item with that name to your device.
+        </p>
     </div>
     
     <div class="content">
       <h2>Limitations</h2>
       <p>
-
+        <h3>Extensions</h3>
+        <ol>
+          <li>A note is shown on a music bar image instead of the letter</li>
+          <li>A note image is shown relating to the length of the sound</li>
+          <li>Style buttons</li>
+          <li>Use of a combo box to select a file in the file management page</li>
+        </ol>
       </p>
     </div>
   </div>
+  <script>
+    function toggleContent(event) {
+      if (event.target && event.target.className == 'clickable-heading') {
+        var next = event.target.nextElementSibling;
+
+        if (next.style.display == "none") {
+            next.style.display = "block";
+
+        } else {
+            next.style.display = "none";
+        }
+      }
+    }
+
+    document.addEventListener('click', toggleContent, true);
+  </script>
   </body>
 
 </html>

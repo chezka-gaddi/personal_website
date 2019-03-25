@@ -27,6 +27,10 @@ div {
   /* border: solid black 1px; */
 }
 
+p {
+  padding: 10px;  
+}
+
 .border {
   border: solid black 1px;
   background-color: white;
@@ -235,9 +239,9 @@ button {
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
   width: 32%;
-  max-width: 300px;
+  max-width: 150px;
   cursor: pointer;
-  -webkit-transition-duration: 0.4s; /* Safari */
+  -webkit-transition-duration: 0.4s;
   transition-duration: 0.4s;
 }
 
@@ -249,7 +253,7 @@ button {
   font-weight: bold;
   width: 9.5em;
   cursor: pointer;
-  max-width: 300px;
+  max-width: 200px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
 }
