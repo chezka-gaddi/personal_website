@@ -40,6 +40,12 @@
         <span>
           The navigation bar is created by editing an undordered list with hyperlink text to navigate from one page to
           another. When a link is active or is hovered over, the background color changes to indicate the interaction.
+          <ul class="navigation">
+            <li><a class="active" href='#'>Active Page</a></li>
+            <li><a href='#'>Page 2</a></li>
+            <li><a href='#'>Page 3</a></li>
+            <li><a href='#'>Page 4</a></li>
+          </ul>
         </span>
 
         <h3 class="clickable-heading">Content Layout</h3>
@@ -65,6 +71,13 @@
           changes to a pointer and a shadow affect is applied to indicate the button in focus. Styling is also applied
           to buttons that are disbaled to have a more muted background and the cursor is changed to not-allowed. <br />
           <button>Example</button> <button disabled>Disabled Button</button>
+        </span>
+
+        <h3 class="clickable-heading">Span</h3>
+        <span>
+          The main change to the span is within the help page. The contents between the subheadings are all enclosed in
+          a span element and it's initial display is set to none. Once a heading is clicked, the display is modified by
+          JavaScript and can be seen by the user.
         </span>
       </div>
     </div>
@@ -123,16 +136,19 @@
     <div class="content">
       <h2>Limitations</h2>
       <div class="content">
-        <h3>Extensions</h3>
-        <ol>
-          <li>A note is shown on a music bar image instead of the letter</li>
-          <li>A note image is shown relating to the length of the sound</li>
-          <li>Style buttons</li>
-          <li>Use of a combo box to select a file in the file management page</li>
-        </ol>
+        <h3 class="clickable-heading">Extensions</h3>
+        <span>
+          <ol>
+            <li>A note is shown on a music bar image instead of the letter</li>
+            <li>A note image is shown relating to the length of the sound</li>
+            <li>Style buttons</li>
+            <li>Use of a combo box to select a file in the file management page</li>
+          </ol>
+        </span>
       </div>
     </div>
   </div>
+
   <script>
     function toggleContent(event) {
       if (event.target && event.target.className == 'clickable-heading') {
@@ -148,6 +164,7 @@
 
     document.addEventListener('click', toggleContent, true);
   </script>
+
 </body>
 
 </html>

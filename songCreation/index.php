@@ -14,6 +14,7 @@ if(isset($_COOKIE['songToSave'])) {
   setcookie("songToSave", '');
   $_SESSION["songTitle"] = $_COOKIE["songTitle"];
   setcookie("songTitle", '');
+  
   saveSong();
   $song = $_SESSION["songToSave"];
   $title = $_SESSION["songTitle"];
