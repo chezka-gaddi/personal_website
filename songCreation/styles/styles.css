@@ -30,6 +30,7 @@ div {
 }
 
 p {
+  overflow: visible;
   padding: 10px;
 }
 
@@ -73,7 +74,7 @@ span {
 }
 
 .right {
-  width: 37%;
+  width: 36%;
 }
 
 .row:after {

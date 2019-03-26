@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 function saveSong() {
   $dom = new DOMDocument();
   $dom->encoding = 'utf-8';
@@ -9,6 +11,9 @@ function saveSong() {
   $songArr = explode(' ', $songStr);
   $target_dir = "uploads/";
   $xml_filename = $_SESSION['songTitle'];
+  if (strpos($xml_filename, '.xml') === false) {
+    $xml_filename .= '.xml';
+  }
 
   $song = $dom->createElement('song');
   $title = $dom->createElement('title', $xml_filename);
@@ -23,7 +28,7 @@ function saveSong() {
     $i += 2;
   }
   $dom->appendChild($song);
-  $dom->save($target_dir . $xml_filename . '.xml');
+  $dom->save($target_dir . $xml_filename);
 
   echo $target_dir . $xml_filename . '.xml has been successfully created.';
 }
