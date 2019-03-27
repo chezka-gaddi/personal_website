@@ -40,7 +40,6 @@ function parseNotes() {
 
 
 function play() {
-  console.log("About to play some tunes");
   var variables = parseNotes();
   var tones = variables[0];
   var dur = variables[1];
@@ -57,7 +56,6 @@ function play() {
   var index = 0;
   snd = new Audio(sounds[tones[index]]);
   snd.play();
-  console.log("Playing: " + tones[index]);
 
   var x = setInterval(function () {
     if (snd.currentTime > (duration[dur[index]]/tempo))
@@ -69,7 +67,6 @@ function play() {
     index++;
     if (tones.length > index) {
       snd.src = sounds[tones[index]];
-      console.log("Playing: " + tones[index]);
       snd.play();
     } else {
       clearInterval(x);
@@ -85,8 +82,6 @@ function History() {
   var index = 0;
   var tempIndex = 0;
 
-  //new UndoRedo, remove everything after the current UndoRedo index
-  //and append the new function
   this.executeAction = function (cmd) {
     if (cmd.type == "temp") {
       TempActions.length = tempIndex;
@@ -105,12 +100,10 @@ function History() {
       index = Actions.length;
     }
 
-    // run the UndoRedo and update
     cmd.exec();
     updateUI();
   }
 
-  //undo called. Call the undo function on the current UndoRedo and move back one
   this.undoCmd = function () {
     if (tempIndex > 0) {
       TempActions[tempIndex - 1].undo();
@@ -126,7 +119,6 @@ function History() {
     updateUI();
   }
 
-  //redo called. Call the execution function on the current UndoRedo and move forward one
   this.redoCmd = function () {
     if (TempActions.length == 0 || (index < Actions.length && tempIndex == 0) ) {
       var cmd = Actions[index];
@@ -143,12 +135,10 @@ function History() {
     }
   }
 
-  //is undo available
   this.canUndo = function () {
     return index > 0 || tempIndex > 0;
   }
 
-  //is redo available
   this.canRedo = function () {
     return index < Actions.length || tempIndex < TempActions.length;
   }
@@ -162,28 +152,18 @@ function TempUndoRedo(note, dur, noteDur) {
   this.dur = dur;
   this.noteDur = noteDur;
 
-  // adds a note
+
   this.exec = function () {
     var classes = [this.note, this.noteDur, "gray"];
     drawNote(classes);
   }
-
+  
   this.undo = function () {
-    var out = document.getElementById("change");
-    var idx = out.innerHTML.lastIndexOf("/");
-    idx = out.innerHTML.length - idx;
-    console.log("Index of last /: " + idx);
-    out.innerHTML = out.innerHTML.slice(0, -idx);
-
-    var music = document.getElementById("sheet-music");
-    music.removeChild(music.lastChild);
+    removeNote();
   }
 }
 
 
-//concrete UndoRedo class. Since we have undo and redo, we much have
-//a "action" (exec) function and an undo
-//ideally, this should forward these calls onto the class that does the task
 // REBENITSCH: COMMAND
 function UndoRedo(note, dur) {
   this.type = "norm";
@@ -209,38 +189,20 @@ function UndoRedo(note, dur) {
       break;
   }
 
-  // adds a note
   this.exec = function () {
     console.log("Var Type of note: " + typeof this.note);
     var classes = [this.note, this.noteDur];
     drawNote(classes);
   }
 
-  // removes note
   this.undo = function () {
-    var out = document.getElementById("change");
-    var idx = out.innerHTML.lastIndexOf("/");
-    idx = out.innerHTML.length - idx;
-    console.log("Index of last /: " + idx)
-    out.innerHTML = out.innerHTML.slice(0, -idx);
-    
-    var music = document.getElementById("sheet-music");
-    music.removeChild(music.lastChild);
+    removeNote();
   }
 }
 
 
+// REBENITSCH: ACTION
 function drawNote(classes) {
-  var out = document.getElementById("change");
-  console.log(out.innerHTML);
-  console.log("Length of inner: " + out.innerHTML.length);
-  if (out.innerHTML.length == 0) {
-    out.innerHTML += classes[0] + classes[1];
-  } else {
-    out.innerHTML += "/" + classes[0] + classes[1];
-  }
-  
-  console.log("Drawing note: " + classes);	
   var container = document.createElement("div");
   container.classList.add("bar");
 
@@ -249,9 +211,15 @@ function drawNote(classes) {
     divnode.classList.add(classes[i]);
   }
 
-  console.log(divnode.classList);
   container.appendChild(divnode);
   document.getElementById("sheet-music").appendChild(container);
+}
+
+
+// REBENITSCH: ACTION
+function removeNote() {
+  var music = document.getElementById("sheet-music");
+  music.removeChild(music.lastChild);
 }
 
 
@@ -318,7 +286,7 @@ function addTempNote(note, dur) {
 }
 
 
-function keyEvent() {
+function confirmNoteEvent() {
   var previous = document.getElementById("sheet-music").lastChild;
   if (previous.classList.contains("staff-header")) {
     return;
@@ -343,15 +311,12 @@ function save() {
   var dur = variables[1];
   var musicString = '';
 
-  console.log("Creating song to save");
   for (var i = 0; i < tones.length; i++) {
     musicString += tones[i] + ' ' + dur[i] + ' ';
   }
 
-  console.log("Song: " + musicString);
   document.cookie = "songToSave=" + musicString;
   var title = document.getElementById("songTitle").value;
-  console.log(title);
   document.cookie = "songTitle=" + title;
 }
 
@@ -363,7 +328,6 @@ function undrawNote() {
   } else if (music.lastChild.lastChild.classList.contains("gray")) {
     return music.lastChild;  
   } else {
-    console.log("Undrawing Note: " + music.lastChild.lastChild.classList);
     return music.removeChild(music.lastChild);
   }
 }
@@ -379,6 +343,7 @@ function updateLastNote() {
     addTempNote(note, dur);
   }
 }
+
 
 function activateButton() {
   var comboBox = document.getElementById("songsOnFile");
@@ -398,7 +363,7 @@ var hist = new History();
 
 // attach all functions to html elements
 window.onload = function () {
-  document.getElementById("confirm").onclick = keyEvent;
+  document.getElementById("confirm").onclick = confirmNoteEvent;
   document.getElementById("C4").onclick = trial;
   document.getElementById("A4").onclick = trial;
   document.getElementById("B4").onclick = trial;
