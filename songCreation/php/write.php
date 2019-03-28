@@ -1,6 +1,9 @@
+<!--
+ @file
+ @brief Contains the function that creates a new XML file from the current song
+ music sheet.
+-->
 <?php
-session_start();
-
 function saveSong() {
   $dom = new DOMDocument();
   $dom->encoding = 'utf-8';

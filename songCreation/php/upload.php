@@ -1,3 +1,7 @@
+<!--
+ @file
+ @brief Contains the function to aid with uploading a file to the server.
+-->
 <?php
 function upload() {
     $target_dir = "uploads/";

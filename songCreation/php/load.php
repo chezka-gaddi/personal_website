@@ -1,3 +1,8 @@
+<!--
+ @file
+ @brief Contains functions to aid in reading an XML file to load into the song
+ area.
+-->
 <?php
 function loadMusic() {
     $file = $_REQUEST["fileToDownload"];
@@ -9,8 +14,6 @@ function loadMusic() {
     $musicSheet = '';
     foreach($songXML->note as $note) {
         $musicSheet .= $note . ' ' . $note['duration'] . ' ';
-
-        //$musicSheet .= '<div class="bar"><div class="' . $note . ' ' . $note['duration'] . '"></div></div>';
     }
 
     return $musicSheet;

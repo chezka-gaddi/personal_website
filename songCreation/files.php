@@ -29,29 +29,8 @@ if(isset($_GET['action'])) {
 
 <head>
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond|Cardo" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet" href="styles/header.css">
-
-    <style>
-        #fileToUpload,
-        #filesCombo,
-        #uploadBtn,
-        #downloadBtn,
-        #loadBtn {
-            margin-right: 10px;
-            padding: 6px 10px;
-            font-family: 'Cormorant Garamond', sans-serif;
-            font-weight: bold;
-            width: 10em;
-        }
-
-        #fileToUpload,
-        #filesCombo {
-            width: 20em;
-        }
-    </style>
 </head>
 
 <body>
@@ -59,9 +38,9 @@ if(isset($_GET['action'])) {
         <div class="banner">
             <h1>Song Creation</h1>
             <video autoplay loop muted class="banner__video"
-                poster="https://pawelgrzybek.com/photos/2015-12-06-codepen.jpg">
+                poster="res/music-sheet.jpg">
                 <source src="res/musicSheet.mov" type="video/webm">
-                <source src="https://pawelgrzybek.com/photos/2015-12-06-codepen.mp4" type="video/mp4">
+                <source src="res/music-sheet.jpg" type="video/mp4">
             </video>
         </div>
         <ul class="navigation">
@@ -76,7 +55,7 @@ if(isset($_GET['action'])) {
         <form action="files.php?up=1" method="post" enctype="multipart/form-data">
             Select file to upload:
             <input type="file" name="fileToUpload" id="fileToUpload">
-            <input type="submit" value="&#10514; Upload" name="submit" id="uploadBtn">
+            <input type="submit" value="&#10514; Upload" name="submit" id="uploadBtn" class="button">
         </form>
         <br />
     </div>
@@ -93,8 +72,8 @@ if(isset($_GET['action'])) {
                         }
                     }
                 ?>
-                <input type="submit" value="Load" name="submit" id="loadBtn" class="button">
-                <input type="submit" value="&#10515; Download" name="submit" id="downloadBtn" class="button">
+                <input type="submit" value="Load" name="submit" class="button">
+                <input type="submit" value="&#10515; Download" name="submit" class="button">
         </form>
     </div>
 </body>

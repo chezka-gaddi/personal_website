@@ -1,3 +1,8 @@
+<!--
+  @file
+  @brief Contains information about the CSS Modifications, How to Use and the 
+  Limitations of the website.
+-->
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +12,7 @@
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="styles/styles.css">
   <link rel="stylesheet" href="styles/header.css">
+  <script type="text/javascript" src="js/toggleView.js"></script>
 </head>
 
 <body>
@@ -85,7 +91,10 @@
 
         <h3 class="clickable-heading">Javascript Effects</h3>
         <span>
-          There are some CSS effects that are activated with the help of Javascript. As per last section, spans are visible after the click event of the heading title. Also the undo/redo buttons are enabled and disabled depending on the current undo/redo stack. The load song button is also manipulated by Javascript, only being activated if the current value in te text box is a file in the system.
+          There are some CSS effects that are activated with the help of Javascript. As per last section, spans are
+          visible after the click event of the heading title. Also the undo/redo buttons are enabled and disabled
+          depending on the current undo/redo stack. The load song button is also manipulated by Javascript, only being
+          activated if the current value in te text box is a file in the system.
         </span>
       </div>
     </div>
@@ -109,7 +118,8 @@
 
         <h3 class="clickable-heading">Saving a Song</h3>
         <span>
-          You are able to change the name of your composition using the text box (must be named without .xml extension) and it will take that name to name the
+          You are able to change the name of your composition using the text box (must be named without .xml extension)
+          and it will take that name to name the
           xml file written when you click <button>&#128190; Save</button>
         </span>
 
@@ -147,8 +157,8 @@
         <h3 class="clickable-heading">Notes</h3>
         <span>
           The project is completed to the last tier. <br />
-          The undo/redo stack can grow for as long as page is not refreshed. The undo/redo stack for temporary notes are refreshed at each note confirmation and cannot be recovered after. <br />
-          files.php contains CSS styling in the header since it would not read the styling from the attached CSS file. All over CSS styling for the website can be found in separate CSS files.
+          The undo/redo stack can grow for as long as the page is not refreshed. The undo/redo stack for temporary notes
+          are refreshed at each note confirmation and cannot be recovered after. <br />
         </span>
         <h3 class="clickable-heading">Extensions</h3>
         <span>
@@ -164,19 +174,6 @@
   </div>
 
   <script>
-    function toggleContent(event) {
-      if (event.target && event.target.className == 'clickable-heading') {
-        var next = event.target.nextElementSibling;
-
-        if (next.style.display == "none") {
-          next.style.display = "block";
-        } else {
-          next.style.display = "none";
-        }
-      }
-    }
-
-    document.addEventListener('click', toggleContent, true);
   </script>
 
 </body>

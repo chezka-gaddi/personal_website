@@ -1,5 +1,11 @@
-/***************************************************************************/
-/**
+/*******************************************************************************
+ * @file
+ * @brief Contains the styling for HTML elements, specific element id, and
+ * classes.
+ ******************************************************************************/
+
+
+/*******************************************************************************
  * HTML Elements
  ******************************************************************************/
 
@@ -46,6 +52,13 @@ p {
 
 form {
   display: inline-block;
+  font-family: 'Cormorant Garamond', sans-serif;
+  width: 100%;
+}
+
+select {
+  display: inline-block;
+  font-family: 'Cormorant Garamond', sans-serif;
 }
 
 span {
@@ -174,6 +187,11 @@ span {
   opacity: 0.75;
 }
 
+
+/*******************************************************************************
+ * Switch and Slider
+ ******************************************************************************/
+
 .switch {
   vertical-align: top;
   position: relative;
@@ -226,16 +244,9 @@ input:checked+.slider:before {
 }
 
 
-
-.playback {
-  display: inline-block;
-  margin-top: 15px;
-  font-size: 100%;
-  width: 400px;
-  vertical-align: top;
-  line-height: 100%;
-  text-align: left;
-}
+/*******************************************************************************
+ * Buttons
+ ******************************************************************************/
 
 button,
 .button {
@@ -251,19 +262,6 @@ button,
   transition-duration: 0.4s;
 }
 
-#button {
-  display: inline-block;
-  margin-bottom: 5px;
-  padding: 7px 5px;
-  font-family: 'Cormorant Garamond', sans-serif;
-  font-weight: bold;
-  width: 9.5em;
-  cursor: pointer;
-  max-width: 200px;
-  -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
-}
-
 button:disabled,
 .disabled {
   opacity: 0.6;
@@ -273,17 +271,48 @@ button:disabled,
 
 .switch:hover,
 button:hover,
-#button:hover {
+.button:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 15px 0 rgba(0, 0, 0, 0.19);
 }
 
-#duration {
+.clickable-heading {
+  cursor: pointer;
+}
+
+#songToSave {
+  width: 32%;
+}
+
+#saveBtn {
+  width: 100%;
+}
+
+
+/*******************************************************************************
+ * Classes and Ids
+ ******************************************************************************/
+
+ #duration {
   padding: 7px 10px;
   width: 65%;
   font-family: 'Cormorant Garamond', sans-serif;
   font-weight: bold;
 }
 
-.clickable-heading {
-  cursor: pointer;
+#filesCombo {
+  padding: 7px 10px;
+  width: 20em;
+  display: inline-block;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.playback {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 100%;
+  width: 400px;
+  vertical-align: top;
+  line-height: 100%;
+  text-align: left;
 }

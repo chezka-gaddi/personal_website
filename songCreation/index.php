@@ -1,3 +1,27 @@
+<!--
+ @file
+ Program Name: Web and Undo/Redo
+
+ Author: Chezka Gaddi
+
+ Class: CSC 468
+
+ Description: A prototype of a song creation web application is created. The prototype
+ allow users to add notes in order with a specific, adjust the length of the notes of
+ the last and future notes, and play their current listings. It also implements an
+ Undo/Redo functionality of adding a note, removing a note, and changing the pitch.
+ It also allows users to download, upload, and load a song to the server.
+ 
+ Last Tier Passed: 4
+
+ Extensions:
+ A note is shown relating to the length of the sound - Press any piano key
+ A note image is shown relating to the length of the sound - Press a piano key and edit
+ last note to any other length of note
+ Style buttons - Hover over a button
+ Use a combo box to select a file in the file management page - Navigate to file
+ management page, there is a comboBox
+-->
 <?php
 session_start();
 
@@ -42,6 +66,8 @@ if(isset($_GET["action"])) {
     <link rel="stylesheet" href="styles/piano.css">
     <link rel="stylesheet" href="styles/header.css">
     <script type="text/javascript" src="js/sounds.js"></script>
+    <script type="text/javascript" src="js/undoredo.js"></script>
+    <script type="text/javascript" src="js/utility.js"></script>
 </head>
 
 <body>
@@ -49,9 +75,9 @@ if(isset($_GET["action"])) {
         <div class="banner">
             <h1>Song Creation</h1>
             <video autoplay loop muted class="banner__video"
-                poster="https://pawelgrzybek.com/photos/2015-12-06-codepen.jpg">
+                poster="res/music-sheet.jpg">
                 <source src="res/musicSheet.mov" type="video/webm">
-                <source src="https://pawelgrzybek.com/photos/2015-12-06-codepen.mp4" type="video/mp4">
+                <source src="res/music-sheet.jpg" type="video/mp4">
             </video>
         </div>
         <ul class="navigation">
@@ -69,7 +95,7 @@ if(isset($_GET["action"])) {
                     <input type="text" onchange=activateButton() id="songTitle" list="songsOnFile"
                         name="fileToDownload">
                     <datalist id="songsOnFile">
-                        <?php 
+                        <?php
                             $myFiles = scandir ("uploads/");
                             foreach ($myFiles as $f) {
                               if ($f != "." && $f != "..") {
@@ -166,7 +192,7 @@ if(isset($_GET["action"])) {
                 <br />
 
                 <form id="songToSave" method="post" enctype="multipart/form-data">
-                    <input type="submit" value="&#128190; Save" name="submit" onclick=save() id="button">
+                    <input type="submit" value="&#128190; Save" name="submit" onclick=save() class="button" id="saveBtn">
                 </form>
 
                 <button id="play"><i class="fas fa-play"></i></button>
