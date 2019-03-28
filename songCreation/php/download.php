@@ -2,6 +2,7 @@
  @file
  @brief Contains the function to aid with dowload operation.
 -->
+
 <?php
 function download() {
     $file = $_REQUEST["fileToDownload"];

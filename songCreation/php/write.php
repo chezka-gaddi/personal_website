@@ -3,6 +3,7 @@
  @brief Contains the function that creates a new XML file from the current song
  music sheet.
 -->
+
 <?php
 function saveSong() {
   $dom = new DOMDocument();
@@ -33,6 +34,6 @@ function saveSong() {
   $dom->appendChild($song);
   $dom->save($target_dir . $xml_filename);
 
-  echo $target_dir . $xml_filename . '.xml has been successfully created.';
+  echo $target_dir . $xml_filename . ' has been successfully created.';
 }
 ?>

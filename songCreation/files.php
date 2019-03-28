@@ -1,3 +1,8 @@
+<!--
+  @file
+  @brief Contains webpage for file management.
+-->
+
 <?php
 session_start();
 
