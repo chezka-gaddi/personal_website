@@ -93,18 +93,18 @@ if(isset($_GET["action"])) {
             <div>
 
                 <form action="index.php?action=1" method="post" enctype="multipart/form-data" id="songTitleForm">
-                    <input type="text" onchange=activateButton() id="songTitle" list="songsOnFile"
+                    <input type="text" onchange=activateButton() id="songTitle" list="songsOnServer"
                         name="fileToDownload">
-                    <datalist id="songsOnFile">
-                        <?php
-                            $myFiles = scandir ("uploads/");
-                            foreach ($myFiles as $f) {
-                              if ($f != "." && $f != "..") {
-                                  echo '<option>' . $f . '</option>';
-                              }
-                            }
-                        ?>
-                    </datalist>
+                        <datalist id="songsOnServer">
+                            <?php
+                                $myFiles = scandir ("uploads/");
+                                foreach ($myFiles as $f) {
+                                  if ($f != "." && $f != "..") {
+                                      echo '<option>' . $f . '</option>';
+                                  }
+                                }
+                            ?>
+                        </datalist>
                     <input type="submit" value="Load Song" name="submit" class="button disabled" id="loadSongButton">
                 </form>
 

@@ -24,7 +24,6 @@ window.onload = function () {
 
 
 function activateButton() {
-    var comboBox = document.getElementById("songsOnFile");
     var selection = document.getElementById("songTitle").value;
     var loadBtn = document.getElementById("loadSongButton");
     if (selection.includes(".xml")) {

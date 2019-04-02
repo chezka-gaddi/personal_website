@@ -1,0 +1,55 @@
+.content {
+    margin: 60px;
+}
+
+.content h2 {
+    text-align: center;
+}
+
+form {
+    font-size: 130%;
+}
+
+select {
+    padding: 5px 5px;
+    width: 180px;
+    
+    font-size: 80%;
+    font-family: serif;
+}
+
+.button {
+    padding: 5px 5px;
+    width: 180px;
+    
+    font-size: 80%;
+    font-family: serif;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 30px;
+    width: 100%;
+}
+
+table a {
+    color: white;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, .3);
+    color: black;
+}
+
+th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #071D49;
+    color: white;
+}

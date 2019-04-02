@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: url("../res/blackboard.jpg") no-repeat center center fixed;
+    background-color: black;
+    /* background-size: 100% auto; */
+    /* background-repeat: no-repeat; */
+    
+    font-family: 'Cabin Sketch', sans-serif;
+    color: white;
+}
+
+header {
+    margin-top: 10px;
+    
+    text-align: center;
+    font-size: 150%;
+}
+
+header h1 {
+    color: #B3A369;
+}
+
+body {
+    font-size: 120%;
+}
+
+#navigation {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#navigation li {
+    display: inline-block;
+    margin: 0 5px;
+}
+
+#navigation a {
+    padding: 10px 15px;
+    float: none;
+    border: 5px #B3A369 double;
+    transition-duration: 1s;
+
+    font-size: 70%;
+    color: white;
+    font-weight: bold;
+}
+
+#navigation a:hover {
+    background-color: #071D49;
+    color: white;
+    border: white 5px double;
+}
+
+#navigation a.active {
+    background-color: #071D49;
+    color: white;
+}
