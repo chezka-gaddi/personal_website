@@ -18,6 +18,28 @@ select {
     font-family: serif;
 }
 
+input[type='text'] {
+    margin: 5px;
+    padding: 3px;
+    width: 180px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-bottom: white 2px dashed;
+
+    font-size: 80%;
+    font-family: serif;
+    color: white;
+}
+
+input[type='datetime-local'],
+input[type='date'] {
+    margin: 5px;
+    margin-right: 15px;
+    padding: 3px;
+    font-size: 80%;
+    font-family: serif;
+}
+
 .button {
     padding: 5px 5px;
     width: 180px;

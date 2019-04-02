@@ -9,6 +9,7 @@
     error_reporting(E_ALL);
 
     if(isset($_POST['db_tables'])) {
+        $_SESSION['display'] = $_POST['db_tables'];
         $table = displayTable();
     }
 
@@ -26,6 +27,8 @@
         <link rel="stylesheet" type="text/css" href="styles/header.css">
         <link rel="stylesheet" type="text/css" href="styles/layout.css">
     </head>
+
+    <?php include 'header.php'; ?>
 
     <?php
         $host="services1.mcs.sdsmt.edu";    // hostname URL
@@ -45,10 +48,7 @@
 
         /* Execute Query */
         $result = $mysqli->query("SHOW TABLES");
-        $host="services1.mcs.sdsmt.edu";
     ?>
-
-    <?php include 'header.php'; ?>
 
     <body>
         <div class='content'>
