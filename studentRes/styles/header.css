@@ -21,7 +21,9 @@ header {
 }
 
 header h1 {
+    font-size: 200%;
     color: #B3A369;
+    margin-bottom: 40px;
 }
 
 body {
@@ -42,7 +44,7 @@ body {
     padding: 10px 15px;
     float: none;
     border: 5px #B3A369 double;
-    transition-duration: 1s;
+    transition-duration: 0.5s;
 
     font-size: 70%;
     color: white;
@@ -58,4 +60,28 @@ body {
 #navigation a.active {
     background-color: #071D49;
     color: white;
+}
+
+#navigation i {
+    margin-right: 10px;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(7, 29, 73, 0.5);
+    min-height: 100px;
+    line-height: 20px;
+    vertical-align: middle;
+    padding-top: 10px;
+    
+    font-size: 80%;
+    color: white;
+    text-align: center;
+}
+
+footer h2 {
+    font-size: 150%;
 }

@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once 'queries.php';
+    require_once 'php/queries.php';
 
     $table = '';
     ini_set('display_errors', 1);
@@ -24,11 +24,12 @@
         <title>Display</title>
         <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
         <script src="js/script.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="styles/header.css">
         <link rel="stylesheet" type="text/css" href="styles/layout.css">
     </head>
 
-    <?php include 'header.php'; ?>
+    <?php include 'php/header.php'; ?>
 
     <?php
         $host="services1.mcs.sdsmt.edu";    // hostname URL
