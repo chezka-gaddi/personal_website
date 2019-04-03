@@ -29,8 +29,6 @@
         <link rel="stylesheet" type="text/css" href="styles/layout.css">
     </head>
 
-    <?php include 'php/header.php'; ?>
-
     <?php
         $host="services1.mcs.sdsmt.edu";    // hostname URL
         $port=3306;						    // default port 3306
@@ -52,6 +50,8 @@
     ?>
 
     <body>
+        <?php include 'php/header.php'; ?>
+
         <div class='content'>
             <h2>Display Data in Student Resource Database</h2>
             <hr />
@@ -77,6 +77,7 @@
                 echo $table;
             ?>
         </div>
-
+        
+        <?php include 'php/footer.php'; ?>
     </body>
 </html>

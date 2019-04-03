@@ -10,13 +10,19 @@
         <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
         <script src="js/script.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/layout.css">
         <link rel="stylesheet" type="text/css" href="styles/header.css">
     </head>
     <title>Search</title>
 
-    <?php include 'php/header.php'; ?>
-
     <body>
+        <?php include 'php/header.php'; ?>
+       
+        <form oninput='rangeText.value = range.valueAsNumber'>
+            <input type='range' name='range' min=1 max=3>
+            <output name='rangeText' for='range'></output>
+        </form>
 
+        <?php include 'php/footer.php'; ?>
     </body>
 </html>

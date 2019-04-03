@@ -7,6 +7,7 @@
 
     require_once 'php/forms.php';
     require_once 'php/queries.php';
+    require_once 'php/constraints.php';
 
     $form = '';
     if(isset($_POST['db_tables'])) {
@@ -15,7 +16,8 @@
     }
 
     if(isset($_POST['add'])) {
-        addData();
+        print_r($_POST);
+        echo checkConstraints();
     }
 ?>
 
@@ -30,8 +32,6 @@
         <link rel="stylesheet" type="text/css" href="styles/header.css">
     </head>
     <title>Add</title>
-
-    <?php include 'php/header.php'; ?>
 
     <?php
         $host="services1.mcs.sdsmt.edu";    // hostname URL
@@ -55,6 +55,8 @@
     ?>
 
     <body>
+        <?php include 'php/header.php'; ?>
+    
         <div class="content">
             <h2>Add New Record</h2>
             <hr />
@@ -64,21 +66,23 @@
                 Select Type of Data to Add:
                 <select id='db_tables' name='db_tables'>
                     <?php
-                    $num = $result->num_rows;
-                    for ($i = 0; $i < $num; $i++)
-                    {
-                        $row=$result->fetch_row();
-                        echo "<option> $row[0] </option>";
-                    }
+                        $num = $result->num_rows;
+                        for ($i = 0; $i < $num; $i++) {
+                            $row=$result->fetch_row();
+                            echo "<option> $row[0] </option>";
+                        }
                     ?>
                 </select>
-                <input type='submit' value="Add New Record" class="button">
+                <input type='submit' value="Fetch Form" class="button">
             </form>
+            <br />
             <br />
 
             <?php
                 echo $form;
             ?>
         </div>
+        
+        <?php include 'php/footer.php'; ?>
     </body>
 </html>

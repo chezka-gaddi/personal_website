@@ -55,6 +55,7 @@
        return $html;
     }
 
+    
     function addData() {
         if(isset($_POST['db_tables'])) {
             $table = $_POST['db_tables'];
