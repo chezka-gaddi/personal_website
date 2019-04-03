@@ -10,79 +10,23 @@
             case 'Task':
                 $form .= createTaskForm();
                 break;
+
+            case 'Activity':
+                $form .= createActivityForm();
+                break;
+
+            case 'Enrollment':
+                $form .= createEnrollmentForm();
+                break;
+
+            case 'Course':
+                $form .= createCourseForm();
+                break;
         }
         $form .= "<input type='submit' name='add' action='?add=1' class='button'></form>";
         return $form;
     }
 
-    function blach() {
-        if ($result = $mysqli->query($query)) {
-            while ($field = $result->fetch_field()) {
-                /* Create password input */
-                if (strpos($field->name, 'passwrd') !== false) {
-                    $html .= $field->name . ': ';
-                    $html .= "<input type='password' id='$field->name' name='$field->name'>";
-                }
-                
-                /* Input type datetime */
-                else if (strpos($field->name, 'Time') !== false) {
-                    $html .= $field->name . ': ';
-                    $html .= "<input type='datetime-local' id='$field->name' name='$field->name' value='2019-01-01T12:00:00.0'>";
-                }
-                
-                /* Input type date */
-                else if (strpos($field->name, 'DOB') !== false) {
-                    $html .= $field->name . ': ';
-                    $html .= "<input type='date' id='$field->name' name='$field->name' value='2019-01-01'>";
-                }
-                
-                /* Don't allow input of generated IDs */
-                else if (strpos($field->name, 'ID') !== false and (strpos($field->name, 'student') === false) and strpos($field->name, 'course') === false) {
-                    continue;
-                }
-                
-                /* Input type number */
-                else if (strpos($field->name, 'GPA') !== false or strpos($field->name, 'estDuration') !== false or strpos($field->name, 'creditHours') !== false) {
-                    $html .= $field->name . ': ';
-                    $html .= "<input type='number' id='$field->name' name='$field->name'> <br />";
-                }
-
-                /* Input type range */
-                else if ($field->name === 'priority') {
-                    $html .= $field->name . ': ';
-                    $html .= "<input type='range' min='1' max='3' id='$field->name' name='$field->name' value='1' list='priorities'>
-                    <output for='$field->name'>level</output>
-                    <datalist id='priorities'>
-                        <option value='1' label='low' />
-                        <option value='2' label='moderate' />
-                        <option value='3' label='high' />
-                    </datalist>
-                    <br />";
-                }
-
-                else if ($field->name === 'category') {
-                    $html .= $field->name . ': ';
-                    $html .= "<select id='$field->name' name='$field->name' list='categories'>
-                    <datalist id='categories'>
-                        <option value='School'>School</option>
-                        <option value='Work'>Work</option>
-                        <option value='Misc' label='Misc'></option>
-                        <option value='Extracurricular'>Extracurricular</option>
-                        </datalist>
-                        <br />";
-                }
-
-                else {
-                    $html .= $field->name . ': ';
-                    $html .= "<input type='text' id='$field->name' name='$field->name'> <br />";
-                }
-            }
-            $html .= "<input type='submit' name='add' value='Add' class='button' action='?submit=1'>";
-        }
-        $html .= "</form>";
-
-        return $html;
-    }
 
     function createUserForm() {
         $form = 
@@ -112,7 +56,8 @@
             </table> <br />";
         return $form;
     }
-    
+
+
     function createTaskForm() {
         $form = 
             "<h3>Add new Task</h3>
@@ -148,4 +93,69 @@
             </table> <br />";
         return $form;
     }
-?>
+
+
+    function createActivityForm() {
+        $form =
+            "<h3>Add new Activity</h3>
+            <table class='formDisplay'>
+            <tr>
+                <th>Student ID</th>
+                <td><input type='number' name='studentID' required></td>
+            </tr>
+            
+            <tr>
+                <th>Activity Name</th>
+                <td><input type='text' name='activityName' required></td>
+            </tr>
+
+            <tr>
+                <th>Start Time</th>
+                <td><input type='datetime-local' name='startTime' required></td>
+                <th>End Time</th>
+                <td><input type='datetime-local' name='endTime' required></td>
+            </tr>
+            </table>";
+        return $form;
+    }
+
+
+    function createEnrollmentForm() {
+        $script =
+            "<h3>Enroll in a Course</h3>
+            <table class='formDisplay'>
+            <tr>
+                <th>Student ID</th>
+                <td><input type='number' id='studentID' required></td>
+            </tr>
+            
+            <tr>
+                <th>Course ID</th>
+                <td><input type='text' id='courseID' required></td>
+            </tr>
+            </table>";
+        return $script;
+    }
+
+
+    function createCourseForm() {
+        $form =
+            "<h3>Add New Course</h3>
+            <table class='formDisplay'>
+            <tr>
+            <th>Course ID</th>
+            <td><input type='text' name='courseID'</td>
+            </tr>
+            
+            <tr>
+            <th>Course Name</th>
+            <td><input type='text' name='courseName' required></td>
+            </tr>
+            
+            <tr>
+            <th>Credit Hours</th>
+            <td><input type='number' name='creditHours' min='0' max='6'></td>
+            </tr>
+            </table>";
+        return $form;
+    }

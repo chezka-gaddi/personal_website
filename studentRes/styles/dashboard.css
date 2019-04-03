@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: url("../res/blackboard.jpg") no-repeat center center fixed;
+    background-color: black;
+
+    font-family: 'Cabin Sketch', sans-serif;
+    color: white;
+}
+
+header {
+    margin-top: 5px;
+    padding: 0 0 10px 0;
+    /*border: white 2px solid;*/
+
+    text-align: center;
+    font-size: 60px;
+    color: #B3A369;
+}
+
+.widget {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: #071D49 3px dashed;
+    vertical-align: top;
+}
+
+.widget h2 {
+    margin-bottom: 10px;
+    color: #B3A369;
+}
+
+#navigation a {
+    position: absolute;
+    left: -160px;
+    transition: 0.3s;
+    padding: 15px 12px;
+    width: 180px;
+    z-index: 1;
+
+    font-size: 20px;
+    color: #B3A369;
+    text-align: center;
+}
+
+#navigation a:hover i {
+    color: white;
+}
+
+#navigation a:hover {
+    left: 0;
+    background-color: #B3A369;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+#navigation i {
+    float: right;
+    margin: 0 10px 0 13px;
+
+    color: #B3A369;
+}
+
+#home {
+    top: 160px;
+    border: 5px #B3A369 double;
+}
+
+#dashboard {
+    top: 240px;
+    border: 5px #B3A369 double;
+}
+
+#display {
+    top: 320px;
+    border: 5px #B3A369 double;
+}
+
+#edit {
+    top: 400px;
+    border: 5px #B3A369 double;
+}
+
+#search {
+    top: 480px;
+    border: 5px #B3A369 double;
+}
+
+.content {
+    margin-left: 80px;
+    right: 0;
+    padding: 10px;
+    background-color: rgba(255,255,255,0.1);
+}
+
+#login {
+    width: 95%;
+}
+
+#loginForm {
+    display: inline;
+}
+
+#loginForm input{
+    display: inline;
+    margin-left: 5px;
+    margin-right: 20px;
+    border: #B3A369 1px solid;
+}
+
+input {
+    background-color: transparent;
+    color: white;
+    padding: 5px;
+}
+
+input[type='submit'],
+.button,
+button {
+    background-color: transparent;
+    border: #B3A369 solid 1px;
+    margin: 5px;
+    padding: 5px 50px;
+
+    font-family: 'Cabin Fever', sans-serif;
+    color: #B3A369;
+}
+
+input[type='submit']:hover {
+    background-color: rgba(7, 29, 73, 0.5);
+}
+
+#welcome {
+    min-width: 300px;
+    color: #B3A369;
+}
+
+.clickable-heading {
+    cursor: pointer;
+}
