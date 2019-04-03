@@ -10,14 +10,19 @@
     require_once 'php/constraints.php';
 
     $form = '';
+    $msg = '';
     if(isset($_POST['db_tables'])) {
         $_SESSION['table'] = $_POST['db_tables'];
-        $form = displayForm();
+        $form = createForm();
+        $_SESSION['form'] = $form;
     }
 
     if(isset($_POST['add'])) {
-        print_r($_POST);
-        echo checkConstraints();
+        $form = $_SESSION['form'];
+        $msg = checkConstraints();
+        if ($msg == '') {
+            $msg = addData();
+        }
     }
 ?>
 
@@ -60,6 +65,11 @@
         <div class="content">
             <h2>Add New Record</h2>
             <hr />
+            <div class='msg red'>
+                <?php
+                    echo $msg;
+                ?>
+            </div>
             <br />
 
             <form method='post'>

@@ -92,9 +92,12 @@
             $dob = $mysqli->real_escape_string($dob);
             $gpa = $_POST['GPA'];
             $gpa = doubleval($gpa);
-            $msg .= 'inside user';
             if ($stmt->execute()) {
-                $msg .= 'Yay!';
+                $msg .= "<div class='msg green'>
+                    Successfully added user!
+                    </div>";
+            } else {
+                $msg = 'Student ID already taken. Was unable to add new user.';
             }
         } else if ($table == 'Activity') {
             $stmt = $mysqli->prepare("INSERT INTO Activity (activityName, startTime, endTime, User_studentID) VALUES (?, ?, ?, ?)");
@@ -108,11 +111,15 @@
             $studentID = $_POST['User_studentID'];
             $studentID = $mysqli->real_escape_string($studentID);
 
-            $msg .= 'inside activity';
             if ($stmt->execute()) {
-                $msg .= 'Yay!';
+                $msg .= "<div class='msg green'>
+                    Successfully added activity!
+                    </div>";
+            } else {
+                $msg .= 'Oops... something went wrong, unable to add activity';
             }
         }
+        
         return $msg;
     }
 ?>

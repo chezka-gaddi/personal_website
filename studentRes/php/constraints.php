@@ -9,11 +9,11 @@
     }
 
     function checkInteger($var) {
-        return (preg_match('/[^0-9]/', $var) ? " must be an integer.\n" : false);
+        return (preg_match('/[^0-9]/', $var) ? " must be an integer. " : false);
     }
     
     function checkNumber($var) {
-        return (preg_match('/[^0-9.-]/', $var) ? " must be a number. \n" : false);
+        return (preg_match('/[^0-9.-]/', $var) ? " must be a number.  " : false);
     }
 
     function checkSpecialCharacters($var) {
@@ -21,11 +21,11 @@
     }
 
     function checkLength($var, $len) {
-        return (strlen($var) > $len ? " max size of $len characters.\n" : false); 
+        return (strlen($var) > $len ? " max size of $len characters. " : false); 
     }
 
     function containNumber($var) {
-        return (preg_match('/[0-9]/', $var) ? false : " must contain a number.\n");
+        return (preg_match('/[0-9]/', $var) ? false : " must contain a number. ");
     }
 
     function notNull($var) {
@@ -34,7 +34,7 @@
 
     function checkDates($start, $end) {
         $diff = $end - $start;
-        return ($diff < 0 ? date('m/d/Y', $start) . ' must be before ' . date('m/d/Y', $end) . ".\n" : false);
+        return ($diff < 0 ? date('m/d/Y', $start) . ' must be before ' . date('m/d/Y', $end) . ". " : false);
     }
 
     function checkUserConstraints() {
@@ -66,10 +66,10 @@
         $today = time();
         $DOB = strtotime($DOB);
         if ($err = checkDates($DOB, $today))
-            $msg .= 'DOB' . $err;
+            $msg .= 'DOB ' . $err;
 
         if ($GPA < 0 or $GPA > 4.01)
-            $msg .= "GPA must be between 0 and 4.0.\n";
+            $msg .= "GPA must be between 0 and 4.0. ";
 
         return $msg;
     }

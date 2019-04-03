@@ -19,7 +19,7 @@
         <?php include 'php/header.php'; ?>
 
         <div class='content'>
-            Welcome to the Student Resources homepage!
+            <h2>Welcome to the Student Resources homepage!</h2>
             
             As an administrator to the site, you will have access to view all the current records in the database, add records, update users, and search any specific records.
         </div>

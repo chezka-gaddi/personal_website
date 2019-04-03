@@ -17,11 +17,8 @@
 
     <body>
         <?php include 'php/header.php'; ?>
-       
-        <form oninput='rangeText.value = range.valueAsNumber'>
-            <input type='range' name='range' min=1 max=3>
-            <output name='rangeText' for='range'></output>
-        </form>
+
+        
 
         <?php include 'php/footer.php'; ?>
     </body>

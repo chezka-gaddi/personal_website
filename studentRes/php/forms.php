@@ -1,25 +1,21 @@
 <?php
-    function displayForm() {
+    function createForm() {
         $table = $_POST['db_tables'];
-        $host="services1.mcs.sdsmt.edu";    // hostname URL
-        $port=3306;						    // default port 3306
-        $user="s7180120_s19";				// DBMS login username
-        $password="wondertwins";			// DBMS login password
-        $dbname="db_7180120_s19";		    // Select DB
-
-        /* Connect to MySQL */
-        $mysqli = new mysqli($host, $user, $password, $dbname, $port);
-
-        /* Check connection error*/
-        if ($mysqli->connect_errno) {
-            printf("Connect failed: %s\n", $mysqli->connect_error);
-            exit();
+        $form = "<form method='post'>";
+        switch ($table) {
+            case 'User':
+                $form .= createUserForm();
+                break;
+            
+            case 'Task':
+                $form .= createTaskForm();
+                break;
         }
+        $form .= "<input type='submit' name='add' action='?add=1' class='button'></form>";
+        return $form;
+    }
 
-        /* Execute Query */
-        $query = 'SELECT * FROM ' . $table;
-
-        $html = "<form method='post'>";
+    function blach() {
         if ($result = $mysqli->query($query)) {
             while ($field = $result->fetch_field()) {
                 /* Create password input */
@@ -86,5 +82,70 @@
         $html .= "</form>";
 
         return $html;
+    }
+
+    function createUserForm() {
+        $form = 
+            "<h3>Add New User</h3>
+            <table class='formDisplay'>
+                <tr>
+                    <th>Student ID:</th>
+                    <td><input type='number' name='studentID' required></td>
+                </tr>
+                
+                <tr>
+                    <th>studentName</th>
+                    <td><input type='text' name='studentName' maxlength='45'></td>
+                </tr>
+                
+                <tr>
+                    <th>Password:</th>
+                    <td><input type='password' name='passwrd'></td>
+                </tr>
+                
+                <tr>
+                    <th>Date of Birth:</th>
+                    <td><input type='date' name='DOB'></td>
+                    <th>GPA:</th>
+                    <td><input type='number' name='GPA' min='0' max='4.0' step='0.01'></td>
+                </tr>
+            </table> <br />";
+        return $form;
+    }
+    
+    function createTaskForm() {
+        $form = 
+            "<h3>Add new Task</h3>
+            <table class='formDisplay'>
+                <tr>
+                    <th>Student ID:</th>
+                    <td><input type='number' name='User_studentID'></td>
+                    <th>Task List Name:</th>
+                    <td><input type='text' name='taskListName'></td>
+                </tr>
+                
+                <tr>
+                    <th>Task Name:</th>
+                    <td><input type='text' name='taskName'></td>
+                </tr>
+                
+                <tr>
+                    <th>Category:</th>
+                    <td>
+                        <select name='category'>
+                        </select>
+                    </td>
+                    <th>Priority:</th>
+                    <td><input type='range' name='priority' min='1' max='3'></td>
+                </tr>
+                
+                <tr>
+                    <th>Due Date:</th>
+                    <td><input type='date' name='dueDate'></td>
+                    <th>Estimated Duration:</th>
+                    <td><input type='number' name='estDuration'></td>
+                </tr>
+            </table> <br />";
+        return $form;
     }
 ?>
