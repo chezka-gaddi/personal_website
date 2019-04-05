@@ -109,13 +109,17 @@
     $studentID = $_POST['studentID'];
     $stmt->execute();
     $stmt->bind_result($bind_taskListName);
-    $taskList = '<span><table>';
+    $taskList = '';
     while ($stmt->fetch()) {
-        $taskList .= '<tr>';
-        $taskList .= '<td>' . $bind_taskListName . '</td>';
-        $taskList .= '</tr>';
+        $taskList .= "<div class='taskBox'>
+        <button class='collapsible'>$bind_taskListName</button>
+        <div class='tasks'>
+            <label>
+                <input type='checkbox' checked='checked' />
+                <span>Add the actual tasks that need to be here.</span>
+            </label>
+        </div></div>";
     }
-    $taskList .= '</table></span>';
     $mysqli->close();
     $stmt->close();
     return $taskList;

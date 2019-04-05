@@ -27,6 +27,23 @@ header {
     padding: 10px;
     border: #071D49 3px dashed;
     vertical-align: top;
+    max-height: 30%;
+    overflow: auto;
+}
+
+.widget::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+.widget::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.widget::-webkit-scrollbar-thumb {
+    background-color: rgba(179,163,105,0.8);
+    border-radius: 10px;
+    border:1px solid transparent;
 }
 
 .widget h2 {

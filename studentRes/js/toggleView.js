@@ -8,13 +8,14 @@ window.onload = function() {
 
 
 function toggleContent(event) {
+    console.log('captured an event');
     if (event.target && event.target.className == 'clickable-heading') {
         var next = event.target.nextElementSibling;
 
-        if (next.style.display == "hidden") {
+        if (next.style.display == "none") {
             next.style.display = "block";
         } else {
-            next.style.display = "hidden";
+            next.style.display = "none";
         }
     }
 }

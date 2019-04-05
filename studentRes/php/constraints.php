@@ -6,6 +6,7 @@
                 return checkUserConstraints();
                 break;
         }
+        return true;
     }
 
     function checkInteger($var) {

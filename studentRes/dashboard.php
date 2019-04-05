@@ -16,7 +16,7 @@
         if ($name = login()) {
             hideLogin();
             $widgets = getWidgets();
-            $schedule = "<h2 class='clickable-heading'>Schedule</h2>" . $widgets['Schedule'];
+            $schedule = "<h2 class='clickable-heading'>Upcoming Events</h2>" . $widgets['Schedule'];
             $courses = "<h2 class='clickable-heading'>Courses</h2>" . $widgets['Courses'];
             $taskLists = "<h2 class='clickable-heading'>Task Lists</h2>" . $widgets['TaskLists'];
         } else {
@@ -81,7 +81,7 @@
     <?php echo $courses; ?>
 </div>
 
-<div class="widget">
+<div id="taskListDisplay" class="widget">
     <?php echo $taskLists; ?>
 </div>
 

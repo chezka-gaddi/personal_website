@@ -25,3 +25,34 @@ tr:hover td,
 tr:hover th {
     border: none;
 }
+
+.taskBox {
+    border: 1px black solid;
+    margin-top: 5px;
+}
+
+.taskBox button {
+    margin: 0;
+    padding: 10px 0 10px 0;
+    width: 100%;
+    background-color: rgba(7,29,73,0.4);
+    border: none;
+
+    font-size: 18px;
+    color: white;
+    font-family: 'Cabin Sketch', sans-serif;
+}
+
+.tasks {
+    padding: 10px;
+    min-height: 20px;
+}
+
+input[type='checkbox'] {
+    padding: 10px;
+}
+
+#taskListDisplay {
+    max-height: none;
+    overflow: visible;
+}
