@@ -1,7 +1,31 @@
 <?php
+session_start();
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+
+    require_once('php/queries.php');
+    $html='';
+    if (isset($_POST['searchTask']))
+    {
+        $_SESSION['taskID']=$_POST['taskID'];
+        $html=searchTasks();
+    }
+
+    if (isset($_POST['modifyBtn']))
+    {
+
+        $html=modifyTasks();
+   
+    }
+
+    if (isset($_POST['deleteBtn']))
+    {
+
+        $html=deleteTask();
+   
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +36,8 @@
         <script src="js/script.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="styles/layout.css">
-        <link rel="stylesheet" type="text/css" href="styles/header.css">
+        <link rel="stylesheet" type="text/css" href="styles/schedule.css">
+        <link rel="stylesheet" type="text/css" href="styles/dashboard.css">
     </head>
 
     <?php
@@ -38,7 +63,16 @@
 
     <body>
         <?php include 'php/header.php'; ?>
+        <div class="content">
+            <h2>Modify and Delete Tasks</h2>
+            <hr><br>
+            <form method='post'>
+            Enter taskID:
+            <input type='text' name='taskID'>
+            <input type='submit' name='searchTask' value='Search Task' class='button'/>
+            </form>
 
-        <?php include 'php/footer.php'; ?>
+            <?php echo $html; ?>
+        </div>
     </body>
 </html>

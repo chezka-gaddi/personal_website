@@ -2,26 +2,41 @@
     session_start();
 
     require_once('php/login.php');
-    require_once('php/schedule.php');
+    require_once('php/widgets.php');
+    require_once('php/queries.php');
 
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $name = 'User Dashboard';
-    $schedule = '';
-    $courses = '';
-    $taskLists = '';
-    if(isset($_POST['login'])) {
-        if ($name = login()) {
-            hideLogin();
+    if(isset($_POST['loginBtn'])) {
+        $_SESSION['studentID'] = $_POST['studentID'];
+        $_SESSION['passwrd'] = $_POST['passwrd'];
+        if ($_SESSION['profile'] = login()) {
             $widgets = getWidgets();
-            $schedule = "<h2 class='clickable-heading'>Upcoming Events</h2>" . $widgets['Schedule'];
-            $courses = "<h2 class='clickable-heading'>Courses</h2>" . $widgets['Courses'];
-            $taskLists = "<h2 class='clickable-heading'>Task Lists</h2>" . $widgets['TaskLists'];
+            $_SESSION['schedule'] = "<h2 class='clickable-heading'>Schedule</h2>" . $widgets['Schedule'];
+            $_SESSION['courses'] = "<h2 class='clickable-heading'>Courses</h2>" . $widgets['Courses'];
+            $_SESSION['taskLists'] = "<h2 class='clickable-heading'>Task Lists</h2>" . $widgets['TaskLists'];
+            $_SESSION['estTime'] = $widgets['estTime'];
         } else {
-            $name = 'Invalid student ID/password.';
+            $_SESSION['profile'] = 'Invalid student ID/password.';
         }
+    } else if(isset($_POST['scheduleBtn'])) {
+        $widgets = getWidgets();
+        $_SESSION['schedule'] = "<h2 class='clickable-heading'>Schedule</h2>" . $widgets['Schedule'];
+    } else if(isset($_POST['modify'])) {
+        modifyUser();
+        $_SESSION['profile'] = login();
+    } else if(isset($_POST['delete'])) {
+        deleteUser();
+    } else {
+        unset($_SESSION['studentID']);
+        unset($_SESSION['passwrd']);
+        unset($_SESSION['schedule']);
+        unset($_SESSION['courses']);
+        unset($_SESSION['taskLists']);
+        unset($_SESSION['estTime']);
+        $_SESSION['profile'] = 'User Dashboard';
     }
 ?>
 
@@ -38,56 +53,68 @@
 </head>
 
 <body>
-<header>
-    Student Resources
-</header>
-
-<div id='navigation'>
-    <a href='index.php' id='home'>Home<i class='fa fa-home'></i></a>
-    <a href='dashboard.php' id='dashboard'>Dashboard<i class='fa fa-user'></i></a>
-    <a href='display.php' id='display'>Administration<i class='fa fa-database'></i></a>
-    <a href='update.php' id='edit'>Edit<i class='fa fa-edit'></i></a>
-    <a href='search.php' id='search'>Search<i class='fa fa-search'></i></a>
-</div>
+<?php include 'php/header.php'; ?>
 
 <div class="content">
-<div id='login' class="widget">
-    Login to Access Dashboard: &emsp;
-    <form id='loginForm' method='post'>
-        Student ID:
-        <input type='number' name='studentID' required>
-        Password:
-        <input type='password' name='passwrd' required>
-        <input type='submit' name='login' value='Login' class='button'>
-    </form>
-</div>
+    <div id='login' class="widget">
+        Login to Access Dashboard: &emsp;
+        <form id='loginForm' method='post'>
+            Student ID:
+            <input type='number' name='studentID' required>
+            Password:
+            <input type='password' name='passwrd' required>
+            <input type='submit' name='loginBtn' value='Login' class='button'>
+        </form>
+    </div>
 
-    <?php
+    <div class='widgetBox2'>
 
-    function hideLogin()
-    {
-    echo "<script>
-        document.getElementById('login').display = 'none';
-    </script>";
-    }
-    ?>
+        <div class='widgetBox1'>
+            <div id='welcome' class="widget">
+                <h2>
+                    <?php
+                    if(isset($_SESSION['profile'])) {
+                        echo $_SESSION['profile'];
+                    }
+                    ?>
+                </h2>
+            </div>
 
+            <div id="estTime" class="widget">
+                <?php
+                if(isset($_SESSION['estTime'])) {
+                    echo $_SESSION['estTime'];
+                }
+                ?>
+            </div>
+        </div>
 
-    <div id='welcome' class="widget">
-    <h2><?php echo $name; ?></h2>
-</div>
+        <div id='scheduleWidget' class="widget">
+            <?php
+            if(isset($_SESSION['schedule'])) {
+                echo $_SESSION['schedule'];
+            }
+            ?>
+        </div>
 
-<div class="widget">
-    <?php echo $courses; ?>
-</div>
+        <div class="widget">
+            <?php
+            if(isset($_SESSION['courses'])) {
+                echo $_SESSION['courses'];
+            }
+            ?>
+        </div>
 
-<div id="taskListDisplay" class="widget">
-    <?php echo $taskLists; ?>
-</div>
+    </div>
 
-<div class="widget">
-    <?php echo $schedule; ?>
-</div>
+    <div id="taskListDisplay" class="widget">
+        <?php
+        if(isset($_SESSION['taskLists'])) {
+            echo $_SESSION['taskLists'];
+        }
+        ?>
+    </div>
+
 
 </div>
 

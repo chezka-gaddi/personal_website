@@ -27,7 +27,7 @@ header {
     padding: 10px;
     border: #071D49 3px dashed;
     vertical-align: top;
-    max-height: 30%;
+    max-height: 370px;
     overflow: auto;
 }
 
@@ -97,13 +97,18 @@ header {
     border: 5px #B3A369 double;
 }
 
-#edit {
+#add {
     top: 400px;
     border: 5px #B3A369 double;
 }
 
-#search {
+#edit {
     top: 480px;
+    border: 5px #B3A369 double;
+}
+
+#search {
+    top: 560px;
     border: 5px #B3A369 double;
 }
 
@@ -158,4 +163,68 @@ input[type='submit']:hover {
 
 .clickable-heading {
     cursor: pointer;
+}
+
+#estTime {
+    max-width: 300px;
+    color: #B3A369;
+    font-size: 20px;
+}
+
+.widgetBox1 {
+    display: inline-block;
+    max-width: 390px;
+    /*border: white solid 2px;*/
+}
+
+.widgetBox2 {
+    display: inline-block;
+    max-width: 1075px;
+    /*border: white solid 2px;*/
+}
+
+#taskListDisplay {
+    overflow: visible;
+}
+
+.taskBox {
+    padding: 10px 50px 10px 50px;
+    background-color: rgba(7, 29, 73, 0.5);
+
+    font-size: 20px;
+}
+
+#scheduleWidget {
+    max-width: 630px;
+}
+
+#scheduleWidget form {
+    float: right;
+    margin-bottom: 10px;
+}
+
+.search {
+    max-height: none;
+    overflow: visible;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(7, 29, 73, 0.5);
+    min-height: 100px;
+    line-height: 20px;
+    vertical-align: middle;
+    padding-top: 10px;
+    margin-top: 10px;
+
+    font-size: 80%;
+    color: white;
+    text-align: center;
+}
+
+footer h2 {
+    font-size: 150%;
 }

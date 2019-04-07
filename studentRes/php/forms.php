@@ -23,7 +23,7 @@
                 $form .= createCourseForm();
                 break;
         }
-        $form .= "<input type='submit' name='add' action='?add=1' class='button'></form>";
+        $form .= "<br/><input type='submit' name='add' action='?add=1' class='button'></form>";
         return $form;
     }
 
@@ -39,12 +39,12 @@
                 
                 <tr>
                     <th>studentName</th>
-                    <td><input type='text' name='studentName' maxlength='45'></td>
+                    <td><input type='text' name='studentName' maxlength='45' required></td>
                 </tr>
                 
                 <tr>
                     <th>Password:</th>
-                    <td><input type='password' name='passwrd'></td>
+                    <td><input type='password' name='passwrd' required></td>
                 </tr>
                 
                 <tr>
@@ -63,34 +63,39 @@
             "<h3>Add new Task</h3>
             <table class='formDisplay'>
                 <tr>
-                    <th>Student ID:</th>
-                    <td><input type='number' name='User_studentID'></td>
-                    <th>Task List Name:</th>
-                    <td><input type='text' name='taskListName'></td>
-                </tr>
-                
-                <tr>
+                    <th>Task List ID:</th>
+                    <td><input type='number' name='taskListID' required></td>
                     <th>Task Name:</th>
-                    <td><input type='text' name='taskName'></td>
+                    <td><input type='text' name='taskName' maxlength='100' required></td>
                 </tr>
                 
                 <tr>
                     <th>Category:</th>
                     <td>
                         <select name='category'>
+                            <option value='School'>School</option>
+                            <option value='Work'>Work</option>
+                            <option value='Extracurricular'>Extracurricular</option>
+                            <option value='Misc' selected='selected'>Misc</option>
                         </select>
                     </td>
                     <th>Priority:</th>
-                    <td><input type='range' name='priority' min='1' max='3'></td>
+                    <td>
+                        <select name='priority'>
+                            <option value='1' selected='selected'>Low</option>
+                            <option value='2'>Moderate</option>
+                            <option value='3'>High</option>
+                        </select>
+                    </td>
                 </tr>
                 
                 <tr>
                     <th>Due Date:</th>
-                    <td><input type='date' name='dueDate'></td>
-                    <th>Estimated Duration:</th>
-                    <td><input type='number' name='estDuration'></td>
+                    <td><input type='datetime-local' name='dueDate'></td>
+                    <th>Estimated Duration (hrs):</th>
+                    <td><input type='number' name='estDuration' min='0'></td>
                 </tr>
-            </table> <br />";
+            </table><br />";
         return $form;
     }
 
@@ -101,19 +106,16 @@
             <table class='formDisplay'>
             <tr>
                 <th>Student ID</th>
-                <td><input type='number' name='studentID' required></td>
-            </tr>
-            
-            <tr>
+                <td><input type='number' name='User_studentID' required></td>
                 <th>Activity Name</th>
-                <td><input type='text' name='activityName' required></td>
+                <td><input type='text' name='activityName' maxlength='100' required></td>
             </tr>
 
             <tr>
                 <th>Start Time</th>
-                <td><input type='datetime-local' name='startTime' required></td>
+                <td><input type='datetime-local' name='startDate' required /></td>
                 <th>End Time</th>
-                <td><input type='datetime-local' name='endTime' required></td>
+                <td><input type='datetime-local' name='endDate' required /></td>
             </tr>
             </table>";
         return $form;

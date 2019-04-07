@@ -21,6 +21,7 @@
         $form = $_SESSION['form'];
         $msg = checkConstraints();
         if ($msg == '') {
+            //print_r($_POST);
             $msg = addData();
         }
     }
@@ -34,7 +35,8 @@
         <script src="js/script.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="styles/layout.css">
-        <link rel="stylesheet" type="text/css" href="styles/header.css">
+        <link rel="stylesheet" type="text/css" href="styles/schedule.css">
+        <link rel="stylesheet" type="text/css" href="styles/dashboard.css">
     </head>
     <title>Add</title>
 
@@ -92,7 +94,5 @@
                 echo $form;
             ?>
         </div>
-        
-        <?php include 'php/footer.php'; ?>
     </body>
 </html>

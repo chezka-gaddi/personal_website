@@ -21,18 +21,22 @@
             exit();
         }
 
-        $stmt = $mysqli->prepare("SELECT studentName, DOB, GPA FROM User WHERE (studentID=? AND passwrd=?)");
+        $stmt = $mysqli->prepare("SELECT * FROM User WHERE (studentID=? AND passwrd=?)");
         $stmt->bind_param("is", $studentID, $passwrd);
-        $studentID = $_POST['studentID'];
-        $passwrd = $_POST['passwrd'];
+        $studentID = $_SESSION['studentID'];
+        $passwrd = $_SESSION['passwrd'];
         $stmt->execute();
-        $stmt->bind_result($bind_studentName, $bind_DOB, $bind_GPA);
+        $stmt->bind_result($bind_studentID, $bind_studentName, $bind_passwrd, $bind_DOB, $bind_sex, $bind_major, $bind_GPA);
         $chk = $stmt->fetch();
         if ($chk) {
             $profile = "<h2>Welcome $bind_studentName!</h2>";
-            $date = date('m/d/y', strtotime($bind_DOB));
-            $profile .= "<p>Birthday: $date</p>";
-            $profile .= "<p>GPA: $bind_GPA</p>";
+            $profile .= "<p>Student ID: $bind_studentID</p>";
+            $profile .= "<form method='post'><p>Password: <input name='passwrd' type='password' value='$bind_passwrd'></p>";
+
+            $profile .= "<p>Gender: <input name='sex' type='text' maxlength=1 value='$bind_sex'></p>";
+            $profile .= "<p>Birthday: <input name='DOB' type='date' value='$bind_DOB'></p>";
+            $profile .= "<p>Major: <input name='major' type='text'  value='$bind_major'></p>";
+            $profile .= "<p>GPA: <input name='GPA' type='number' value='$bind_GPA'></p> <br><input type='submit' name='modify' value='Edit Info' class='button'><input type='submit' name='delete' value='Delete User' class='button'></form>";
             return $profile;
         }
         return false;

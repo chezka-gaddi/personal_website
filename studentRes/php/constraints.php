@@ -5,8 +5,12 @@
             case 'User':
                 return checkUserConstraints();
                 break;
+
+            case 'Activity':
+                return checkActivityConstraints();
+                break;
         }
-        return true;
+        return '';
     }
 
     function checkInteger($var) {
@@ -37,6 +41,7 @@
         $diff = $end - $start;
         return ($diff < 0 ? date('m/d/Y', $start) . ' must be before ' . date('m/d/Y', $end) . ". " : false);
     }
+
 
     function checkUserConstraints() {
         $studentID = $_POST['studentID'];
@@ -74,4 +79,15 @@
 
         return $msg;
     }
-?>
+
+
+    function checkActivityConstraints() {
+        $startDate = $_POST['startDate'];
+        $endDate = $_POST['endDate'];
+
+        $msg = '';
+        if ($err = checkDates(strtotime($startDate), strtotime($endDate)))
+            $msg .= "$startDate must be before $endDate";
+
+        return $msg;
+    }

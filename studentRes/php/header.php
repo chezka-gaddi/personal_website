@@ -1,13 +1,21 @@
 <?php
-  echo "<header>
-      <h1>Student Resources</h1>
-      <ul id='navigation'>
-          <li><a href='index.php' id='home'><i class='fa fa-home'></i>Home</a></li>
-          <li><a href='dashboard.php'><i class='fa fa-user'></i>Dashboard</a></li>
-          <li><a href='display.php' id='display'><i class='fa fa-database'></i>Display Records</a></li>
-          <li><a href='add.php' id='add'><i class='fa fa-plus'></i>Add Record</a></li>
-          <li><a href='update.php' id='update'><i class='fa fa-edit'></i>Update User</a></li>
-          <li><a href='search.php' id='search'><i class='fa fa-search'></i>Search</a></li>
-      </ul>
-      </header>";
-?>
+echo "<header>
+    Student Resources
+    <div id='navigation'>
+      <a href='index.php' id='home'>Home<i class='fa fa-home'></i></a>
+      <a href='dashboard.php' id='dashboard'>Dashboard<i class='fa fa-user'></i></a>
+      <a href='display.php' id='display'>Administration<i class='fa fa-database'></i></a>
+      <a href='add.php' id='add'>Add<i class='fa fa-plus'></i></a>
+      <a href='update.php' id='edit'>Edit<i class='fa fa-edit'></i></a>
+      <a href='search.php' id='search'>Search<i class='fa fa-search'></i></a>
+    </div>
+  </header>";
+
+echo "<footer>
+            <h2>Chezlyne Corp <i class='fa fa-copyright'></i></h2>
+            <br />
+            Co-founded by Jocelyne Freemyer and Chezka Gaddi
+            <br>
+            Note, this is a fictional corporation. We have no money. Don't sue us.
+        </footer>";
+
