@@ -7,7 +7,7 @@ table {
 td,
 th {
     border: 1px #B3A369 solid;
-    padding: 10px 30px;
+    padding: 10px;
 }
 
 tr {
@@ -19,7 +19,6 @@ tr:hover {
     background-color: rgba(255,255,255,0.2);
     outline: 1px #B3A369 solid;
 }
-
 
 tr:hover td,
 tr:hover th {
@@ -43,16 +42,19 @@ tr:hover th {
     font-family: 'Cabin Sketch', sans-serif;
 }
 
-.tasks {
-    padding: 10px;
-    min-height: 20px;
-}
-
-input[type='checkbox'] {
-    padding: 10px;
-}
-
 #taskListDisplay {
     max-height: none;
+    max-width: none;
     overflow: visible;
+}
+
+.taskListTable {
+    margin: 0;
+}
+
+h4 {
+    border: 1px #B3A369 solid;
+    background-color: #071D49;
+    text-align: center;
+    padding: 10px;
 }

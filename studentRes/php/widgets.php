@@ -79,7 +79,7 @@
             <input type='submit' name='scheduleBtn' value='Search' class='button'>
         </form>
         <br />
-        <table id='userScheduleTable'>";
+        <table>";
         while ($stmt->fetch()) {
             $schedule .= '<tr>';
             $schedule .= '<td>' . $bind_activityName . '</td>';
@@ -118,6 +118,7 @@
         $studentID = $_SESSION['studentID'];
         $stmt->execute();
         $stmt->bind_result($bind_courseID, $bind_courseName, $bind_instructor, $bind_time, $bind_creditHours);
+        
         $courseList = '<span><table>';
         while ($stmt->fetch()) {
             $courseList .= '<tr>';
@@ -142,9 +143,11 @@
 
     /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
+    $mysqli2 = new mysqli($host, $user, $password, $dbname, $port);
+
 
     /* Check connection error*/
-    if ($mysqli->connect_errno) {
+    if ($mysqli->connect_errno or $mysqli2->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
     }
@@ -154,14 +157,46 @@
     $studentID = $_SESSION['studentID'];
     $stmt->execute();
     $stmt->bind_result($bind_taskListID, $bind_taskListName);
-    $taskList = "<span><table>";
+    $taskList = "<span>";
     while ($stmt->fetch()) {
-        $taskList .= "<tr>";
-        $taskList .= "<td>$bind_taskListID</td>";
-        $taskList .= "<td>$bind_taskListName</td>";
-        $taskList .= "</tr>";
+        $taskList .= "<h4 class='clickable-heading'>$bind_taskListName</h4>";
+        $taskList .= "<span><table class='taskListTable'><tr>";
+        $task_stmt = $mysqli2->prepare("SELECT taskID, taskName, completed, dueDate FROM Task WHERE TaskList_taskListID=? ORDER BY dueDate, priority");
+        $task_stmt->bind_param("i", $bind_taskListID);
+        $task_stmt->execute();
+        $task_stmt->bind_result($bind_taskID, $bind_taskName, $bind_completed, $bind_dueDate);
+        while ($task_stmt->fetch()) {
+
+            $dueDate = date("m/d/Y H:i", strtotime($bind_dueDate));
+            if ($bind_completed == 1) {
+                $taskList .= "<tr>";
+                $taskList .= "<td class='competed'>$bind_taskID</td>";
+                $taskList .= "<td class='completed'>$bind_taskName</td>";
+                $taskList .= "<td class='completed'>$dueDate</td>";
+            }
+
+            else {
+                if (strtotime($bind_dueDate) < time()) {
+                    $taskList .= "<tr class='overdue'>";
+                    $taskList .= "<td>$bind_taskID</td>";
+                    $taskList .= "<td>$bind_taskName</td>";
+                    $taskList .= "<td>$dueDate</td>";
+                }
+                else {
+                    $taskList .= "<tr>";
+                    $taskList .= "<td>$bind_taskID</td>";
+                    $taskList .= "<td>$bind_taskName</td>";
+                    $taskList .= "<td>$dueDate</td>";
+                }
+            }
+
+            $taskList .= "</tr>";
+        }
+
+        $taskList .= "</table></span><br>";
     }
-    $taskList .= "</table></span>";
+
+    $taskList .= "</span>";
     $mysqli->close();
     $stmt->close();
     return $taskList;

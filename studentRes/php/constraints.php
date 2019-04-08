@@ -3,11 +3,19 @@
         $table = $_SESSION['table'];
         switch ($table) {
             case 'User':
-                return checkUserConstraints();
+                $msg = checkUserConstraints();
+                if ($msg != '')
+                    return "<div class='msg red'>
+                            $msg
+                        </div>";
                 break;
 
             case 'Activity':
-                return checkActivityConstraints();
+                $msg =  checkActivityConstraints();
+                if ($msg != '')
+                    return "<div class='msg red'>
+                            $msg
+                        </div>";
                 break;
         }
         return '';

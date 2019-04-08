@@ -6,65 +6,99 @@
 html {
     background: url("../res/blackboard.jpg") no-repeat center center fixed;
     background-color: black;
-    /* background-size: 100% auto; */
-    /* background-repeat: no-repeat; */
-    
+
     font-family: 'Cabin Sketch', sans-serif;
     color: white;
 }
 
 header {
-    margin-top: 10px;
-    margin-bottom: 50px;
-    overflow: visible;
-    height: auto;
-    
-    text-align: center;
-    font-size: 150%;
-}
+    margin-top: 5px;
+    padding: 0 0 10px 0;
+    /*border: white 2px solid;*/
 
-header h1 {
-    font-size: 200%;
+    text-align: center;
+    font-size: 60px;
     color: #B3A369;
-    margin-bottom: 40px;
-}
-body {
-    font-size: 120%;
-}
-
-#navigation {
-    margin-top: 30px;
-    text-align: center;
-}
-
-#navigation li {
-    display: inline-block;
-    margin: 0 5px;
 }
 
 #navigation a {
-    padding: 10px 15px;
-    float: none;
-    border: 5px #B3A369 double;
-    /* transition-duration: 0.5s; */
+    position: absolute;
+    left: -160px;
+    transition: 0.3s;
+    padding: 15px 12px;
+    width: 180px;
+    z-index: 1;
 
-    font-size: 70%;
+    font-size: 20px;
+    color: #B3A369;
+    text-align: center;
+}
+
+#navigation a:hover i {
     color: white;
-    font-weight: bold;
 }
 
 #navigation a:hover {
-    background-color: #071D49;
-    color: white;
-    border: white 5px double;
-}
-
-#navigation a.active {
-    background-color: #071D49;
+    left: 0;
+    background-color: #B3A369;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
     color: white;
 }
 
 #navigation i {
-    margin-right: 10px;
+    float: right;
+    margin: 0 10px 0 13px;
+
+    color: #B3A369;
 }
 
+#home {
+    top: 80px;
+    border: 5px #B3A369 double;
+}
+
+#dashboard {
+    top: 160px;
+    border: 5px #B3A369 double;
+}
+
+#display {
+    top: 240px;
+    border: 5px #B3A369 double;
+}
+
+#add {
+    top: 320px;
+    border: 5px #B3A369 double;
+}
+
+#edit {
+    top: 400px;
+    border: 5px #B3A369 double;
+}
+
+#search {
+    top: 480px;
+    border: 5px #B3A369 double;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(7, 29, 73, 0.5);
+    min-height: 100px;
+    line-height: 20px;
+    vertical-align: middle;
+    padding-top: 10px;
+    margin-top: 10px;
+
+    font-size: 80%;
+    color: white;
+    text-align: center;
+}
+
+footer h2 {
+    font-size: 150%;
+}

@@ -21,7 +21,6 @@
         $form = $_SESSION['form'];
         $msg = checkConstraints();
         if ($msg == '') {
-            //print_r($_POST);
             $msg = addData();
         }
     }
@@ -34,9 +33,8 @@
         <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
         <script src="js/script.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/header.css">
         <link rel="stylesheet" type="text/css" href="styles/layout.css">
-        <link rel="stylesheet" type="text/css" href="styles/schedule.css">
-        <link rel="stylesheet" type="text/css" href="styles/dashboard.css">
     </head>
     <title>Add</title>
 
@@ -67,11 +65,9 @@
         <div class="content">
             <h2>Add New Record</h2>
             <hr />
-            <div class='msg red'>
-                <?php
-                    echo $msg;
-                ?>
-            </div>
+            <?php
+                echo $msg;
+            ?>
             <br />
 
             <form method='post'>

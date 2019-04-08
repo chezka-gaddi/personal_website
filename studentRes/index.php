@@ -11,8 +11,8 @@ error_reporting(E_ALL);
     <link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="styles/schedule.css">
-    <link rel="stylesheet" type="text/css" href="styles/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="styles/header.css">
+    <link rel="stylesheet" type="text/css" href="styles/layout.css">
 </head>
 <title>Home</title>
 
@@ -39,6 +39,7 @@ error_reporting(E_ALL);
             complete outstanding tasks. A student's schedule, active
             task lists, and courses can also be viewed. </p>
 
+            <br/>
         <h3>Administration </h3>
         <p> All records from
             any table in the database can be viewed here. Each column of
@@ -51,8 +52,12 @@ error_reporting(E_ALL);
         <br/>
 
         <h3> Edit a record</h3>
-        <p> After searching for a task by task ID, the found task can be updated and/or deleted.
-
+        <p> After searching for a task by task ID, the found task can be updated and/or deleted. </p>
+        <br/>
+        <h3> Search </h3>
+        <p> Here a few commonly sought queries can be performed. The 3 queries are displaying the 
+            students enrolled in a course when course ID is entered, displaying the owners of a task
+            list when the task list ID is entered, and displaying all incomplete and overdue tasks for a specified user.
     </div>
 </body>
 

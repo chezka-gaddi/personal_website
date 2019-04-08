@@ -1,5 +1,48 @@
+/********************************************************
+ Layouts
+ ********************************************************/
+
+.content {
+    background-color: rgba(255,255,255,0.1);
+    margin-left: 80px;
+    margin-bottom: 100px;
+    right: 0;
+    padding: 10px;
+    padding-bottom: 60px;
+}
+
 .content h2 {
     text-align: center;
+}
+
+.widget {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: #071D49 3px dashed;
+    vertical-align: top;
+    max-height: 410px;
+    overflow: auto;
+}
+
+.widget::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+.widget::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.widget::-webkit-scrollbar-thumb {
+    background-color: rgba(179,163,105,0.8);
+    border-radius: 10px;
+    border:1px solid transparent;
+}
+
+.widget h2 {
+    margin-bottom: 10px;
+    color: #B3A369;
 }
 
 .msg {
@@ -17,6 +60,11 @@
     background-color: rgba(255, 0, 0, 0.2);
 }
 
+
+/********************************************************
+ Input Types
+ *******************************************************/
+
 form {
     font-size: 130%;
 }
@@ -31,16 +79,23 @@ input {
 
 input:invalid {
     background-color: transparent;
-    border: 2px solid red;
+    border: 1px solid red;
 }
 
-select {
-    padding: 5px 5px;
-    width: 180px;
-    
-    font-size: 80%;
-    font-family: serif;
-    color: black;
+input[type='submit'],
+.button,
+button {
+    background-color: transparent;
+    border: #B3A369 solid 1px;
+    margin: 5px;
+    padding: 5px 50px;
+
+    font-family: 'Cabin Fever', sans-serif;
+    color: #B3A369;
+}
+
+input[type='submit']:hover {
+    background-color: rgba(7, 29, 73, 0.5);
 }
 
 input[type='text'], 
@@ -51,7 +106,7 @@ input[type='password'] {
     width: 180px;
     background-color: rgba(255, 255, 255, 0.1);
     border: none;
-    border-bottom: white 2px dashed;
+    border-bottom: white 1px dashed;
 
     font-size: 80%;
     font-family: serif;
@@ -67,10 +122,31 @@ input[type='date'] {
     font-family: serif;
 }
 
+select {
+    margin-left: 5px;
+    width: 180px;
+    background-color: lightgray;
+    padding: 5px;
+
+    font-size: 80%;
+    font-family: serif;
+    color: #071D49;
+}
+
+
+/*********************************************************
+ Tables
+ ********************************************************/
+
 table {
     border-collapse: collapse;
     margin-top: 30px;
-    width: 100%;
+    /*width: 100%;*/
+}
+
+th, td {
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 table a {
@@ -78,7 +154,7 @@ table a {
 }
 
 table.tableDisplay {
-    margin-bottom: 100px;
+    width: 100%;
 }
 
 table.tableDisplay td, 
@@ -100,23 +176,38 @@ table.tableDisplay th {
     color: white;
 }
 
-table.formDisplay th,
-table.formDisplay td {
-    border: 1px solid #ddd;
-    padding: 8px;
+
+/* Table for forms */
+
+.formDisplay {
+    margin-bottom: 15px;
 }
 
-table.formDisplay input
-table.formDisplay selection {
-    text-align: left;
-    width: 100%;
-    height: 100%;
+.formDisplay td {
+    padding: 0;
+    width: 500px;
+    font-size:20px;
 }
 
-table.formDisplay th {
+.formDisplay th {
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    padding-left: 10px;
     background-color: #071D49;
+    border: 1px solid #ddd;
+
+    text-align: left;
     color: white;
+    font-size: 17px;
+    font-weight: normal;
+    width: 300px;
+}
+
+.formDisplay input:not([type="submit"]),
+.formDisplay select {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 90%;
+    float: left;
+    text-align: left;
 }

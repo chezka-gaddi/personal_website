@@ -1,6 +1,5 @@
 <?php
-function displayTable()
-{
+function displayTable() {
     if (isset($_POST['db_tables'])) {
         $table = $_POST['db_tables'];
         $order = false;
@@ -56,8 +55,7 @@ function displayTable()
 }
 
 
-function addData()
-{
+function addData() {
     if (isset($_POST['db_tables'])) {
         $table = $_POST['db_tables'];
     } else {
@@ -80,9 +78,10 @@ function addData()
     }
 
     $msg = '';
+
     if ($table == 'User') {
-        $stmt = $mysqli->prepare("INSERT INTO User (studentID, studentName, passwrd, DOB, GPA) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("isssd", $studentID, $studentName, $passwrd, $dob, $gpa);
+        $stmt = $mysqli->prepare("INSERT INTO User (studentID, studentName, passwrd, DOB, sex, major, GPA) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isssssd", $studentID, $studentName, $passwrd, $dob, $sex, $major, $gpa);
         $studentID = $_POST['studentID'];
         $studentID = $mysqli->real_escape_string($studentID);
         $studentName = $_POST['studentName'];
@@ -91,6 +90,9 @@ function addData()
         $passwrd = $mysqli->real_escape_string($passwrd);
         $dob = $_POST['DOB'];
         $dob = $mysqli->real_escape_string($dob);
+        $sex = $_POST['sex'];
+        $major = $_POST['major'];
+        $major = $mysqli->real_escape_string($major);
         $gpa = $_POST['GPA'];
         $gpa = doubleval($gpa);
         if ($stmt->execute()) {
@@ -100,7 +102,9 @@ function addData()
         } else {
             $msg = 'Student ID already taken. Was unable to add new user.';
         }
-    } else if ($table == 'Activity') {
+    }
+
+    else if ($table == 'Activity') {
         $stmt = $mysqli->prepare("INSERT INTO Activity (activityName, startTime, endTime, User_studentID) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("sssi", $activityName, $startDate, $endDate, $studentID);
         $activityName = $_POST['activityName'];
@@ -119,7 +123,9 @@ function addData()
         } else {
             $msg .= 'Oops... something went wrong, unable to add activity';
         }
-    } else if ($table == 'Task') {
+    }
+
+    else if ($table == 'Task') {
         $stmt = $mysqli->prepare("INSERT INTO Task (taskName, category, priority, dueDate, estDuration, TaskList_taskListID) VALUES (?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("ssssdi", $taskName, $category, $priority, $dueDate, $estDuration, $TaskList_taskListID);
 
@@ -141,12 +147,88 @@ function addData()
         }
     }
 
+    else if ($table == 'Course') {
+        $stmt = $mysqli->prepare("INSERT INTO Course (courseID, courseName, instructor, time, creditHours) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssd", $courseID, $courseName, $instructor, $time, $creditHours);
+        $courseID = $_POST['courseID'];
+        $courseID = $mysqli->real_escape_string($courseID);
+        $courseName = $_POST['courseName'];
+        $courseName = $mysqli->real_escape_string($courseName);
+        $instructor = $_POST['instructor'];
+        $instructor = $mysqli->real_escape_string($instructor);
+        $time = $_POST['time'];
+        $time = $mysqli->real_escape_string($time);
+        $creditHours = $_POST['creditHours'];
+
+        if ($stmt->execute()) {
+            $msg .= "<div class='msg green'>
+                    Successfully added course!
+                    </div>";
+        } else {
+            $msg .= 'Oops... something went wrong, unable to add course';
+        }
+    }
+
+    else if ($table == 'Enrollment') {
+        $stmt = $mysqli->prepare("INSERT INTO Enrollment (User_studentID, Course_courseID) VALUES (?, ?)");
+        $stmt->bind_param("is", $studentID, $courseID);
+
+        $studentID = $_POST['studentID'];
+        $courseID = $_POST['courseID'];
+        $courseID = $mysqli->real_escape_string($courseID);
+
+        if ($stmt->execute()) {
+            $msg .= "<div class='msg green'>
+                    Successfully enrolled in a course!
+                    </div>";
+        } else {
+            $msg .= "<div class='msg red'>
+                    Oops... something went wrong, unable to confirm enrollment
+                    </div>";
+        }
+    }
+
+    else if ($table == 'TaskList') {
+        $stmt = $mysqli->prepare("INSERT INTO TaskList (taskListName) VALUES (?)");
+        $stmt->bind_param("s", $taskListName);
+
+        $taskListName = $_POST['taskListName'];
+        $taskListName = $mysqli->real_escape_string($taskListName);
+
+        if ($stmt->execute()) {
+            $msg .= "<div class='msg green'>
+                    Successfully created new task list!
+                    </div>";
+        } else {
+            $msg .= "<div class='msg red'>
+                    Oops... something went wrong, unable to create task list
+                    </div>";
+        }
+    }
+
+    else if ($table == 'Project') {
+        $stmt = $mysqli->prepare("INSERT INTO Project (User_studentID, TaskList_taskListID) VALUES (?, ?)");
+        $stmt->bind_param("is", $studentID, $taskListID);
+
+        $studentID = $_POST['studentID'];
+        $taskListID = $_POST['taskListID'];
+
+        if ($stmt->execute()) {
+            $msg .= "<div class='msg green'>
+                    Successfully assigned task list!
+                    </div>";
+        } else {
+            $msg .= "<div class='msg red'>
+                    $studentID refused this project, could not assign task list
+                    </div>";
+        }
+    }
+
     return $msg;
 }
 
 
-function getClassRoster()
-{
+function getClassRoster() {
     $host = "services1.mcs.sdsmt.edu";    // hostname URL
     $port = 3306;                            // default port 3306
     $user = "s7180120_s19";                // DBMS login username
@@ -188,8 +270,7 @@ function getClassRoster()
 }
 
 
-function getMissedTasks()
-{
+function getMissedTasks() {
     $host = "services1.mcs.sdsmt.edu";    // hostname URL
     $port = 3306;                            // default port 3306
     $user = "s7180120_s19";                // DBMS login username
@@ -205,19 +286,19 @@ function getMissedTasks()
         exit();
     }
 
-
-    $stmt = $mysqli->prepare("SELECT DISTINCT T.taskName, T.category, T.priority, T.estDuration, T.dueDate, L.taskListName FROM Task T INNER JOIN TaskList L ON T.TaskList_taskListID=L.taskListID, Project P WHERE P.User_studentID=? AND T.completed=0 AND T.dueDate<current_timestamp()");
-    $stmt->bind_param("s", $studentID);
+    $stmt = $mysqli->prepare(
+        "SELECT T.taskName, T.category, T.priority, T.estDuration, T.dueDate, L.taskListName
+        FROM Task T
+            INNER JOIN TaskList L ON T.TaskList_taskListID=L.taskListID 
+            INNER JOIN Project P ON L.taskListID=P.TaskList_taskListID 
+        WHERE P.User_studentID=? AND T.completed=0 AND T.dueDate<current_timestamp()");
+    $stmt->bind_param("i", $studentID);
     $studentID = $_POST['studentID'];
-    $studentID = $mysqli->real_escape_string($studentID);
-
 
     $stmt->execute();
     $stmt->bind_result($bind_taskName, $bind_category, $bind_priority, $bind_estDuration, $bind_dueDate, $bind_taskListName);
-    $count = 0;
-    $html = "";
 
-    $html = "<br/>";
+    $html = "<br /><h3>All incomplete tasks for $studentID:</h3>";
     $html .= "<table class='tableDisplay'> <tr>";
     $html .= "<th> Task Name </th>";
     $html .= "<th> Category </th>";
@@ -248,8 +329,7 @@ function getMissedTasks()
 }
 
 
-function getTaskListOwners()
-{
+function getTaskListOwners() {
     $host = "services1.mcs.sdsmt.edu";    // hostname URL
     $port = 3306;                            // default port 3306
     $user = "s7180120_s19";                // DBMS login username
@@ -289,8 +369,7 @@ function getTaskListOwners()
 }
 
 
-function searchTasks()
-{
+function searchTasks() {
     $host = "services1.mcs.sdsmt.edu";    // hostname URL
     $port = 3306;                            // default port 3306
     $user = "s7180120_s19";                // DBMS login username
@@ -307,7 +386,7 @@ function searchTasks()
     }
     $count = 0;
 
-    $stmt = $mysqli->prepare("SELECT * FROM Task WHERE TaskID=?");
+    $stmt = $mysqli->prepare("SELECT taskID, taskName, category, priority, estDuration, dueDate, completed, TaskList_taskListID FROM Task WHERE TaskID=?");
     $stmt->bind_param("i", $taskID);
     $taskID = $_POST['taskID'];
     $taskID = $mysqli->real_escape_string($taskID);
@@ -332,11 +411,24 @@ function searchTasks()
         $html .= "<tr>";
         $html .= "<td>$bind_taskID </td>";
         $html .= "<td> <input type='text' name='taskName' value='$bind_taskName'> </td>";
-        $html .= "<td> <input type='text' name='category' value='$bind_category'> </td>";
-        $html .= "<td> <input type='text' name='priority' value='$bind_priority'> </td>";
+        $html .= "<td>
+                    <select name='category' value='$bind_category'>
+                        <option>School</option>
+                        <option>Work</option>
+                        <option>Extracurricular</option>
+                        <option>Misc</option>
+                    </select>
+                  </td>";
+        $html .= "<td>  <select name='priority' value='$bind_priority'>
+                        <option>Low</option>
+                        <option>Moderate</option>
+                        <option>High</option>
+                    </select>
+                  </td>";
         $html .= "<td> <input type='text' name='estDuration' value='$bind_estDuration'> </td>";
-        $html .= "<td> <input type='text' name='dueDate' value='$bind_dueDate'> </td>";
-        $html .= "<td> <input type='text' name='completed' value='$bind_completed'> </td>";
+        $bind_dueDate = preg_replace('/\s+/', 'T', $bind_dueDate);
+        $html .= "<td> <input type='datetime-local' name='dueDate' value='$bind_dueDate'> </td>";
+        $html .= "<td> <input type='number' name='completed' value='$bind_completed'> </td>";
         $html .= "<td> $bind_taskListID </td>";
         $html .= "</tr>";
     }
@@ -354,12 +446,12 @@ function searchTasks()
 }
 
 
-function modifyTasks(){
-    $host = "services1.mcs.sdsmt.edu";    // hostname URL
-    $port = 3306;                            // default port 3306
-    $user = "s7180120_s19";                // DBMS login username
-    $password = "wondertwins";            // DBMS login password
-    $dbname = "db_7180120_s19";            // Select DB 
+function modifyTasks() {
+    $host = "services1.mcs.sdsmt.edu";      // hostname URL
+    $port = 3306;                           // default port 3306
+    $user = "s7180120_s19";                 // DBMS login username
+    $password = "wondertwins";              // DBMS login password
+    $dbname = "db_7180120_s19";             // Select DB 
 
     /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
@@ -369,31 +461,35 @@ function modifyTasks(){
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
     }
-    $count = 0;
 
-    $taskName=$_POST['taskName'];
-    $category=$_POST['category'];
-    $priority=$_POST['priority'];
-    $dueDate=$_POST['dueDate'];
-    $completed=$_POST['completed'];
-    $estDuration=$_POST['estDuration'];
-
-    $stmt = $mysqli->prepare("UPDATE Task SET taskName=?, category=?, priority=?, estDuration=?, completed=? WHERE taskID=?");
-    $stmt->bind_param("sssdii", $taskName, $category, $priority, $estDuration, $completed, $taskID );
+    $stmt = $mysqli->prepare("UPDATE Task SET taskName=?, category=?, priority=?, estDuration=?, dueDate=?, completed=? WHERE taskID=?");
+    $stmt->bind_param("sssdsii", $taskName, $category, $priority, $estDuration, $dueDate, $completed, $taskID);
+    
     $taskID = $_SESSION['taskID'];
     $taskID = $mysqli->real_escape_string($taskID);
+    $taskName = $_POST['taskName'];
+    $taskName = $mysqli->real_escape_string($taskName);
+    $category = $_POST['category'];
+    $priority = $_POST['priority'];
+    $dueDate = $_POST['dueDate'];
+    $dueDate = $mysqli->real_escape_string($dueDate);
+    $completed = $_POST['completed'];
+    $estDuration = $_POST['estDuration'];
 
-    $stmt->execute();
+    if ($stmt->execute())
+        return "<div class='msg green'>
+            Successfully updated task!
+            </div>";
+    return "<div class='msg red'>Something went wrong, could not update task</div>";
 }
 
 
-function deleteTask()
-{
-    $host = "services1.mcs.sdsmt.edu";    // hostname URL
-    $port = 3306;                            // default port 3306
-    $user = "s7180120_s19";                // DBMS login username
-    $password = "wondertwins";            // DBMS login password
-    $dbname = "db_7180120_s19";            // Select DB 
+function deleteTask() {
+    $host = "services1.mcs.sdsmt.edu";      // hostname URL
+    $port = 3306;                           // default port 3306
+    $user = "s7180120_s19";                 // DBMS login username
+    $password = "wondertwins";              // DBMS login password
+    $dbname = "db_7180120_s19";             // Select DB
 
     /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
@@ -409,15 +505,20 @@ function deleteTask()
     $taskID = $_SESSION['taskID'];
     $taskID = $mysqli->real_escape_string($taskID);
 
-    $stmt->execute();
+    if ($stmt->execute())
+        return "<div class='msg green'>
+            Task deleted
+            </div>";
+    return "<div class='msg red'>Something went wrong, could not delete a task</div>";
 }
 
+
 function modifyUser() {
-    $host = "services1.mcs.sdsmt.edu";    // hostname URL
-    $port = 3306;                            // default port 3306
-    $user = "s7180120_s19";                // DBMS login username
-    $password = "wondertwins";            // DBMS login password
-    $dbname = "db_7180120_s19";            // Select DB 
+    $host = "services1.mcs.sdsmt.edu";      // hostname URL
+    $port = 3306;                           // default port 3306
+    $user = "s7180120_s19";                 // DBMS login username
+    $password = "wondertwins";              // DBMS login password
+    $dbname = "db_7180120_s19";             // Select DB 
 
     /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
@@ -427,30 +528,29 @@ function modifyUser() {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
     }
-    $count = 0;
 
     $stmt = $mysqli->prepare("UPDATE User SET passwrd=?, sex=?, DOB=?, major=?, GPA=? WHERE studentID=?");
     $stmt->bind_param("ssssdi", $passwrd, $sex, $DOB, $major, $GPA, $studentID);
-    $passwrd=$_POST['passwrd'];
-    $sex=$_POST['sex'];
-    $DOB=$_POST['DOB'];
-    $major=$_POST['major'];
-    $GPA=$_POST['GPA'];
-    $studentID=$_SESSION['studentID'];
+    $passwrd = $_POST['passwrd'];
+    $sex = $_POST['sex'];
+    $DOB = $_POST['DOB'];
+    $major = $_POST['major'];
+    $GPA = $_POST['GPA'];
+    $studentID = $_SESSION['studentID'];
     $studentID = $mysqli->real_escape_string($studentID);
 
-    if($stmt->execute())
+    if ($stmt->execute())
         echo 'Yay';
-        else
-        echo 'Boo :,(';
+    echo 'Boo';
 }
 
-function deleteUser(){
-    $host = "services1.mcs.sdsmt.edu";    // hostname URL
-    $port = 3306;                            // default port 3306
-    $user = "s7180120_s19";                // DBMS login username
-    $password = "wondertwins";            // DBMS login password
-    $dbname = "db_7180120_s19";            // Select DB 
+
+function deleteUser() {
+    $host = "services1.mcs.sdsmt.edu";      // hostname URL
+    $port = 3306;                           // default port 3306
+    $user = "s7180120_s19";                 // DBMS login username
+    $password = "wondertwins";              // DBMS login password
+    $dbname = "db_7180120_s19";             // Select DB 
 
     /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
