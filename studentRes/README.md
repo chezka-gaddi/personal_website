@@ -2,8 +2,17 @@
 
 This web service is created to help students manage classes, schedules, and tasks.
 
+## Web URLS
+This project is deployed in these locations:
+
+Chezka Gaddi - [Student Resources](https://dev.mcs.sdsmt.edu/~7180120/studentRes/index.php)
+
+Jocelyne Freemyer - [Student Resources](https://dev.mcs.sdsmt.edu/~7180116/StudentResource/index.php)
+
+
 ## ER Diagram and Schemas
 ![ER Diagrams](res/erd.png)
+![ER Diagrams](res/schema.png)
 
 
 ## Student Dashboard
@@ -78,7 +87,7 @@ Enables the user to add a record to any of the tables.
 
 
 ## Edit a Task
-Allows the user to search for a specific task and edit fields.
+Allows the user to search for a specific task and edit fields. This page also allows the user to delete any tasks.
 
 
 ## Search
