@@ -25,7 +25,7 @@ function getEstTime() {
         exit();
     }
 
-    $stmt = $mysqli->prepare("SELECT SUM(T.estDuration) FROM Task T INNER JOIN TaskList L ON T.TaskList_taskListID=L.taskListID, Project P WHERE P.User_studentID=? AND T.completed=0 AND T.dueDate>current_timestamp()");
+    $stmt = $mysqli->prepare("SELECT SUM(T.estDuration) FROM Task T INNER JOIN TaskList L ON T.TaskList_taskListID=L.taskListID INNER JOIN Project P ON L.taskListID=P.TaskList_taskListID WHERE P.User_studentID=? AND T.completed=0");
     $stmt->bind_param("s", $studentID);
     $studentID = $_SESSION['studentID'];
     $studentID = $mysqli->real_escape_string($studentID);
@@ -34,7 +34,7 @@ function getEstTime() {
     $stmt->bind_result($bind_sumEstDuration);
 
     $chk = $stmt->fetch();
-    $html = "EST (hrs) For Upcoming Tasks: $bind_sumEstDuration";
+    $html = "EST to Complete all Unfinished Tasks: $bind_sumEstDuration hrs";
 
     return $html;
 }
@@ -159,10 +159,10 @@ function getTaskLists() {
     while ($stmt->fetch()) {
         $taskList .= "<h4 class='clickable-heading'>$bind_taskListName</h4>";
         $taskList .= "<span><table class='taskListTable'><tr>";
-        $task_stmt = $mysqli2->prepare("SELECT taskID, taskName, completed, dueDate FROM Task WHERE TaskList_taskListID=? ORDER BY dueDate, priority");
+        $task_stmt = $mysqli2->prepare("SELECT taskID, taskName, completed, dueDate, estDuration FROM Task WHERE TaskList_taskListID=? ORDER BY dueDate, priority");
         $task_stmt->bind_param("i", $bind_taskListID);
         $task_stmt->execute();
-        $task_stmt->bind_result($bind_taskID, $bind_taskName, $bind_completed, $bind_dueDate);
+        $task_stmt->bind_result($bind_taskID, $bind_taskName, $bind_completed, $bind_dueDate, $bind_estDuration);
         while ($task_stmt->fetch()) {
 
             $dueDate = date("m/d/Y H:i", strtotime($bind_dueDate));
@@ -171,6 +171,7 @@ function getTaskLists() {
                 $taskList .= "<td class='competed'>$bind_taskID</td>";
                 $taskList .= "<td class='completed'>$bind_taskName</td>";
                 $taskList .= "<td class='completed'>$dueDate</td>";
+                $taskList .= "<td class='completed'>$bind_estDuration</td>";
             }
 
             else {
@@ -179,12 +180,14 @@ function getTaskLists() {
                     $taskList .= "<td>$bind_taskID</td>";
                     $taskList .= "<td>$bind_taskName</td>";
                     $taskList .= "<td>$dueDate</td>";
+                    $taskList .= "<td>$bind_estDuration</td>";
                 }
                 else {
                     $taskList .= "<tr>";
                     $taskList .= "<td>$bind_taskID</td>";
                     $taskList .= "<td>$bind_taskName</td>";
                     $taskList .= "<td>$dueDate</td>";
+                    $taskList .= "<td>$bind_estDuration</td>";
                 }
             }
 

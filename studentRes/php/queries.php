@@ -246,7 +246,7 @@ function getClassRoster() {
 
 
     print_r($_POST);
-    $stmt = $mysqli->prepare("SELECT User_studentID, studentName FROM User,Enrollment WHERE Course_courseID=? AND User_studentID=studentID");
+    $stmt = $mysqli->prepare("SELECT User_studentID, studentName FROM User, Enrollment WHERE Course_courseID=? AND User_studentID=studentID");
     $stmt->bind_param("s", $courseID);
     $courseID = $_POST['courseID'];
     $courseID = $mysqli->real_escape_string($courseID);
