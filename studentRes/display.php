@@ -3,11 +3,11 @@
 
     require_once 'php/queries.php';
 
-    $table = '';
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-
+    
+    $table = '';
     if(isset($_POST['db_tables'])) {
         $_SESSION['display'] = $_POST['db_tables'];
         $table = displayTable();
@@ -58,18 +58,18 @@
             <br />
 
             <form method='post'>
-            Choose the data you would like to display:
-            <select id='db_tables' name='db_tables'>
-            <?php
-                $num = $result->num_rows;
-                for ($i = 0; $i < $num; $i++)
-                {
-                	$row=$result->fetch_row();
-                   	echo "<option> $row[0] </option>";
-                }
-            ?>
-            </select>
-            <input type="submit" value="Get Records" class="button">
+                Choose the data you would like to display:
+                <select id='db_tables' name='db_tables'>
+                <?php
+                    $num = $result->num_rows;
+                    for ($i = 0; $i < $num; $i++)
+                    {
+                        $row=$result->fetch_row();
+                        echo "<option> $row[0] </option>";
+                    }
+                ?>
+                </select>
+                <input type="submit" value="Get Records" class="button">
             </form>
 
             <br />
