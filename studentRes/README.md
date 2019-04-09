@@ -6,18 +6,22 @@ This web service is created to help students manage classes, schedules, and task
 ## Student Dashboard
 This page requires a login specific to a student's account. Once logged in, records relevant to the user is displayed. This includes the student's personal information, schedule, course list, task lists and associated tasks.
 
-<span style="color:green">Query 1:</span> For a student, find activities within a given time span  
+<span style="color:green">**Query 1:**</span> For a student, find activities within a given time span  
 ```sql
-SELECT * FROM Activity WHERE startTime > $start AND endTime < $end
+SELECT *
+FROM Activity
+WHERE startTime > $start AND endTime < $end
 ```
 
-<span style="color:green">Query 2:</span> For a given user, display all courses they are enrolled it.  
+<span style="color:green">**Query 2:**</span> For a given user, display all courses they are enrolled it.  
 ```sql
-SELECT * FROM Course WHERE User_studentID=$studentID
+SELECT *
+FROM Course
+WHERE User_studentID=$studentID
 ```
 
 
-<span style="color:green">Query 3:</span> Display the sum total of estimated work hours for a student to complete their unfinished tasks.  
+<span style="color:green">**Query 3:**</span> Display the sum total of estimated work hours for a student to complete their unfinished tasks.  
 ```sql
 SELECT SUM(estDuration) FROM Task WHERE
 ```
@@ -69,11 +73,19 @@ Allows the user to search for a specific task and edit fields.
 ## Search
 Page made specifically to execute some queries.
 
-<span style="color:green">Query 4:</span> Display the class roster for a given course.  
+<span style="color:green">**Query 4:**</span> Display the class roster for a given course.
 ```sql
-SELECT studentID, studentName FROM User, Project WHERE
+SELECT studentID, studentName
+FROM User, Project
+WHERE
 ```
 
-<span style="color:green">Query 5:</span> Display all of the owners of a given task list.
+<span style="color:green">**Query 5:**</span> Display all of the owners of a given task list.
+```sql
+SELECT
+```
 
-<span style="color:green">Query 6:</span> Search for a particular student's incomplete and overdue tasks.
+<span style="color:green">**Query 6:**</span> Search for a particular student's incomplete and overdue tasks.
+```sql
+SELECT
+```
