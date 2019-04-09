@@ -156,6 +156,7 @@ function getTaskLists() {
     $stmt->execute();
     $stmt->bind_result($bind_taskListID, $bind_taskListName);
     $taskList = "<span>";
+
     while ($stmt->fetch()) {
         $taskList .= "<h4 class='clickable-heading'>$bind_taskListName</h4>";
         $taskList .= "<span><table class='taskListTable'><tr>";
@@ -163,11 +164,19 @@ function getTaskLists() {
         $task_stmt->bind_param("i", $bind_taskListID);
         $task_stmt->execute();
         $task_stmt->bind_result($bind_taskID, $bind_taskName, $bind_completed, $bind_dueDate, $bind_estDuration);
+
         while ($task_stmt->fetch()) {
 
             $dueDate = date("m/d/Y H:i", strtotime($bind_dueDate));
             if ($bind_completed == 1) {
                 $taskList .= "<tr>";
+                $taskList .= "<td>
+                    <form method='post'>
+                        <input type='hidden' name='$bind_taskID'>
+                        <input type='checkbox' name='checkTask' onChange='this.form.submit()' checked disabled>
+                    </form>
+                    </td>";
+
                 $taskList .= "<td class='competed'>$bind_taskID</td>";
                 $taskList .= "<td class='completed'>$bind_taskName</td>";
                 $taskList .= "<td class='completed'>$dueDate</td>";
@@ -177,6 +186,12 @@ function getTaskLists() {
             else {
                 if (strtotime($bind_dueDate) < time()) {
                     $taskList .= "<tr class='overdue'>";
+                    $taskList .= "<td>
+                        <form method='post'>
+                            <input type='hidden' name='$bind_taskID'>
+                            <input type='checkbox' name='checkTask' onchange='this.form.submit()'>
+                        </form>
+                        </td>";
                     $taskList .= "<td>$bind_taskID</td>";
                     $taskList .= "<td>$bind_taskName</td>";
                     $taskList .= "<td>$dueDate</td>";
@@ -184,6 +199,7 @@ function getTaskLists() {
                 }
                 else {
                     $taskList .= "<tr>";
+                    $taskList .= "<td><input type='checkbox' name='$bind_taskID'></td>";
                     $taskList .= "<td>$bind_taskID</td>";
                     $taskList .= "<td>$bind_taskName</td>";
                     $taskList .= "<td>$dueDate</td>";

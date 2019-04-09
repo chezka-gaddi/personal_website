@@ -21,15 +21,29 @@
         } else {
             $_SESSION['profile'] = 'Invalid student ID/password.';
         }
-    } else if(isset($_POST['scheduleBtn'])) {
+    } 
+    
+    else if(isset($_POST['scheduleBtn'])) {
         $widgets = getWidgets();
         $_SESSION['schedule'] = "<h2 class='clickable-heading'>Schedule</h2>" . $widgets['Schedule'];
-    } else if(isset($_POST['modify'])) {
+    } 
+    
+    else if(isset($_POST['modify'])) {
         modifyUser();
         $_SESSION['profile'] = login();
-    } else if(isset($_POST['delete'])) {
+    } 
+    
+    else if(isset($_POST['delete'])) {
         deleteUser();
-    } else {
+    } 
+    
+    else if (isset($_POST['checkTask'])) {
+        markCompleted();
+        $widgets = getWidgets();
+        $_SESSION['taskLists'] = "<h2 class='clickable-heading'>Task Lists</h2>" . $widgets['TaskLists'];
+    } 
+    
+    else {
         unset($_SESSION['studentID']);
         unset($_SESSION['passwrd']);
         unset($_SESSION['schedule']);

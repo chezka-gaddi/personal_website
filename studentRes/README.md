@@ -2,6 +2,9 @@
 
 This web service is created to help students manage classes, schedules, and tasks.
 
+## ER Diagram and Schemas
+![ER Diagrams](res/erd.png)
+
 
 ## Student Dashboard
 This page requires a login specific to a student's account. Once logged in, records relevant to the user is displayed. This includes the student's personal information, schedule, course list, task lists and associated tasks.
