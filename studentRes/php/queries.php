@@ -14,16 +14,13 @@ function displayTable() {
     $password = "wondertwins";            // DBMS login password
     $dbname = "db_7180120_s19";            // Select DB 
 
-    /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
 
-    /* Check connection error*/
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
     }
 
-    /* Execute Query */
     $query = 'SELECT * FROM ' . $table;
     if ($order) {
         $query .= ' ORDER BY ' . $_GET['orderBy'];
@@ -453,10 +450,8 @@ function modifyTasks() {
     $password = "wondertwins";              // DBMS login password
     $dbname = "db_7180120_s19";             // Select DB 
 
-    /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
 
-    /* Check connection error*/
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();

@@ -29,6 +29,7 @@
     } 
     
     else if(isset($_POST['modify'])) {
+        $_SESSION['passwrd'] = $_POST['passwrd'];
         modifyUser();
         $_SESSION['profile'] = login();
     } 

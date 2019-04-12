@@ -16,10 +16,8 @@ function getEstTime() {
     $password="wondertwins";			// DBMS login password
     $dbname="db_7180120_s19";		    // Select DB 
 
-    /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
 
-    /* Check connection error*/
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
@@ -47,10 +45,8 @@ function getSchedule() {
     $password="wondertwins";			// DBMS login password
     $dbname="db_7180120_s19";		    // Select DB
 
-    /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
 
-    /* Check connection error*/
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
@@ -102,10 +98,8 @@ function getCourses() {
     $password="wondertwins";			// DBMS login password
     $dbname="db_7180120_s19";		    // Select DB
 
-    /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
 
-    /* Check connection error*/
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
@@ -139,12 +133,9 @@ function getTaskLists() {
     $password="wondertwins";			// DBMS login password
     $dbname="db_7180120_s19";		    // Select DB
 
-    /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
     $mysqli2 = new mysqli($host, $user, $password, $dbname, $port);
 
-
-    /* Check connection error*/
     if ($mysqli->connect_errno or $mysqli2->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
@@ -188,7 +179,7 @@ function getTaskLists() {
                     $taskList .= "<tr class='overdue'>";
                     $taskList .= "<td>
                         <form method='post'>
-                            <input type='hidden' name='$bind_taskID'>
+                            <input type='hidden' name='taskID' value='$bind_taskID'>
                             <input type='checkbox' name='checkTask' onchange='this.form.submit()'>
                         </form>
                         </td>";
@@ -217,4 +208,30 @@ function getTaskLists() {
     $mysqli->close();
     $stmt->close();
     return $taskList;
+}
+
+
+function markCompleted() {
+    $host = "services1.mcs.sdsmt.edu";      // hostname URL
+    $port = 3306;                           // default port 3306
+    $user = "s7180120_s19";                 // DBMS login username
+    $password = "wondertwins";              // DBMS login password
+    $dbname = "db_7180120_s19";             // Select DB 
+
+    $mysqli = new mysqli($host, $user, $password, $dbname, $port);
+
+    if ($mysqli->connect_errno) {
+        printf("Connect failed: %s\n", $mysqli->connect_error);
+        exit();
+    }
+
+    print_r($_POST);
+
+    $stmt = $mysqli->prepare("UPDATE Task SET completed=1 WHERE taskID=?");
+    $stmt->bind_param("i", $taskID);
+    
+    $taskID = $_POST['taskID'];
+    $stmt->execute();
+    $mysqli->close();
+    $stmt->close();
 }

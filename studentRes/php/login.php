@@ -6,10 +6,8 @@ function login() {
     $password="wondertwins";			// DBMS login password
     $dbname="db_7180120_s19";		    // Select DB
 
-    /* Connect to MySQL */
     $mysqli = new mysqli($host, $user, $password, $dbname, $port);
 
-    /* Check connection error*/
     if ($mysqli->connect_errno) {
         printf("Connect failed: %s\n", $mysqli->connect_error);
         exit();
@@ -30,7 +28,13 @@ function login() {
         $profile .= "<p>Gender: <input name='sex' type='text' maxlength=1 value='$bind_sex'></p>";
         $profile .= "<p>Birthday: <input name='DOB' type='date' value='$bind_DOB'></p>";
         $profile .= "<p>Major: <input name='major' type='text'  value='$bind_major'></p>";
-        $profile .= "<p>GPA: <input name='GPA' type='number' value='$bind_GPA'></p> <br><input type='submit' name='modify' value='Edit Info' class='button'><input type='submit' name='delete' value='Delete User' class='button'></form>";
+        
+        $profile .= "<p>GPA:
+            <input name='GPA' type='number' value='$bind_GPA' min=0 max=4.0 step=0.1>
+            </p> 
+            <br>
+            <input type='submit' name='modify' value='Edit Info' class='button'>
+            <input type='submit' name='delete' value='Delete User' class='button'></form>";
         return $profile;
     }
     return false;

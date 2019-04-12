@@ -2,7 +2,7 @@
 
 This web service is created to help students manage classes, schedules, and tasks.
 
-## Web URLS
+## Project Source
 This project is deployed in these locations:
 
 Chezka Gaddi - [Student Resources](https://dev.mcs.sdsmt.edu/~7180120/studentRes/index.php)
@@ -15,10 +15,20 @@ Jocelyne Freemyer - [Student Resources](https://dev.mcs.sdsmt.edu/~7180116/Stude
 ![ER Diagrams](res/schema.png)
 
 
-## Student Dashboard
-This page requires a login specific to a student's account. Once logged in, records relevant to the user is displayed. This includes the student's personal information, schedule, course list, task lists and associated tasks.
+## Extra Features
 
-<span style="color:green">**Query 1:**</span> For a student, find activities within a given time span  
+### Triggers
+Our database was designed with Triggers to constrain the domains of the columns. These constraints include checking for special characters in name fields, following a specific pattern for IDs, verifying that passwords contains at least one number for security, and certain columns only taking in specified set of values.
+
+### Prepare Statements
+We have used prepare statements to add even more security to the interaction with our database. These protect the database from any SQL injections.
+
+
+
+## Student Dashboard
+This page requires a login specific to a student's account. Once logged in, records relevant to the user is displayed. This includes the student's personal information, schedule, course list, task lists and associated tasks. For testing, we recomment looking at the account with student id = 7180120 and password = 123.
+
+<span style="color:green">**Query 1:**</span> For a student, find activities within a given time span.
 ```sql
 SELECT activityName, startTime, endTime
 FROM Activity
@@ -36,7 +46,6 @@ WHERE courseID IN
     WHERE User_studentID=?)
 ```
 
-
 <span style="color:green">**Query 3:**</span> Display the sum total of estimated work hours for a student to complete their unfinished tasks.  
 ```sql
 SELECT SUM(estDuration)
@@ -48,12 +57,12 @@ WHERE User_studentID=? AND completed=0
 
 
 ## Administration
-In the premise of an actual website, access to this page should only happen after a log in. This page displays all of the current records in each other tables.
+In the premise of an actual website, access to this page should only happen after a log in by an administrator. This page displays all of the current records in each other tables.
 
 <table>
     <tr>
         <th>Activity</th>
-        <td>Events that would be displayed within a schedule </td>
+        <td>Events that would be displayed within a schedule</td>
     </tr>
     <tr>
         <th>Course</th>
@@ -91,7 +100,7 @@ Allows the user to search for a specific task and edit fields. This page also al
 
 
 ## Search
-Page made specifically to execute some queries.
+Page made specifically to execute other required queries.
 
 <span style="color:green">**Query 4:**</span> Display the class roster for a given course.
 ```sql

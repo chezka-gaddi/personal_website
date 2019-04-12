@@ -110,7 +110,7 @@ function createTaskForm() {
                 <th>Due Date:</th>
                 <td><input type='datetime-local' name='dueDate'></td>
                 <th>Estimated Duration (hrs):</th>
-                <td><input type='number' name='estDuration' min='0'></td>
+                <td><input type='number' name='estDuration' min='0' max='100'></td>
             </tr>
         </table><br />";
     return $form;
